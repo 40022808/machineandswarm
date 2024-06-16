@@ -27,19 +27,24 @@ var me攻击力 = 10
 var me防御力 = 5
 var me体质 = 10
 var me精神 = 10
-var me速度 = 10
+var me等级 = 1
+var me生命上限 = me体质 * 10
+var me生命 = me生命上限
+var me魔力上限 = me精神 * 10
+var me魔力 = me魔力上限
+
 
 export function 属性刷新() {
     const 攻击力 = document.querySelector('.攻击力')
     const 防御力 = document.querySelector('.防御力')
     const 体质 = document.querySelector('.体质')
     const 精神 = document.querySelector('.精神')
-    const 速度 = document.querySelector('.速度')
+    const 等级 = document.querySelector('.等级')
     攻击力.innerHTML += me攻击力
     防御力.innerHTML += me防御力
     体质.innerHTML += me体质
     精神.innerHTML += me精神
-    速度.innerHTML += me速度
+    等级.innerHTML += me等级
 }
 
 
@@ -81,7 +86,7 @@ function 个人信息_名字() {
 
 
 
-function 战斗选项框_显示() {
+export function 战斗选项框_显示() {
     const bottom = document.querySelector('.bottom')
     bottom.style.display = 'flex';
 }
