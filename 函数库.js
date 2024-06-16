@@ -23,6 +23,24 @@ export function cat() {
 }
 
 var name_code = document.querySelector('#name_code')
+var me攻击力 = 10
+var me防御力 = 5
+var me体质 = 10
+var me精神 = 10
+var me速度 = 10
+
+export function 属性刷新() {
+    const 攻击力 = document.querySelector('.攻击力')
+    const 防御力 = document.querySelector('.防御力')
+    const 体质 = document.querySelector('.体质')
+    const 精神 = document.querySelector('.精神')
+    const 速度 = document.querySelector('.速度')
+    攻击力.innerHTML += me攻击力
+    防御力.innerHTML += me防御力
+    体质.innerHTML += me体质
+    精神.innerHTML += me精神
+    速度.innerHTML += me速度
+}
 
 
 
@@ -51,12 +69,19 @@ export function start2() {
 
 function 默认名字() {
     if (name_code.value == '') {
-        name_code.value = "[忘记输入自己名字的冒险者]"
+        name_code.value = "忘记输入自己名字的冒险者"
     }
 }
 
 
 function 个人信息_名字() {
     const 名字显示 = document.querySelector('.名字显示')
-    名字显示.innerHTML += name_code.value
+    名字显示.innerHTML += '[' + name_code.value + ']'
+}
+
+
+
+function 战斗选项框_显示() {
+    const bottom = document.querySelector('.bottom')
+    bottom.style.display = 'flex';
 }
