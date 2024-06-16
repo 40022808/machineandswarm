@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.start {
+    display: block;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 1100px;
+
+}
+
+
+
+
+.start h1 {
+    position: fixed;
+    color: white;
+    width: auto;
+    height: auto;
+    font-size:4vw;
+    left:40vw;
+    top: 100px;
+}
+
+
+.start button {
+    position: fixed;
+    height: 100px;
+    width: 10vw;
+    top: 500px;
+    left: 45vw;
+    font-size:3.5vw;
+    border-radius: 8px;
+}
+
+
+.start2 {
+    display: none;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 1100px;
+    
+}
+
+
+.start2 h1 {
+    position: fixed;
+    color: white;
+    width: auto;
+    height: auto;
+    font-size:4vw;
+    left:31vw;
+    top: 100px;
+}
+
+.start2 input {
+    position: fixed;
+    height: 30px;
+    width: 10vw;
+    top: 300px;
+    left: 45vw;
+    border-radius: 8px;
+
+}
+
+
+.start2 button {
+    position: fixed;
+    height: 100px;
+    width: 10vw;
+    top: 500px;
+    left: 45vw;
+    font-size:3.5vw;
+    border-radius: 8px;
+}
+
+.游戏 {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 1200px;
+    background-color: black;
+}
+
+
+
+
+.bottom {
+    position: fixed;
+    bottom: 5px;
+    width: 100vw;
+    height: 150px;
+    background-color: white;
+    border: solid gray 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.bottom div {
+    background-color: aqua;
+    height: 150px;
+    width: 180px;
+}
+
+
+
+.top {
+    position: fixed;
+    top: 1px;
+    width: 99vw;
+    height: 150px;
+    background-color: white;
+    border: solid gray 3px;
+    border-radius: 18px;
+    padding: 10px;
+}
+
+.名字显示 {
+    font-size: 20px;
+}
