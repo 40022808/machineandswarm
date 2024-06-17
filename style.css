@@ -90,7 +90,7 @@
     background-color: black;
     background-image: url(素材库/贴图/大地图.png);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 100vw 1200px;
     background-position: center;
 }
 
@@ -222,4 +222,35 @@
     border-radius: 5px;
     height: 6px;
     width: 0px;
+}
+
+
+.开局选项 {
+    display: none;
+}
+
+
+.开局选项_城镇 , .开局选项_冒险 {
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+    font-size: 70px;
+}
+
+.开局选项_城镇 {
+    position: absolute;
+    top: 15vw;
+    left: 11vw;
+    color: rgb(165, 26, 26);
+}
+
+.开局选项_冒险 {
+    position: absolute;
+    color: white;
+    top: 18vw;
+    right: 16vw;
+}
+
+
+.开局选项_城镇:hover , .开局选项_冒险:hover {
+    font-size: 80px;
 }
