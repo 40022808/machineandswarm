@@ -22,6 +22,14 @@ export function cat() {
 
 }
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+
 var name_code = document.querySelector('#name_code')
 var me攻击力 = 10
 var me防御力 = 5
@@ -68,13 +76,14 @@ export function start() {
     const startbutton = document.querySelector('.startbutton')
     const start = document.querySelector('.start')
     const start2 = document.querySelector('.start2')
-    const 悠闲 = document.querySelector('#悠闲')
+    const 悬疑bgm = document.querySelector('#悬疑bgm')
     
     startbutton.addEventListener('click',()=>{
         start.style.display = 'none';
+        fadeElementIn(start2, 5000)
         start2.style.display = 'block';
-        悠闲.volume = 0.2
-        悠闲.play()
+        悬疑bgm.volume = 0.4
+        悬疑bgm.play()
     })
 }
 
@@ -88,7 +97,11 @@ export function start2() {
         默认名字()
         个人信息_名字()
         start2.style.display = 'none';
+        fadeElementIn(游戏, 2000)
         游戏.style.display = 'block';
+        setTimeout(() => {
+            fadeElementIn(开局选项, 2000)
+        }, 2000);
         开局选项.style.display = 'block';
     })
 }
@@ -111,3 +124,142 @@ export function 战斗选项框_显示() {
     const bottom = document.querySelector('.bottom')
     bottom.style.display = 'flex';
 }
+
+
+export function 加载_显示(count, bgm, bgm2) {
+    let volumecode = 0.4
+    const 加载 = document.querySelector('.加载')
+    加载.style.opacity = 1;
+    加载.style.display = 'flex';
+    const 加载文字 = document.querySelector('.加载文字')
+    加载文字.textContent = `加载中`;
+    let tim = getRandomInt(5 , 16)
+    let tim2 = tim * 1000
+    let timing = setInterval(() => {
+        if (count == 0) {
+            加载文字.textContent = `加载中`;
+            count = 1
+            if (volumecode > 0) {
+                volumecode -= 0.05
+            }
+            bgm.volume = volumecode
+            
+        }
+        else if (count == 1) {
+            加载文字.textContent = `加载中.`;
+            count = 2
+            if (volumecode > 0) {
+                volumecode -= 0.05
+            }
+            bgm.volume = volumecode
+            
+        }
+        else if (count == 2) {
+            加载文字.textContent = `加载中..`;
+            count = 3
+            if (volumecode > 0) {
+                volumecode -= 0.05
+            }
+            bgm.volume = volumecode
+            
+        }
+        else if (count == 3) {
+            加载文字.textContent = `加载中...`;
+            count = 0
+            if (volumecode > 0) {
+                volumecode -= 0.05
+            }
+            bgm.volume = volumecode
+            
+        }
+    }, 500);
+
+    if (volumecode == 0) {
+        bgm.pause()
+    }
+    setTimeout(() => {
+        count = 4
+        加载_消失(bgm2)
+        clearInterval(timing); // 清除定时器
+        加载文字.textContent = '加载完成';
+    }, tim2);
+}
+
+export function 加载_消失(bgm2) {
+
+    const 加载 = document.querySelector('.加载')
+    音乐开始(bgm2, 0.4)
+    setTimeout(() => {
+        
+        fadeElementIn2(加载,2000)
+    }, 2000);
+    
+    setTimeout(() => {
+        加载.style.display = 'none';
+    },4000);
+    
+}
+
+
+function 音乐开始(bgm, volume) {
+    let volumecode = 0
+    bgm.play()
+    let tim = 0
+    let timing = setInterval(() => {
+        if (tim == 0) {
+            if (volumecode < volume) {
+                volumecode += 0.05
+            }
+            bgm.volume = volumecode
+        }
+        else if (tim == 1) {
+            if (volumecode < volume) {
+                volumecode += 0.05
+            }
+            bgm.volume = volumecode
+        }
+        
+
+        if (volumecode >= volume) {
+            clearInterval(timing); // 清除定时器
+        }
+    }, 500)
+    
+}
+
+
+
+export function 冒险选择_显示() {
+    const 冒险选择 = document.querySelector('.冒险选择')
+    冒险选择.style.display = 'flex';
+}
+
+
+function fadeElementIn(element, duration) {
+    let increment = 0.01; // 每次透明度增加的步长
+    let opacity = 0; // 初始透明度为 0
+  
+    let interval = window.setInterval(function() {
+      opacity += increment;
+      element.style.opacity = opacity;
+  
+      if (opacity >= 1) {
+        clearInterval(interval); // 清除定时器
+      }
+    }, duration / 100); // 每 10 毫秒执行一次，总共执行 duration 毫秒
+}
+
+function fadeElementIn2(element, duration) {
+    let increment = 0.01; // 每次透明度增加的步长
+    let opacity = 1; // 初始透明度为 0
+  
+    let interval = window.setInterval(function() {
+      opacity -= increment;
+      element.style.opacity = opacity;
+  
+      if (opacity <= 0) {
+        clearInterval(interval); // 清除定时器
+      }
+    }, duration / 100); // 每 10 毫秒执行一次，总共执行 duration 毫秒
+}
+  

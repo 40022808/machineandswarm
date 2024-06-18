@@ -1,7 +1,11 @@
 import {
-    cat, start, start2, 属性刷新, 战斗选项框_显示
+    cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示
 } from "./函数库.js";
 
+const 版本 = "版本:0.00.25"
+const 目前版本 = document.querySelector('.目前版本')
+目前版本.innerHTML = 版本
+console.log(版本)
 
 
 cat()
@@ -9,4 +13,36 @@ cat()
 start()
 start2()
 属性刷新()
+
+const 开局选项_城镇 = document.querySelector('.开局选项_城镇')
+
+开局选项_城镇.addEventListener('click',()=>{
+    alert("城镇功能未开放!请期待后续版本更新!");
+})
+
+
+const 开局选项_冒险 = document.querySelector('.开局选项_冒险')
+
+开局选项_冒险.addEventListener('click',()=>{
+    冒险选择_显示()
+})
+
+
+const 开始冒险 = document.querySelector('#开始冒险')
+const 深渊难度 = document.querySelector('#深渊难度')
+开始冒险.addEventListener('click',()=>{
+    const abyssValue = parseInt(深渊难度.value); // 将深渊难度的值转换为整数
+    if (深渊难度.value == "") {
+        alert("请在中间的方块里输入难度等级!");
+    }
+    else if (!isNaN(abyssValue) && abyssValue >= 1 && abyssValue <= 30) {
+        加载_显示(1, 悬疑bgm, 悬疑bgm)
+    }
+    
+})
+
+
+
+
+
 

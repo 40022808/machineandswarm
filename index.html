@@ -10,6 +10,7 @@
 
     <audio id="热血战斗" src="素材库/音效和bgm/热血战斗.mp3" loop type="mp3" preload="auto"></audio>
     <audio id="悠闲" src="素材库/音效和bgm/悠闲.mp3" loop type="mp3" preload="auto"></audio>
+    <audio id="悬疑bgm" src="素材库/音效和bgm/悬疑bgm.mp3" loop type="mp3" preload="auto"></audio>
 
 
     <div class="游戏">
@@ -80,7 +81,17 @@
 
 
 
-
+        <div class="冒险选择">
+            <div class="冒险选择2">
+                <h1>关卡选择</h1>
+                <br><br><br><br><br>
+                <h2>深渊难度(1 - 30)</h2>
+                <br><br><br>
+                <input type="text" id="深渊难度" autocomplete="off" maxlength="2">
+                <br><br>
+                <button id="开始冒险">确定</button>
+            </div>        
+        </div>
 
 
 
@@ -105,6 +116,7 @@
 
     <div class="start">
         <h1>智械与虫群</h1>
+        <h2 class="目前版本"></h2>
         <button class="startbutton">开始</button>
     </div>
 
@@ -113,6 +125,15 @@
         <input type="text" id="name_code" autocomplete="off" maxlength="12">
         <button class="确定">确定</button>
     </div>
+
+    <div class="加载">
+        <div class="加载图标">
+        </div>
+        <div class="加载文字">
+            加载中
+        </div>
+    </div>
+
 
 
     <script type="module" src="app.js"></script>
