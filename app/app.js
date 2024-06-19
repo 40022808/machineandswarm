@@ -15,7 +15,6 @@ start2()
 
 
 
-
 const 开局选项_城镇 = document.querySelector('.开局选项_城镇')
 
 开局选项_城镇.addEventListener('click',()=>{
