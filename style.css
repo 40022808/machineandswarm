@@ -25,15 +25,74 @@ body {
     position: fixed;
 }
 
-.start h1 {
+.start div {
     position: fixed;
-    color: white;
-    width: auto;
-    height: auto;
-    font-size:4vw;
+    display: flex;
     left:40vw;
     top: 100px;
 }
+
+.start div h1 {
+    color: white;
+    font-size:4vw;
+}
+
+.start div .智械{
+    
+    color: rgb(132, 132, 165);
+    background-image: url('素材库/贴图/智械.jpg');
+    background-repeat: repeat;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+ 
+}
+
+
+
+
+
+.start div .与{
+    margin: 0.25vw;
+    font-size: 4.8vw;
+    position: relative;
+    top: -0.75vw;
+
+}
+
+
+
+.start div .虫群{
+    color: purple;
+    animation: animate 0.5s linear infinite;
+}
+
+
+
+
+@keyframes animate {
+    0% {
+        text-shadow: -3px 3px 3px #ff0037;  
+    }
+    25% {
+        text-shadow: -3px 3px 3px #ff0037;
+           
+    }
+    50% {
+        text-shadow: 4px -4px 4px #003cff;
+        transform: translateY(-10px);
+    }
+    75% {
+        text-shadow: -3px 3px 3px #ff0037; 
+        
+    }
+    100% {
+        text-shadow: -4px -4px 4px #003cff;
+    }
+}
+
+
 
 
 .start button {
@@ -49,7 +108,11 @@ body {
 
 }
 
+
+
+
 .start button:hover {
+    
     color: white;
     background: linear-gradient(to left, rgb(255, 255, 255), rgb(255, 255, 255)) left top no-repeat,
               linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 255, 255)) left top no-repeat,
@@ -199,18 +262,19 @@ body {
 
 .bottom {
     position: fixed;
+    left: 1vw;
     bottom: 5px;
-    width: 100vw;
-    height: 150px;
+    width: 98vw;
+    height: 13vh;
     background-color: white;
-    border: solid rgb(0, 0, 0) 3px;
+    border: solid rgb(134, 209, 14) 5px;
+    border-radius: 5px;
     display: none;
     align-items: center;
     justify-content: space-evenly;
 }
 
 .bottom div {
-
     height: 150px;
     width: 180px;
     display: flex;
@@ -332,7 +396,7 @@ body {
 }
 
 
-.开局选项_城镇 , .开局选项_冒险 {
+.开局选项_城镇 , .开局选项_冒险 ,.开局选项_背包 {
     background-color: rgba(255, 255, 255, 0);
     border: 0;
     font-size: 70px;
@@ -351,12 +415,18 @@ body {
     color: white;
     top: 20vw;
     left: 60vw;
-    
-    
+        
+}
+
+.开局选项_背包 {
+    position: absolute;
+    color: white;
+    top: 20vw;
+    left: 45vw;  
 }
 
 
-.开局选项_城镇:hover , .开局选项_冒险:hover {
+.开局选项_城镇:hover , .开局选项_冒险:hover ,.开局选项_背包:hover {
     font-size: 80px;
     background: linear-gradient(to left, rgb(255, 255, 255), rgb(255, 255, 255)) left top no-repeat,
               linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 255, 255)) left top no-repeat,
@@ -368,6 +438,19 @@ body {
               linear-gradient(to left, rgb(255, 255, 255), rgb(255, 255, 255)) right bottom no-repeat;
     background-size: 3px 20px, 20px 3px, 3px 20px, 20px 3px;
 }
+
+
+@keyframes slidein {
+    from {
+      margin-top: 4%;
+      opacity: 0;
+    }
+    to {
+      margin-left: 0;
+      opacity: 1;
+    }
+}
+
 
 
 
@@ -383,6 +466,9 @@ body {
     border-radius: 20px;
     padding: 10px;
     align-items: center;
+    animation-name: slidein;
+    animation-duration: 1s; /* 动画持续时间 */
+    animation-fill-mode: forwards; /* 保持最终状态 */
 }
 
 .冒险选择 div h1 {

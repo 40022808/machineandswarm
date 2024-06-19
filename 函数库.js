@@ -92,19 +92,31 @@ export function start2() {
     const startbutton = document.querySelector('.确定')
     const start2 = document.querySelector('.start2')
     const 游戏 = document.querySelector('.游戏')
-    const 开局选项 = document.querySelector('.开局选项')
     startbutton.addEventListener('click',()=>{
         默认名字()
         个人信息_名字()
         start2.style.display = 'none';
         fadeElementIn(游戏, 2000)
         游戏.style.display = 'block';
-        setTimeout(() => {
-            fadeElementIn(开局选项, 2000)
-        }, 2000);
-        开局选项.style.display = 'block';
+        开局选项_显示()
     })
 }
+
+
+export function 开局选项_显示() {
+    const 开局选项 = document.querySelector('.开局选项')
+    setTimeout(() => {
+        fadeElementIn(开局选项, 2000)
+    }, 2000);
+    开局选项.style.display = 'block';
+}
+
+
+export function 开局选项_消失() {
+    const 开局选项 = document.querySelector('.开局选项')
+    开局选项.style.display = 'none';
+}
+
 
 function 默认名字() {
     if (name_code.value == '') {
@@ -232,6 +244,12 @@ function 音乐开始(bgm, volume) {
 export function 冒险选择_显示() {
     const 冒险选择 = document.querySelector('.冒险选择')
     冒险选择.style.display = 'flex';
+}
+
+
+export function 冒险选择_消失() {
+    const 冒险选择 = document.querySelector('.冒险选择')
+    冒险选择.style.display = 'none';
 }
 
 
