@@ -22,6 +22,14 @@ const 开局选项_城镇 = document.querySelector('.开局选项_城镇')
 })
 
 
+const 开局选项_背包 = document.querySelector('.开局选项_背包')
+
+开局选项_背包.addEventListener('click',()=>{
+    alert("背包功能未开放!请期待后续版本更新!")
+})
+
+
+
 const 开局选项_冒险 = document.querySelector('.开局选项_冒险')
 
 开局选项_冒险.addEventListener('click',()=>{

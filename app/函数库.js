@@ -208,6 +208,7 @@ export function 加载_消失(bgm2) {
     
     setTimeout(() => {
         加载.style.display = 'none';
+        alert("冒险功能未完成!请期待后续版本更新!")
     },4000);
     
 }
