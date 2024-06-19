@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智械与虫群</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="热血战斗" src="素材库/音效和bgm/热血战斗.mp3" loop type="mp3" preload="auto"></audio>
+    <audio id="悠闲" src="素材库/音效和bgm/悠闲.mp3" loop type="mp3" preload="auto"></audio>
+    <audio id="悬疑bgm" src="素材库/音效和bgm/悬疑bgm.mp3" loop type="mp3" preload="auto"></audio>
+
+
+    <div class="游戏">
+        <div class="top">
+            <div class="分界线">
+                <div class="名字显示">
+                    冒险者:
+                </div>
+                <div class="信息框">
+    
+                    <div class="信息框1">
+                        <div class="攻击力">
+                            攻击力:
+                        </div>
+                        <div class="防御力">
+                            防御力:
+                        </div>
+                        <div class="体质">
+                            体质:
+                        </div>
+                    </div>
+                    
+                    <div class="信息框2">
+                        <div class="精神">
+                            精神:
+                        </div>
+                        <div class="等级">
+                            等级:
+                        </div>
+                        <div class="经验条">
+                            <div class="经验值">
+                            </div>
+                        </div>
+                    </div>
+                                    
+                </div>
+            </div>
+            
+
+
+            <div class="状态框">
+                <p>
+                    生命:
+                </p>
+                <div class="生命条">
+                    <div class="css生命"></div>
+                </div>
+                <p>
+                    魔力:
+                </p>
+                <div class="魔力条">
+                    <div class="css魔力"></div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="开局选项">
+            <button class="开局选项_城镇">
+                城镇
+            </button>
+            <button class="开局选项_背包">
+                背包
+            </button>
+            <button class="开局选项_冒险">
+                冒险
+            </button>
+        </div>
+
+
+
+        <div class="冒险选择">
+            <div class="冒险选择2">
+                <h1>关卡选择</h1>
+                <br><br><br><br><br>
+                <h2>深渊难度(1 - 30)</h2>
+                <br><br><br>
+                <input type="text" id="深渊难度" autocomplete="off" maxlength="2">
+                <br><br>
+                <button id="开始冒险">确定</button>
+            </div>        
+        </div>
+
+
+
+
+
+
+
+        <div class="bottom">
+
+            <div class="战斗">
+                <button>战斗</button>
+            </div>
+            <div class="道具">
+                <button>道具</button>
+            </div>
+            <div class="逃跑">
+                <button>逃跑</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="start">
+        
+        <div>
+            <h1 class="智械">智械</h1>
+            <h1 class="与">与</h1>
+            <h1 class="虫群">虫群</h1>
+        </div>
+        <h2 class="目前版本"></h2>
+        <button class="startbutton">开始</button>
+    </div>
+
+    <div class="start2">
+        <h1>冒险者请输入您的名字</h1>
+        <input type="text" id="name_code" autocomplete="off" maxlength="12">
+        <button class="确定">确定</button>
+    </div>
+
+    <div class="加载">
+        <div class="加载图标">
+        </div>
+        <div class="加载文字">
+            加载中
+        </div>
+    </div>
+
+
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
