@@ -331,7 +331,7 @@ body {
     flex-direction: row;
     margin-right: 20px;
     width: 20vw;
-    
+    justify-content: space-between;
 }
 
 .信息框 div {
@@ -343,7 +343,6 @@ body {
 
 .信息框 div div{
     font-size: 2vmin;
-    margin-right: 3vmin;
 }
 
 .状态框 {
