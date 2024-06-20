@@ -306,8 +306,8 @@ body {
 .top {
     position: fixed;
     top: 3px;
-    width: 97vw;
-    left: 1vw;
+    width: 90vw;
+    left: 4vw;
     background-color: white;
     border: solid rgb(134, 209, 14) 0.5vmin;
     border-radius: 18px;
