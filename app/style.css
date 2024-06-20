@@ -474,7 +474,7 @@ body {
     position: absolute;
     display: none;
     flex-direction: column;
-    top: 10vw;
+    top: 20vh;
     left: 25vw;
     background-color: white;
     height: 60vh;
