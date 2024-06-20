@@ -7,6 +7,9 @@ body {
     background-color: black;
 }
 
+:root {
+    --main-left: 50vw ; /* 定义自定义属性 */
+}
 
 .start {
     display: block;
@@ -96,12 +99,15 @@ body {
 
 
 
+
+
 .start button {
+    
     position: fixed;
     height: 5vmax;
     width: 10vmax;
     top: 50vh;
-    left: 45vw;
+    left: calc(var(--main-left) - 5vmax);
     font-size:3.5vw;
     border-radius: 8px;
     border: 0;
@@ -144,19 +150,19 @@ body {
     color: white;
     width: auto;
     height: auto;
-    font-size:4vw;
-    left:31vw;
-    top: 100px;
+    font-size: 4vmax;
+    left: 31vw;
+    top: 10vh;
 }
 
 .start2 input {
     position: fixed;
-    height: 30px;
+    height: 3vmin;
     width: 12vw;
-    top: 300px;
+    top: 30vh;
     left: 44vw;
-    border-radius: 8px;
-    font-size: 25px;
+    border-radius: 0.8vmin;
+    font-size: 2.5vmin;
     text-align: center;
 }
 
@@ -166,7 +172,7 @@ body {
     height: 5vmax;
     width: 10vmax;
     top: 50vh;
-    left: 45vw;
+    left: calc(var(--main-left) - 5vmax);
     font-size:3.5vw;
     border-radius: 8px;
     border: 0;
@@ -300,10 +306,10 @@ body {
     position: fixed;
     top: 3px;
     width: 97vw;
-    height: 100px;
+    height: 10vh;
     left: 1vw;
     background-color: white;
-    border: solid rgb(134, 209, 14) 5px;
+    border: solid rgb(134, 209, 14) 0.5vmin;
     border-radius: 18px;
     padding: 10px;
     display: flex;
@@ -312,7 +318,7 @@ body {
 
 .名字显示 {
     position: absolute;
-    font-size: 20px;
+    font-size: 2vmin;
     
 }
 
@@ -337,8 +343,8 @@ body {
 
 
 .信息框 div div{
-    font-size: 20px;
-    margin-right: 30px;
+    font-size: 2vmin;
+    margin-right: 3vmin;
 }
 
 .状态框 {
@@ -354,7 +360,7 @@ body {
     border: solid black 2px;
     border-radius: 18px;
     margin: 3px;
-    height: 20px;
+    height: 2vmin;
     width: 1000px;
 }
 
