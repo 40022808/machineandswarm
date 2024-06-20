@@ -30,6 +30,7 @@ body {
     display: flex;
     left: 39.5vw;
     top: 5vh;
+    width: 21vw;
 }
 
 .start div h1 {
@@ -54,7 +55,7 @@ body {
 
 
 .start div .与{
-    margin: 0.25vw;
+/*     margin: 0.25vw; */
     font-size: 4.8vmax;
     position: relative;
     top: -0.75vw;
