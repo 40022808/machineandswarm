@@ -385,8 +385,8 @@ body {
 
 
 .经验条 {
-    margin-top: 5px;
-    height: 6px;
+    margin-top: 0.6vmin;
+    height: 0.6vmin;
     width: 10vw;
     border: solid black 1px;
     border-radius: 5px;
@@ -395,7 +395,7 @@ body {
 .经验值 {
     background-color: rgb(78, 255, 78);
     border-radius: 5px;
-    height: 6px;
+    height: 0.6vmin;
     width: 0vw;
 }
 
