@@ -477,7 +477,7 @@ body {
     top: 10vw;
     left: 25vw;
     background-color: white;
-    height: 600px;
+    height: 60vh;
     width: 50vw;
     border-radius: 20px;
     padding: 10px;
@@ -489,25 +489,25 @@ body {
 
 .冒险选择 div h1 {
     margin-top: 10px;
-    font-size: 50px;
+    font-size: 5vmin;
 }
 
 .冒险选择 div h2 {
-    font-size: 35px;
+    font-size: 3.5vmin;
 } 
 
 
 #深渊难度 {
     border-radius: 8px;
     height: 50px;
-    width: 3.5vw;
+    width: 3.5vmax;
     text-align: center;
     padding: 1px;
-    font-size: 35px;
+    font-size: 3.5vmin;
 }
 
 #开始冒险 {
-    font-size: 40px;
+    font-size: 4vmin;
     border-radius: 15px;
     border: 0;
     background-color: white;
@@ -518,7 +518,7 @@ body {
 #开始冒险:hover {
     background-color: black;
     color: white;
-    font-size: 50px;
+    font-size: 5vmin;
 }
 
 

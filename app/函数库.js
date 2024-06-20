@@ -82,7 +82,7 @@ export function start() {
         start.style.display = 'none';
         fadeElementIn(start2, 5000)
         start2.style.display = 'block';
-        悬疑bgm.volume = 0.4
+        悬疑bgm.volume = 0.6
         悬疑bgm.play()
     })
 }
@@ -139,7 +139,7 @@ export function 战斗选项框_显示() {
 
 
 export function 加载_显示(count, bgm, bgm2) {
-    let volumecode = 0.4
+    let volumecode = 0.6
     const 加载 = document.querySelector('.加载')
     加载.style.opacity = 1;
     加载.style.display = 'flex';
@@ -152,7 +152,7 @@ export function 加载_显示(count, bgm, bgm2) {
             加载文字.textContent = `加载中`;
             count = 1
             if (volumecode > 0) {
-                volumecode -= 0.05
+                volumecode -= 0.1
             }
             bgm.volume = volumecode
             
@@ -161,7 +161,7 @@ export function 加载_显示(count, bgm, bgm2) {
             加载文字.textContent = `加载中.`;
             count = 2
             if (volumecode > 0) {
-                volumecode -= 0.05
+                volumecode -= 0.1
             }
             bgm.volume = volumecode
             
@@ -170,7 +170,7 @@ export function 加载_显示(count, bgm, bgm2) {
             加载文字.textContent = `加载中..`;
             count = 3
             if (volumecode > 0) {
-                volumecode -= 0.05
+                volumecode -= 0.1
             }
             bgm.volume = volumecode
             
@@ -179,7 +179,7 @@ export function 加载_显示(count, bgm, bgm2) {
             加载文字.textContent = `加载中...`;
             count = 0
             if (volumecode > 0) {
-                volumecode -= 0.05
+                volumecode -= 0.1
             }
             bgm.volume = volumecode
             
@@ -200,7 +200,7 @@ export function 加载_显示(count, bgm, bgm2) {
 export function 加载_消失(bgm2) {
 
     const 加载 = document.querySelector('.加载')
-    音乐开始(bgm2, 0.4)
+    音乐开始(bgm2, 0.6)
     setTimeout(() => {
         
         fadeElementIn2(加载,2000)
@@ -220,13 +220,13 @@ function 音乐开始(bgm, volume) {
     let timing = setInterval(() => {
         if (tim == 0) {
             if (volumecode < volume) {
-                volumecode += 0.05
+                volumecode += 0.1
             }
             bgm.volume = volumecode
         }
         else if (tim == 1) {
             if (volumecode < volume) {
-                volumecode += 0.05
+                volumecode += 0.1
             }
             bgm.volume = volumecode
         }
