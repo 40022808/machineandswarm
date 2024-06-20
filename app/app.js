@@ -2,7 +2,7 @@ import {
     cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失, 冒险选择_消失, 开局选项_显示
 } from "./函数库.js";
 
-const 版本 = "版本:0.00.30"
+const 版本 = "版本:0.00.31"
 const 目前版本 = document.querySelector('.目前版本')
 目前版本.innerHTML = 版本
 console.log(版本)
