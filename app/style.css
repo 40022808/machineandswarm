@@ -353,6 +353,12 @@ body {
     justify-content: center;
 }
 
+.状态框 p {
+    font-size: 2vmin;
+}
+
+
+
 .生命条 , .魔力条 {
     border: solid black 2px;
     border-radius: 18px;
