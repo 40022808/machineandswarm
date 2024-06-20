@@ -1,3 +1,15 @@
+import {
+    文本1
+} from "./文本.js";
+
+
+export function texts(number) {
+    if (number == 1) {
+        var text1 = 文本1()
+        return text1
+    }
+}
+
 
 
 export function cat() {
@@ -138,7 +150,7 @@ export function 战斗选项框_显示() {
 }
 
 
-export function 加载_显示(count, bgm, bgm2) {
+export function 加载_显示(count, bgm, bgm2, func, funcnumber) {
     let volumecode = 0.6
     const 加载 = document.querySelector('.加载')
     加载.style.opacity = 1;
@@ -191,13 +203,13 @@ export function 加载_显示(count, bgm, bgm2) {
     }
     setTimeout(() => {
         count = 4
-        加载_消失(bgm2)
+        加载_消失(bgm2, func, funcnumber)
         clearInterval(timing); // 清除定时器
         加载文字.textContent = '加载完成';
     }, tim2);
 }
 
-export function 加载_消失(bgm2) {
+export function 加载_消失(bgm2, func, funcnumber) {
 
     const 加载 = document.querySelector('.加载')
     音乐开始(bgm2, 0.6)
@@ -208,7 +220,12 @@ export function 加载_消失(bgm2) {
     
     setTimeout(() => {
         加载.style.display = 'none';
+        
     },4000);
+
+    setTimeout(() => {
+        func(funcnumber)
+    }, 4500);
     
 }
 
@@ -264,6 +281,35 @@ function 战斗开始_名字信息() {
     const me = document.querySelector('.me')
     me.innerHTML = name_code.value
 }
+
+
+
+export function 冒险中选择_显示(number) {
+    const 冒险中选择 = document.querySelector('.冒险中选择0')
+    冒险中选择.style.display = 'flex';
+    const 冒险中选择_text = document.querySelector('.冒险中选择_text')
+    if (number == 1) {
+        showText(texts(1),冒险中选择_text)
+    }
+    
+}
+
+
+
+
+// 逐字显示文本
+export function showText(text, 对话框) {
+    let index = 0
+    const intervalId = setInterval(() => {
+        对话框.innerHTML += text[index];
+        index++;
+        if (index >= text.length) {
+            clearInterval(intervalId);
+        }
+    }, 350);
+
+}
+
 
 
 

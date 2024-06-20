@@ -571,8 +571,43 @@ body {
 }
 
 
+.冒险中选择0 {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    top: 20vh;
+    left: 25vw;
+    background-color: rgb(206, 156, 20);
+    height: 60vh;
+    width: 50vw;
+    border-radius: 20px;
+    padding: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    align-items: center;
+    animation-name: slidein;
+    animation-duration: 1s; /* 动画持续时间 */
+    animation-fill-mode: forwards; /* 保持最终状态 */
+    border: 3px solid rgb(255, 255, 255); /* 控制内部边框的宽度和颜色 */
+}
 
 
+.冒险中选择 {
+    display: flex;
+    background-color: black;
+    flex-direction: column;
+    align-items: center;
+    height: 600px;
+    width: 50vw;
+    border: 3px solid rgb(255, 255, 255); /* 控制内部边框的宽度和颜色 */
+    border-radius: 20px;
+}
+
+
+
+.冒险中选择_text {
+    color: white;
+}
 
 
 

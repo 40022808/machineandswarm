@@ -1,6 +1,9 @@
 import {
-    cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失, 冒险选择_消失, 开局选项_显示, 战斗开始
+    cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失, 冒险选择_消失, 开局选项_显示, 战斗开始,
+    冒险中选择_显示, showText, texts, 
 } from "./函数库.js";
+
+
 
 const 版本 = "版本:0.00.34"
 const 目前版本 = document.querySelector('.目前版本')
@@ -40,15 +43,18 @@ const 开局选项_冒险 = document.querySelector('.开局选项_冒险')
 
 const 开始冒险 = document.querySelector('#开始冒险')
 const 深渊难度 = document.querySelector('#深渊难度')
+
 开始冒险.addEventListener('click',()=>{
     const abyssValue = parseInt(深渊难度.value); // 将深渊难度的值转换为整数
     if (深渊难度.value == "") {
         alert("请在中间的方块里输入难度等级!");
     }
     else if (!isNaN(abyssValue) && abyssValue >= 1 && abyssValue <= 30) {
+        const 冒险中选择_text = document.querySelector('.冒险中选择_text')
         冒险选择_消失()
-        加载_显示(1, 悬疑bgm, 悬疑bgm)
-        战斗开始()
+        加载_显示(1, 悬疑bgm, 悬疑bgm, 冒险中选择_显示 , 1)
+        
+        
     }
     
 })
