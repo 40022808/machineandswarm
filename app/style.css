@@ -307,7 +307,7 @@ body {
     position: fixed;
     top: 3px;
     width: 97vw;
-    height: 10vh;
+    height: 12vh;
     left: 1vw;
     background-color: white;
     border: solid rgb(134, 209, 14) 0.5vmin;
@@ -318,9 +318,8 @@ body {
 }
 
 .名字显示 {
-    position: absolute;
     font-size: 2vmin;
-    
+    width: 20vw;
 }
 
 .分界线 {
@@ -331,7 +330,6 @@ body {
     display: flex;
     flex-direction: row;
     margin-right: 20px;
-    margin-top: 30px;
     width: 20vw;
     
 }
@@ -441,7 +439,7 @@ body {
 
 
 .开局选项_城镇:hover , .开局选项_冒险:hover ,.开局选项_背包:hover {
-    font-size: 80px;
+    font-size: 8vmin;
     background: linear-gradient(to left, rgb(255, 255, 255), rgb(255, 255, 255)) left top no-repeat,
               linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 255, 255)) left top no-repeat,
               linear-gradient(to left, rgb(255, 255, 255), rgb(255, 255, 255)) right top no-repeat,
