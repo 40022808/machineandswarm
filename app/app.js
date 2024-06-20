@@ -1,5 +1,5 @@
 import {
-    cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失, 冒险选择_消失, 开局选项_显示
+    cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失, 冒险选择_消失, 开局选项_显示, 战斗开始
 } from "./函数库.js";
 
 const 版本 = "版本:0.00.33"
@@ -48,7 +48,7 @@ const 深渊难度 = document.querySelector('#深渊难度')
     else if (!isNaN(abyssValue) && abyssValue >= 1 && abyssValue <= 30) {
         冒险选择_消失()
         加载_显示(1, 悬疑bgm, 悬疑bgm)
-        
+        战斗开始()
     }
     
 })

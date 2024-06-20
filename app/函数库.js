@@ -253,6 +253,20 @@ export function 冒险选择_消失() {
 }
 
 
+
+export function 战斗开始() {
+    const 战斗 = document.querySelector('.战斗')
+    战斗.style.display = 'flex';
+    战斗开始_名字信息()
+}
+
+function 战斗开始_名字信息() {
+    const me = document.querySelector('.me')
+    me.innerHTML = name_code.value
+}
+
+
+
 function fadeElementIn(element, duration) {
     let increment = 0.01; // 每次透明度增加的步长
     let opacity = 0; // 初始透明度为 0
@@ -281,3 +295,4 @@ function fadeElementIn2(element, duration) {
     }, duration / 100); // 每 10 毫秒执行一次，总共执行 duration 毫秒
 }
   
+

@@ -538,25 +538,37 @@ body {
 .战斗 {
     display: none;
     position: absolute;
-    top: 20vh;
-    left: 25vw;
-    height: 600px;
-    width: 50vw;
+    top: 30vh;
+    left: 15vw;
+    height: 40vh;
+    width: 70vw;
     align-items: center;
     justify-content: space-evenly;
+
+}
+
+.me, .npc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
 .me {
-    border: solid white 1px;
-    height: 40px;
-    width: 100px;
+    border: solid white 0.5vmin;
+    height: 20vmin;
+    width: 20vmax;
+    font-size: 3vmin;
+    color: white;
+
 }
 
 .npc {
-    border: solid white 1px;
-    height: 40px;
-    width: 100px;
+    border: solid rgb(255, 0, 0) 0.5vmin;
+    height: 20vmin;
+    width: 20vmax;
+    font-size: 1vmin;
+    color: red;
 }
 
 
