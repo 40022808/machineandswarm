@@ -158,12 +158,12 @@ body {
 
 .start2 input {
     position: fixed;
-    height: 4vmin;
-    width: 14vmax;
+    height: 5vh;
+    width: 18vmax;
     top: 30vh;
-    left: calc(var(--main-left) - 7vmax);
+    left: calc(var(--main-left) - 9vmax);
     border-radius: 0.8vmin;
-    font-size: 3vmin;
+    font-size: 5vmin;
     text-align: center;
 }
 
