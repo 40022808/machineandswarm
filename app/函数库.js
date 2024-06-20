@@ -108,7 +108,7 @@ export function 开局选项_显示() {
     setTimeout(() => {
         fadeElementIn(开局选项, 2000)
     }, 2000);
-    开局选项.style.display = 'block';
+    开局选项.style.display = 'flex';
 }
 
 
@@ -208,7 +208,6 @@ export function 加载_消失(bgm2) {
     
     setTimeout(() => {
         加载.style.display = 'none';
-        alert("冒险功能未完成!请期待后续版本更新!")
     },4000);
     
 }

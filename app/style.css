@@ -21,20 +21,20 @@ body {
 
 .目前版本 {
     color: white;
-    font-size: 1vw;
+    font-size: 1vmax;
     position: fixed;
 }
 
 .start div {
     position: fixed;
     display: flex;
-    left:40vw;
-    top: 100px;
+    left: 39.5vw;
+    top: 5vh;
 }
 
 .start div h1 {
     color: white;
-    font-size:4vw;
+    font-size: 4vmax;
 }
 
 .start div .智械{
@@ -55,7 +55,7 @@ body {
 
 .start div .与{
     margin: 0.25vw;
-    font-size: 4.8vw;
+    font-size: 4.8vmax;
     position: relative;
     top: -0.75vw;
 
@@ -97,9 +97,9 @@ body {
 
 .start button {
     position: fixed;
-    height: 100px;
-    width: 10vw;
-    top: 500px;
+    height: 5vmax;
+    width: 10vmax;
+    top: 50vh;
     left: 45vw;
     font-size:3.5vw;
     border-radius: 8px;
@@ -162,9 +162,9 @@ body {
 
 .start2 button {
     position: fixed;
-    height: 100px;
-    width: 10vw;
-    top: 500px;
+    height: 5vmax;
+    width: 10vmax;
+    top: 50vh;
     left: 45vw;
     font-size:3.5vw;
     border-radius: 8px;
@@ -207,8 +207,8 @@ body {
 }
 
 .加载 .加载图标 {
-    height: 5vw;
-    width: 5vw;
+    height: 5vmax;
+    width: 5vmax;
     background: linear-gradient(to left, rgb(255, 255, 255), rgb(255, 255, 255)) left top no-repeat,
               linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 255, 255)) left top no-repeat,
               linear-gradient(to left, rgb(255, 255, 255), rgb(255, 255, 255)) right top no-repeat,
@@ -225,10 +225,10 @@ body {
 .加载 .加载图标::before {
     content: "";
     position: absolute;
-    top: 1vw;
-    left: 1vw;
-    right: 1vw;
-    bottom: 1vw;
+    top: 1vmax;
+    left: 1vmax;
+    right: 1vmax;
+    bottom: 1vmax;
     background-color: white;
     border-radius: 10px;
 }
@@ -393,6 +393,12 @@ body {
 .开局选项 {
     display: none;
     opacity: 0;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 40vh;
+    left: 25vw;
+    width: 50vw;
+
 }
 
 
@@ -404,25 +410,25 @@ body {
 }
 
 .开局选项_城镇 {
-    position: absolute;
+    /* position: absolute;
     top: 20vw;
-    left: 30vw;
+    left: 30vw; */
     color: white;
 }
 
 .开局选项_冒险 {
-    position: absolute;
+    /* position: absolute; */
     color: white;
-    top: 20vw;
-    left: 60vw;
+    /* top: 20vw;
+    left: 60vw; */
         
 }
 
 .开局选项_背包 {
-    position: absolute;
+    /* position: absolute; */
     color: white;
-    top: 20vw;
-    left: 45vw;  
+    /* top: 20vw;
+    left: 45vw;  */ 
 }
 
 
@@ -515,3 +521,51 @@ body {
     border: 3px solid rgb(0, 0, 0); /* 控制内部边框的宽度和颜色 */
     border-radius: 20px;
 }
+
+
+
+
+.战斗 {
+    display: none;
+    position: absolute;
+    top: 20vh;
+    left: 25vw;
+    height: 600px;
+    width: 50vw;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.me {
+    border: solid white 1px;
+    height: 40px;
+    width: 100px;
+}
+
+.npc {
+    border: solid white 1px;
+    height: 40px;
+    width: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
