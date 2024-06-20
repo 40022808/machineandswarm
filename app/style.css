@@ -160,7 +160,7 @@ body {
     height: 3vmin;
     width: 12vmax;
     top: 30vh;
-    left: 44vw;
+    left: calc(var(--main-left) - 6vmax);
     border-radius: 0.8vmin;
     font-size: 2.5vmin;
     text-align: center;
