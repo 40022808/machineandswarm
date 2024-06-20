@@ -361,30 +361,30 @@ body {
     border-radius: 18px;
     margin: 3px;
     height: 2vmin;
-    width: 1000px;
+    width: 50vw;
 }
 
 
 .css生命 , .css魔力 {
     border-radius: 18px;
-    height: 20px;
+    height: 2vmin;
 }
 
 .css生命 {
     background-color: red;
-    width: 0px;
+    width: 0vw;
 }
 
 .css魔力 {
     background-color: blue;
-    width: 0px;
+    width: 0vw;
 }
 
 
 .经验条 {
-    margin-top: 6px;
+    margin-top: 5px;
     height: 6px;
-    width: 200px;
+    width: 10vw;
     border: solid black 1px;
     border-radius: 5px;
 }
@@ -393,7 +393,7 @@ body {
     background-color: rgb(78, 255, 78);
     border-radius: 5px;
     height: 6px;
-    width: 0px;
+    width: 0vw;
 }
 
 
@@ -412,7 +412,7 @@ body {
 .开局选项_城镇 , .开局选项_冒险 ,.开局选项_背包 {
     background-color: rgba(255, 255, 255, 0);
     border: 0;
-    font-size: 70px;
+    font-size: 7vmin;
     padding: 10px 15px 15px 15px;
 }
 

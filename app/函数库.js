@@ -63,11 +63,11 @@ function 状态刷新() {
     const css生命 = document.querySelector('.css生命')
     const css魔力 = document.querySelector('.css魔力')
     let mehp = me生命 / me生命上限
-    let memaxhp = 1000
-    css生命.style.width = (memaxhp * mehp) + 'px'
+    let memaxhp = 50
+    css生命.style.width = (memaxhp * mehp) + 'vw'
     let memp = me魔力 / me魔力上限
-    let memaxmp = 1000
-    css魔力.style.width = (memaxmp * memp) + 'px'
+    let memaxmp = 50
+    css魔力.style.width = (memaxmp * memp) + 'vw'
 }
 
 
