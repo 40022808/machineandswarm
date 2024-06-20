@@ -98,8 +98,8 @@ body {
 
 .start button {
     position: fixed;
-    height: 5vmax;
-    width: 10vmax;
+    height: 5vw;
+    width: 10vw;
     top: 50vh;
     left: 45vw;
     font-size:3.5vw;
