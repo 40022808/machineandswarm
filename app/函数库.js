@@ -98,10 +98,11 @@ function 状态刷新() {
 export function start() {
     const startbutton = document.querySelector('.startbutton')
     const start = document.querySelector('.start')
+    const start1 = document.querySelector('.start1')
     const start2 = document.querySelector('.start2')
-    悬疑bgm.volume = 0.6
-    悬疑bgm.play()
     startbutton.addEventListener('click',()=>{
+        悬疑bgm.volume = 0.6
+        悬疑bgm.play()
         start.style.display = 'none';
         fadeElementIn(start2, 5000)
         start2.style.display = 'block';
@@ -111,14 +112,11 @@ export function start() {
 
 
 export function start1() {
-    const startbutton = document.querySelector('.startbutton')
-    const start = document.querySelector('.start')
+    const start1 = document.querySelector('.start1')
     const start2 = document.querySelector('.start2')
-    start.style.display = 'none';
+    start1.style.display = 'none';
     fadeElementIn(start2, 5000)
     start2.style.display = 'block';
-    悬疑bgm.volume = 0.6
-    悬疑bgm.play()
 }
 
 
@@ -336,8 +334,9 @@ export function 冒险中选择_显示(number) {
     const 冒险中选择 = document.querySelector('.冒险中选择0')
     冒险中选择.style.display = 'flex';
     const 冒险中选择_text = document.querySelector('.冒险中选择_text')
+    let 回答 = number
     setTimeout(() => {
-        showText(texts(number),冒险中选择_text)
+        showText(texts(number),冒险中选择_text, 回答)
         
     }, 1000);
     
@@ -347,15 +346,16 @@ export function 冒险中选择_显示(number) {
 
 
 // 逐字显示文本
-export function showText(text, 对话框) {
+export function showText(text, 对话框, 回答) {
     let index = 0
+    let 文本回答 = "文本" + 回答 + "_回答"
     const intervalId = setInterval(() => {
         对话框.innerHTML +=  text[index];
         index++;
         if (index >= text.length) {
             clearInterval(intervalId);
             setTimeout(() => {
-                文本1_回答()
+                文本回答()
             }, 300);
         }
     }, 100);

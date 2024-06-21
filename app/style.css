@@ -137,7 +137,7 @@ body {
 
 
 .start1 {
-    display: block;
+    display: none;
     background-color: black;
     position: absolute;
     top: 0;
