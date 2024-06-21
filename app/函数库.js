@@ -1,15 +1,26 @@
 import {
-    文本1
+    文本1,彩蛋1,文本1_回答
 } from "./文本.js";
 
 
 export function texts(number) {
     if (number == 1) {
-        var text1 = 文本1()
-        return text1
+        var text = 文本1()
+        return text
+    }
+    else if (number == 9999) {
+        var text = 彩蛋1()
+        return text
     }
 }
 
+
+export function docbgm() {
+    const 悬疑bgm = document.querySelector('#悬疑bgm')
+    const 城镇 = document.querySelector('#城镇')
+    const 热血战斗 = document.querySelector('#热血战斗')
+}
+docbgm()
 
 
 export function cat() {
@@ -21,11 +32,11 @@ export function cat() {
 ⣿⣿⣿⡀⣿⣿⣿⣧⢻⣿⣶⣷⣿⣿⣿⣿⣿⣿⠿⠶⡝⠀⣿⣿⣿              
 ⣿⣿⣿⣷⠘⣿⣿⣿⢏⣿⣿⣋⣀⣈⣻⣿⣿⣷⣤⣤⣿⡐⢿⣿⣿               
 ⣿⣿⣿⣿⣆⢩⣝⣫⣾⣿⣿⣿⣿⡟⠿⠿⠦⠀⠸⠿⣻⣿⡄⢻⣿
-⣿⣿⣿⣿⣿⡄⢻⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⠇⣼⣿       恭喜你发现了
-⣿⣿⣿⣿⣿⣿⡄⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣰⣿⣿       彩蛋猫，只要  
-⣿⣿⣿⣿⣿⣿⠇⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢀⣿⣿⣿       带它找到主人
-⣿⣿⣿⣿⣿⠏⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿       你就可以获得
-⣿⣿⣿⣿⠟⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣿⣿⣿       神秘奖励!
+⣿⣿⣿⣿⣿⡄⢻⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⠇⣼⣿       恭喜你发现了彩蛋猫，
+⣿⣿⣿⣿⣿⣿⡄⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣰⣿⣿       获得密语0:[彩蛋猫]!
+⣿⣿⣿⣿⣿⣿⠇⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢀⣿⣿⣿       
+⣿⣿⣿⣿⣿⠏⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿       
+⣿⣿⣿⣿⠟⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣿⣿⣿       
 ⣿⣿⣿⠋⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⣿⣿⣿
 ⣿⣿⠋⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢸⣿⣿
 
@@ -34,7 +45,7 @@ export function cat() {
 
 }
 
-function getRandomInt(min, max) {
+export function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -88,15 +99,26 @@ export function start() {
     const startbutton = document.querySelector('.startbutton')
     const start = document.querySelector('.start')
     const start2 = document.querySelector('.start2')
-    const 悬疑bgm = document.querySelector('#悬疑bgm')
-    
+    悬疑bgm.volume = 0.6
+    悬疑bgm.play()
     startbutton.addEventListener('click',()=>{
         start.style.display = 'none';
         fadeElementIn(start2, 5000)
         start2.style.display = 'block';
-        悬疑bgm.volume = 0.6
-        悬疑bgm.play()
+        
     })
+}
+
+
+export function start1() {
+    const startbutton = document.querySelector('.startbutton')
+    const start = document.querySelector('.start')
+    const start2 = document.querySelector('.start2')
+    start.style.display = 'none';
+    fadeElementIn(start2, 5000)
+    start2.style.display = 'block';
+    悬疑bgm.volume = 0.6
+    悬疑bgm.play()
 }
 
 
@@ -105,13 +127,38 @@ export function start2() {
     const start2 = document.querySelector('.start2')
     const 游戏 = document.querySelector('.游戏')
     startbutton.addEventListener('click',()=>{
+        悬疑bgm.pause()
+        城镇.volume = 0.6
+        城镇.play()
         默认名字()
         个人信息_名字()
         start2.style.display = 'none';
         fadeElementIn(游戏, 2000)
         游戏.style.display = 'block';
+        setTimeout(() => {
+            场地_名称_显示()
+        }, 2000);
         开局选项_显示()
+        场地_名称_消失()
     })
+}
+
+
+export function 场地_名称_显示() {
+    const 场地_名称 = document.querySelector('.场地_名称')
+    场地_名称.style.display = 'flex';
+}
+
+
+export function 场地_名称_消失() {
+    const 场地_名称 = document.querySelector('.场地_名称')
+    setTimeout(() => {
+        场地_名称.style.animation = 'slidein2 1.8s';
+    }, 6000);
+    setTimeout(() => {
+        
+        场地_名称.style.display = 'none';
+    }, 7800);
 }
 
 
@@ -119,7 +166,7 @@ export function 开局选项_显示() {
     const 开局选项 = document.querySelector('.开局选项')
     setTimeout(() => {
         fadeElementIn(开局选项, 2000)
-    }, 2000);
+    }, 4000);
     开局选项.style.display = 'flex';
 }
 
@@ -232,6 +279,7 @@ export function 加载_消失(bgm2, func, funcnumber) {
 
 function 音乐开始(bgm, volume) {
     let volumecode = 0
+    bgm.volume = volumecode
     bgm.play()
     let tim = 0
     let timing = setInterval(() => {
@@ -288,12 +336,10 @@ export function 冒险中选择_显示(number) {
     const 冒险中选择 = document.querySelector('.冒险中选择0')
     冒险中选择.style.display = 'flex';
     const 冒险中选择_text = document.querySelector('.冒险中选择_text')
-    if (number == 1) {
-        setTimeout(() => {
-            showText(texts(1),冒险中选择_text)
-        }, 1000);
+    setTimeout(() => {
+        showText(texts(number),冒险中选择_text)
         
-    }
+    }, 1000);
     
 }
 
@@ -308,6 +354,9 @@ export function showText(text, 对话框) {
         index++;
         if (index >= text.length) {
             clearInterval(intervalId);
+            setTimeout(() => {
+                文本1_回答()
+            }, 300);
         }
     }, 100);
 

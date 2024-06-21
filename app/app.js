@@ -1,11 +1,11 @@
 import {
     cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失, 冒险选择_消失, 开局选项_显示, 战斗开始,
-    冒险中选择_显示, showText, texts, 
+    冒险中选择_显示, showText, texts, getRandomInt, start1
 } from "./函数库.js";
 
 
 
-const 版本 = "版本:0.00.34"
+const 版本 = "版本:0.01.34"
 const 目前版本 = document.querySelector('.目前版本')
 目前版本.innerHTML = 版本
 console.log(版本)
@@ -13,15 +13,16 @@ console.log(版本)
 
 cat()
 start()
+
 start2()
 属性刷新()
 
 
 
-const 开局选项_城镇 = document.querySelector('.开局选项_城镇')
+const 开局选项_商店 = document.querySelector('.开局选项_商店')
 
-开局选项_城镇.addEventListener('click',()=>{
-    alert("城镇功能未开放!请期待后续版本更新!");
+开局选项_商店.addEventListener('click',()=>{
+    alert("商店功能未开放!请期待后续版本更新!");
 })
 
 
@@ -50,9 +51,17 @@ const 深渊难度 = document.querySelector('#深渊难度')
         alert("请在中间的方块里输入难度等级!");
     }
     else if (!isNaN(abyssValue) && abyssValue >= 1 && abyssValue <= 30) {
-        const 冒险中选择_text = document.querySelector('.冒险中选择_text')
+
         冒险选择_消失()
-        加载_显示(1, 悬疑bgm, 悬疑bgm, 冒险中选择_显示, 1)
+        let 彩蛋开局 = getRandomInt(1, 1000)
+        let 彩蛋开局0 = 0
+        if (!isNaN(彩蛋开局) && 彩蛋开局 >= 1 && 彩蛋开局 <= 999) {
+            彩蛋开局0 = 1
+        }
+        else {
+            彩蛋开局0 = 9999
+        }
+        加载_显示(1,城镇,悬疑bgm, 冒险中选择_显示, 彩蛋开局0 )
         
         
     }
