@@ -289,7 +289,10 @@ export function 冒险中选择_显示(number) {
     冒险中选择.style.display = 'flex';
     const 冒险中选择_text = document.querySelector('.冒险中选择_text')
     if (number == 1) {
-        showText(texts(1),冒险中选择_text)
+        setTimeout(() => {
+            showText(texts(1),冒险中选择_text)
+        }, 1000);
+        
     }
     
 }
@@ -301,14 +304,22 @@ export function 冒险中选择_显示(number) {
 export function showText(text, 对话框) {
     let index = 0
     const intervalId = setInterval(() => {
-        对话框.innerHTML += text[index];
+        对话框.innerHTML +=  text[index];
         index++;
         if (index >= text.length) {
             clearInterval(intervalId);
         }
-    }, 350);
+    }, 100);
 
 }
+
+
+
+
+
+
+
+
 
 
 

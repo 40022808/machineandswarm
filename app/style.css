@@ -581,7 +581,7 @@ body {
     height: 60vh;
     width: 50vw;
     border-radius: 20px;
-    padding: 5px;
+    padding: 10px;
     padding-top: 3px;
     padding-bottom: 3px;
     align-items: center;
@@ -597,20 +597,28 @@ body {
     background-color: black;
     flex-direction: column;
     align-items: center;
-    height: 600px;
+    height: 60vh;
     width: 50vw;
     border: 3px solid rgb(255, 255, 255); /* 控制内部边框的宽度和颜色 */
     border-radius: 20px;
+    padding: 5px;
+    
 }
 
 
+
+.冒险中选择_text0 {
+    justify-content: left;
+
+    width: 50vw;
+    max-height: 30vh;
+    padding: 1px;
+}
 
 .冒险中选择_text {
     color: white;
+
 }
-
-
-
 
 
 

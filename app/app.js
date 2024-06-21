@@ -52,7 +52,7 @@ const 深渊难度 = document.querySelector('#深渊难度')
     else if (!isNaN(abyssValue) && abyssValue >= 1 && abyssValue <= 30) {
         const 冒险中选择_text = document.querySelector('.冒险中选择_text')
         冒险选择_消失()
-        加载_显示(1, 悬疑bgm, 悬疑bgm, 冒险中选择_显示 , 1)
+        加载_显示(1, 悬疑bgm, 悬疑bgm, 冒险中选择_显示, 1)
         
         
     }
