@@ -11,6 +11,7 @@
     <audio id="热血战斗" src="素材库/音效和bgm/热血战斗.mp3" loop type="mp3" preload="auto"></audio>
     <audio id="城镇" src="素材库/音效和bgm/城镇.mp3" loop type="mp3" preload="auto"></audio>
     <audio id="悬疑bgm" src="素材库/音效和bgm/悬疑bgm.mp3" loop type="mp3" preload="auto"></audio>
+    <audio id="打字1" src="素材库/音效和bgm/打字1.mp3" loop type="mp3" preload="auto"></audio>
 
 
     <div class="游戏">
@@ -123,7 +124,7 @@
             <div class="冒险选择2">
                 <h1>关卡选择</h1>
                 <br><br><br><br><br>
-                <h2>深渊难度(1 - 30)</h2>
+                <h2>深渊难度(1 - 10)</h2>
                 <br><br><br>
                 <input type="text" id="深渊难度" autocomplete="off" maxlength="2">
                 <br><br>
@@ -154,7 +155,7 @@
 
     <div class="start">
         
-        <div>
+        <div class="logo">
             <h1 class="智械">智械</h1>
             <h1 class="与">与</h1>
             <h1 class="虫群">虫群</h1>
@@ -165,7 +166,27 @@
 
 
     <div class="start1">
-        <h1></h1>
+        <div class="是否跳过">
+            <div>
+                <h1 class="是否跳过_h1">
+                    是否跳过剧情?
+                </h1>
+            </div>
+            <div class="是否跳过_确定">
+                <button class="是否跳过_跳过">
+                    跳过
+                </button>
+                <button class="是否跳过_不跳过">
+                    不跳过
+                </button>
+            </div>
+        </div>
+
+        <div class="剧情">
+            <h1 id="剧情_h1"></h1>
+            <h2 id="剧情_h2"></h2>
+        </div>
+
 
     </div>
 

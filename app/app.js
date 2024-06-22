@@ -5,7 +5,7 @@ import {
 
 
 
-const 版本 = "版本:0.01.77"
+const 版本 = "版本:0.01.89"
 const 目前版本 = document.querySelector('.目前版本')
 目前版本.innerHTML = 版本
 console.log(版本)
@@ -13,7 +13,7 @@ console.log(版本)
 
 cat()
 start()
-
+start1()
 start2()
 属性刷新()
 
@@ -50,7 +50,7 @@ const 深渊难度 = document.querySelector('#深渊难度')
     if (深渊难度.value == "") {
         alert("请在中间的方块里输入难度等级!");
     }
-    else if (!isNaN(abyssValue) && abyssValue >= 1 && abyssValue <= 30) {
+    else if (!isNaN(abyssValue) && abyssValue >= 1 && abyssValue <= 10) {
 
         冒险选择_消失()
         夜色小镇_消失()
@@ -66,7 +66,9 @@ const 深渊难度 = document.querySelector('#深渊难度')
         top_显示()
         
     }
-    
+    else {
+        alert("请在中间的方块里正确地输入难度等级!");
+    }
 })
 
 

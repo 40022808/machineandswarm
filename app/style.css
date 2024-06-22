@@ -28,7 +28,7 @@ body {
     position: fixed;
 }
 
-.start div {
+.logo {
     position: fixed;
     display: flex;
     left: 39.5vw;
@@ -36,13 +36,24 @@ body {
     width: 21vw;
     align-items: center;
 }
+@keyframes logo {
+    from {
+      margin-top: 0;
+      opacity: 0;
+    }
+    to {
+      margin-top: 0;
+      opacity: 1;
+    }
+}
 
-.start div h1 {
+
+.智械, .与 , .虫群{
     color: white;
     font-size: 4vmax;
 }
 
-.start div .智械{
+.智械{
     
     color: rgb(132, 132, 165);
     background-image: url('素材库/贴图/智械.jpg');
@@ -58,7 +69,7 @@ body {
 
 
 
-.start div .与{
+.与{
 /*     margin: 0.25vw; */
     font-size: 4.8vmax;
     /* position: relative;
@@ -68,7 +79,7 @@ body {
 
 
 
-.start div .虫群{
+.虫群{
     color: purple;
     animation: animate 0.5s linear infinite;
 }
@@ -146,13 +157,174 @@ body {
     text-align: center;
 }
 
-.start1 h1 {
+
+.是否跳过 {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    top: 30vh;
+    left: 20vw;
+    height: 40vh;
+    background-color: white;
+    border-radius: 10px;
+    width: 60vw;
+    justify-content: space-between;
+}
+
+
+.是否跳过_h1 {
+    position: relative;
+    top: 2vh;
+    height: 10vh;
+    border-bottom: solid rgb(116, 116, 116) 2px;
+    
+}
+
+/* 创建一个伪元素作为边框的左端 */
+.是否跳过_h1::before {
+    content: "";
+    display: block;
+    width: 10vw; /* 调整伪元素的宽度 */
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    top: 10vh;
+}
+  
+  /* 创建一个伪元素作为边框的右端 */
+  .是否跳过_h1::after {
+    content: "";
+    display: block;
+    width: 10vw; /* 调整伪元素的宽度 */
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    position: absolute; /* 使用绝对定位 */
+    bottom: -2px; /* 将伪元素放置在底部 */
+    right: 0; /* 右端伪元素 */
+}
+
+
+
+.是否跳过_确定 {
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    bottom: 10vh;
+    
+    
+}
+
+.是否跳过_不跳过 , .是否跳过_跳过 {
+    font-size: 5vmin;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    padding: 2vmin;
+}
+
+
+.是否跳过_不跳过:hover , .是否跳过_跳过:hover {
+    
+    background: linear-gradient(to left, rgb(0, 0, 0), rgb(0, 0, 0)) left top no-repeat,
+              linear-gradient(to bottom, rgb(0, 0, 0), rgb(0, 0, 0)) left top no-repeat,
+              linear-gradient(to left, rgb(0, 0, 0), rgb(0, 0, 0)) right top no-repeat,
+              linear-gradient(to bottom, rgb(0, 0, 0), rgb(0, 0, 0)) right top no-repeat,
+              linear-gradient(to left, rgb(0, 0, 0), rgb(0, 0, 0)) left bottom no-repeat,
+              linear-gradient(to bottom, rgb(0, 0, 0), rgb(0, 0, 0)) left bottom no-repeat,
+              linear-gradient(to left, rgb(0, 0, 0), rgb(0, 0, 0)) right bottom no-repeat,
+              linear-gradient(to left, rgb(0, 0, 0), rgb(0, 0, 0)) right bottom no-repeat;
+    background-size: 0.35vmin 2vmin, 2vmin 0.35vmin, 0.35vmin 2vmin, 2vmin 0.35vmin;
+}
+
+
+.剧情 {
+    display: none;
+    color: white;
+    text-align: center;
+    position: relative;
+    top: 30vh;
+}
+
+.剧情 h1 {
+    font-size: 4.5vmin;
+}
+
+.剧情 h1 .logo {
+    position: fixed;
+    display: flex;
+    left: 39.5vw;
+    top: 30vh;
+    width: 21vw;
+    align-items: center;
+    opacity: 0;
+    animation-name: logo;
+    animation-duration: 3s; /* 动画持续时间 */
+    animation-fill-mode: forwards; /* 保持最终状态 */
+}
+@keyframes logo {
+    from {
+      margin-top: 0;
+      opacity: 0;
+    }
+    to {
+      margin-top: 0;
+      opacity: 1;
+    }
+}
+
+
+.剧情 h1 .智械, .剧情 h1 .与 , .剧情 h1 .虫群 {
+    color: white;
+    font-size: 4vmax;
+}
+
+.剧情 h1 .智械{
+    
+    color: rgb(132, 132, 165);
+    background-image: url('素材库/贴图/智械.jpg');
+    background-repeat: repeat;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+ 
 }
 
 
 
 
+
+.剧情 h1 .与{
+/*     margin: 0.25vw; */
+    font-size: 4.8vmax;
+    /* position: relative;
+    top: -0.75vw; */
+
+}
+
+
+
+.剧情 h1 .虫群{
+    color: purple;
+    animation: animate 0.5s linear infinite;
+}
+
+
+.开始提示0 {
+    display: flex;
+    flex-direction: row;
+    animation-name: logo;
+    animation-duration: 5s; /* 动画持续时间 */
+    animation-fill-mode: forwards; /* 保持最终状态 */
+}
+
+.开始提示 {
+    position: absolute;
+    top: 50vh;
+    font-size: 2vw;
+    left: 41.5vw;
+    color: white;
+    opacity: 0.85;
+}
 
 
 

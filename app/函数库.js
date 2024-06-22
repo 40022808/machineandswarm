@@ -117,8 +117,7 @@ export function start() {
         悬疑bgm.volume = 0.6
         悬疑bgm.play()
         start.style.display = 'none';
-        fadeElementIn(start2, 5000)
-        start2.style.display = 'block';
+        start1.style.display = 'block';
         
     })
 }
@@ -127,10 +126,93 @@ export function start() {
 export function start1() {
     const start1 = document.querySelector('.start1')
     const start2 = document.querySelector('.start2')
-    start1.style.display = 'none';
-    fadeElementIn(start2, 5000)
-    start2.style.display = 'block';
+    const 是否跳过_跳过 = document.querySelector('.是否跳过_跳过')
+    是否跳过_跳过.addEventListener('click',()=>{
+        start1.style.display = 'none';
+        fadeElementIn(start2, 4000)
+        start2.style.display = 'block';
+    })
+    const 是否跳过_不跳过 = document.querySelector('.是否跳过_不跳过')
+    是否跳过_不跳过.addEventListener('click',()=>{
+        const 是否跳过 = document.querySelector('.是否跳过')
+        是否跳过.style.display = 'none';
+        背景剧情_播放()
+    })
 }
+
+function 背景剧情_播放() {
+    const logo = document.querySelector('.logo')
+    const 剧情 = document.querySelector('.剧情')
+    const 剧情_h1 = document.querySelector('#剧情_h1')
+    const 剧情_h2 = document.querySelector('#剧情_h2')
+    剧情.style.display = 'block';
+    let text1 = '这是个存在魔法的世界，生活着各种各样的种族。'
+    let text1_tim = (text1.length * 500)
+    let text2 = '人类，精灵，巨龙，恶魔....'
+    let text2_tim = text1_tim + (text2.length * 500)
+    let text3 = '突然有一天祂[██]出现了'
+    let text3_tim = text2_tim + (text3.length * 500)
+    let text4 = '一瞬间整个世界都被祂改造了，变得像游戏一样。'
+    let text4_tim = text3_tim + (text4.length * 500)
+    let text5 = '智慧生命拥有了像是游戏角色一样的个人面板,个人背包,可以通过获取经验值升级变强。'
+    let text5_tim = text4_tim + (text5.length * 500)
+    let text6 = '全世界各地出现了名为副本的特殊空间。'
+    let text6_tim = text5_tim + (text6.length * 500)
+    let text7 = '里面到处都是不能交流的敌人，会思考的机械，巨大的虫子。'
+    let text7_tim = text6_tim + (text7.length * 500)
+    let text8 = '虽然很危险，但是也充满了机遇。而你就是一名寻求机遇的冒险者!'
+    let text8_tim = text7_tim + (text8.length * 500)
+    setTimeout(() => {
+        背景剧情_播放_text(text1 , 剧情_h1 )
+    }, 1000);
+    
+    setTimeout(() => {
+        背景剧情_播放_text(text2 , 剧情_h1 )
+    }, text1_tim);
+
+    setTimeout(() => {
+        背景剧情_播放_text(text3 , 剧情_h1 )
+    }, text2_tim);
+
+    setTimeout(() => {
+        背景剧情_播放_text(text4 , 剧情_h1 )
+    }, text3_tim);
+
+    setTimeout(() => {
+        背景剧情_播放_text(text5 , 剧情_h1 )
+    }, text4_tim);
+    
+    setTimeout(() => {
+        背景剧情_播放_text(text6 , 剧情_h1 )
+    }, text5_tim);
+
+    setTimeout(() => {
+        背景剧情_播放_text(text7 , 剧情_h1 )
+    }, text6_tim);
+
+    setTimeout(() => {
+        背景剧情_播放_text(text8 , 剧情_h1 )
+    }, text7_tim);
+
+    setTimeout(() => {
+        剧情_h1.innerHTML = `<div class="logo"><h1 class="智械">智械</h1><h1 class="与">与</h1><h1 class="虫群">虫群</h1></div>`
+        剧情_h2.innerHTML = `<div class="开始提示0"><div class="开始提示">点击屏幕开始游戏</div></div>`
+        document.body.addEventListener('click', 等待);
+    }, text8_tim);
+    
+}
+
+
+function 等待(){
+    const start1 = document.querySelector('.start1')
+    const start2 = document.querySelector('.start2')
+    start1.style.display = 'none';
+    fadeElementIn(start2, 4000)
+    start2.style.display = 'block';
+    document.body.removeEventListener('click', 等待);
+}
+
+
 
 
 export function start2() {
@@ -411,6 +493,7 @@ export function 冒险中选择_显示(number) {
 
 // 逐字显示文本
 export function showText(text, 对话框, number) {
+    对话框.innerHTML =  ""
     let index = 0
     const intervalId = setInterval(() => {
         对话框.innerHTML +=  text[index];
@@ -420,6 +503,25 @@ export function showText(text, 对话框, number) {
             setTimeout(() => {
                 文本回答(number)
             }, 300);
+        }
+    }, 100);
+
+}
+
+export function 背景剧情_播放_text(text, 对话框) {
+    对话框.innerHTML =  ""
+    const 打字1 = document.querySelector('#打字1')
+    setTimeout(() => {
+        打字1.play()
+    }, 100);
+    
+    let index = 0
+    const intervalId = setInterval(() => {
+        对话框.innerHTML +=  text[index];
+        index++;
+        if (index >= text.length) {
+            clearInterval(intervalId);
+            打字1.pause()
         }
     }, 100);
 
