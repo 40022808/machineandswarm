@@ -596,7 +596,7 @@ body {
     position: absolute;
     display: none;
     flex-direction: column;
-    top: 20vh;
+    top: 13vh;
     left: 25vw;
     background-color: white;
     height: 60vh;
@@ -703,7 +703,7 @@ body {
     height: 60vh;
     width: 50vw;
     border-radius: 20px;
-    padding: 1vmin;
+    padding: 1.5vmin;
     padding-top: 2px;
     padding-bottom: 2px;
     align-items: center;
@@ -734,7 +734,7 @@ body {
     justify-content: left;
     width: 50vw;
     max-height: 30vh;
-    padding: 0.1vmin;
+    padding: 0.2vmin;
 /*     border: solid white 1px;
     height: 30vh; */
 }
