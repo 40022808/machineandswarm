@@ -5,7 +5,7 @@ import {
 
 
 
-const 版本 = "版本:0.01.75"
+const 版本 = "版本:0.01.77"
 const 目前版本 = document.querySelector('.目前版本')
 目前版本.innerHTML = 版本
 console.log(版本)
