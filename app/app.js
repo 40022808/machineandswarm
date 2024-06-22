@@ -1,6 +1,6 @@
 import {
     cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失, 冒险选择_消失, 开局选项_显示, 战斗开始,
-    冒险中选择_显示, showText, texts, getRandomInt, start1
+    冒险中选择_显示, showText, texts, getRandomInt, start1, top_显示,夜色小镇_消失
 } from "./函数库.js";
 
 
@@ -53,6 +53,7 @@ const 深渊难度 = document.querySelector('#深渊难度')
     else if (!isNaN(abyssValue) && abyssValue >= 1 && abyssValue <= 30) {
 
         冒险选择_消失()
+        夜色小镇_消失()
         let 彩蛋开局 = getRandomInt(1, 1000)
         let 彩蛋开局0 = 0
         if (!isNaN(彩蛋开局) && 彩蛋开局 >= 1 && 彩蛋开局 <= 999) {
@@ -62,7 +63,7 @@ const 深渊难度 = document.querySelector('#深渊难度')
             彩蛋开局0 = 9999
         }
         加载_显示(1,城镇,悬疑bgm, 冒险中选择_显示, 彩蛋开局0 )
-        
+        top_显示()
         
     }
     

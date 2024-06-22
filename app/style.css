@@ -286,6 +286,7 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: rgb(14, 14, 14);
+    
 }
 
 
@@ -335,7 +336,7 @@ body {
     border: solid rgb(134, 209, 14) 0.5vmin;
     border-radius: 18px;
     padding: 10px;
-    display: flex;
+    display: none;
 
 }
 
@@ -428,7 +429,7 @@ body {
     flex-direction: column;
     position: absolute;
     left: calc(var(--main-left) - 15vmin);
-    top: 75vh;
+    top: 15vh;
     background-color: rgb(0, 0, 0);
     /* border: solid rgb(56, 0, 185) 2px; */
     border-radius: 10px;
@@ -468,6 +469,57 @@ body {
 
 
 
+.夜色小镇 {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    background-color: black;
+    background-image: linear-gradient(to bottom,#1b2947,#1b2947,#1b2947, #2b3152, #3b385d, #4c4067);
+}
+
+.moon {
+    position: absolute;
+    top: 2vmin;
+    right: 3vmin;
+    width: 6vmin;
+    height: 6vmin;
+    border-radius: 50%;
+    background-color: #ffeaa7;
+    box-shadow: 0 0 1vmin #ffeaa7;
+}
+
+.star {
+    position: absolute;
+/*     top: 5vmin;
+    left: 5vmin; */
+    width: 0;
+    height: 0;
+    border: solid 2px white;
+    opacity: 0.2;
+    animation: blingbling 3s infinite linear;
+}
+
+@keyframes blingbling {
+    20% {
+        opacity: 0.2;
+    }
+    40% {
+        opacity: 0.5;
+    }
+    60% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
 
 
 .开局选项 {

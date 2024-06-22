@@ -15,6 +15,19 @@ export function texts(number) {
 }
 
 
+export function 文本回答(number) {
+    if (number == 1) {
+        文本1_回答()
+    }
+}
+
+
+
+
+
+
+
+
 export function docbgm() {
     const 悬疑bgm = document.querySelector('#悬疑bgm')
     const 城镇 = document.querySelector('#城镇')
@@ -133,6 +146,7 @@ export function start2() {
         start2.style.display = 'none';
         fadeElementIn(游戏, 2000)
         游戏.style.display = 'block';
+        夜色小镇_显示()
         setTimeout(() => {
             场地_名称_显示()
         }, 2000);
@@ -145,6 +159,42 @@ export function start2() {
 export function 场地_名称_显示() {
     const 场地_名称 = document.querySelector('.场地_名称')
     场地_名称.style.display = 'flex';
+    
+}
+
+export function 夜色小镇_显示() {
+    const 夜色小镇 = document.querySelector('.夜色小镇')
+    夜色小镇.style.display = 'block';
+    starPosition(150)
+}
+
+function starInit(starCount) {
+    
+    const 夜色小镇 = document.querySelector('.夜色小镇')
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement("div")
+        star.classList.add("star")
+        夜色小镇.appendChild(star)
+    }
+}
+
+function starPosition(starCount) {
+    starInit(starCount)
+    const stars = document.querySelectorAll('.star')
+    for (let i = 0; i < starCount; i++) {
+        let left = Math.floor(Math.random() * window.innerWidth)
+        let top = Math.floor(Math.random() * window.innerHeight/1.5)
+        stars[i].style.left = left + "px"
+        stars[i].style.top = top + "px"
+        stars[i].style.animationDelay = Math.floor(Math.random().toFixed(1) * i)+ "s"
+    }
+}
+
+
+
+export function 夜色小镇_消失() {
+    const 夜色小镇 = document.querySelector('.夜色小镇')
+    夜色小镇.style.display = 'none';
 }
 
 
@@ -158,6 +208,21 @@ export function 场地_名称_消失() {
         场地_名称.style.display = 'none';
     }, 7800);
 }
+
+
+export function top_显示() {
+    const top = document.querySelector('.top')
+    top.style.display = 'flex';
+}
+
+
+
+export function top_消失() {
+    const top = document.querySelector('.top')
+    top.style.display = 'none';
+}
+
+
 
 
 export function 开局选项_显示() {
@@ -334,9 +399,8 @@ export function 冒险中选择_显示(number) {
     const 冒险中选择 = document.querySelector('.冒险中选择0')
     冒险中选择.style.display = 'flex';
     const 冒险中选择_text = document.querySelector('.冒险中选择_text')
-    let 回答 = number
     setTimeout(() => {
-        showText(texts(number),冒险中选择_text, 回答)
+        showText(texts(number),冒险中选择_text, number)
         
     }, 1000);
     
@@ -346,16 +410,15 @@ export function 冒险中选择_显示(number) {
 
 
 // 逐字显示文本
-export function showText(text, 对话框, 回答) {
+export function showText(text, 对话框, number) {
     let index = 0
-    let 文本回答 = "文本" + 回答 + "_回答"
     const intervalId = setInterval(() => {
         对话框.innerHTML +=  text[index];
         index++;
         if (index >= text.length) {
             clearInterval(intervalId);
             setTimeout(() => {
-                文本回答()
+                文本回答(number)
             }, 300);
         }
     }, 100);
