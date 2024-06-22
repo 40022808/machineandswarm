@@ -149,19 +149,19 @@ function 背景剧情_播放() {
     let text1 = '这是个存在魔法的世界，生活着各种各样的种族。'
     let text1_tim = (text1.length * 500)
     let text2 = '人类，精灵，巨龙，恶魔....'
-    let text2_tim = text1_tim + (text2.length * 500)
+    let text2_tim = text1_tim + (text2.length * 260)
     let text3 = '突然有一天祂[██]出现了'
-    let text3_tim = text2_tim + (text3.length * 500)
+    let text3_tim = text2_tim + (text3.length * 260)
     let text4 = '一瞬间整个世界都被祂改造了，变得像游戏一样。'
-    let text4_tim = text3_tim + (text4.length * 500)
+    let text4_tim = text3_tim + (text4.length * 260)
     let text5 = '智慧生命拥有了像是游戏角色一样的个人面板,个人背包,可以通过获取经验值升级变强。'
-    let text5_tim = text4_tim + (text5.length * 500)
+    let text5_tim = text4_tim + (text5.length * 260)
     let text6 = '全世界各地出现了名为副本的特殊空间。'
-    let text6_tim = text5_tim + (text6.length * 500)
+    let text6_tim = text5_tim + (text6.length * 260)
     let text7 = '里面到处都是不能交流的敌人，会思考的机械，巨大的虫子。'
-    let text7_tim = text6_tim + (text7.length * 500)
+    let text7_tim = text6_tim + (text7.length * 260)
     let text8 = '虽然很危险，但是也充满了机遇。而你就是一名寻求机遇的冒险者!'
-    let text8_tim = text7_tim + (text8.length * 500)
+    let text8_tim = text7_tim + (text8.length * 260)
     setTimeout(() => {
         背景剧情_播放_text(text1 , 剧情_h1 )
     }, 1000);

@@ -320,8 +320,8 @@ body {
 .开始提示 {
     position: absolute;
     top: 50vh;
-    font-size: 2vw;
-    left: 41.5vw;
+    font-size: 4vmin;
+    left: calc(var(--main-left) - 16vmin);
     color: white;
     opacity: 0.85;
 }
@@ -871,10 +871,11 @@ body {
     flex-direction: column;
     top: 20vh;
     left: 23vw;
-    background-color: rgb(54, 20, 206);
+    background-color: black;
+    /* background-image: linear-gradient(to bottom,#bf00ff,#d460fa,#f3d1ff); */
     height: 60vh;
     width: 50vw;
-    border-radius: 20px;
+    border-radius: 20px 20px 0 0;
     padding: 1.5vh;
     padding-top: 1vh;
     padding-bottom: 1vh;
@@ -882,23 +883,27 @@ body {
     animation-name: slidein;
     animation-duration: 1s; /* 动画持续时间 */
     animation-fill-mode: forwards; /* 保持最终状态 */
-    border: 3px solid rgb(255, 255, 255); /* 控制内部边框的宽度和颜色 */
+    border: 3px solid rgb(255, 255, 255); 
 }
+
+
 
 
 .冒险中选择 {
     display: flex;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     height: 60vh;
     width: 50vw;
-    border: 3px solid rgb(255, 255, 255); /* 控制内部边框的宽度和颜色 */
-    border-radius: 20px;
-    padding: 0.5vmin;
+    border: 3px dashed rgb(255, 255, 255); 
+    border-spacing: 15px;
+    border-radius: 20px 20px 0 0;
+    padding: 0.5vmin; 
     
 }
+
 
 
 
