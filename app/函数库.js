@@ -165,7 +165,7 @@ export function 场地_名称_显示() {
 export function 夜色小镇_显示() {
     const 夜色小镇 = document.querySelector('.夜色小镇')
     夜色小镇.style.display = 'block';
-    starPosition(150)
+    starPosition(120)
 }
 
 function starInit(starCount) {
@@ -183,7 +183,7 @@ function starPosition(starCount) {
     const stars = document.querySelectorAll('.star')
     for (let i = 0; i < starCount; i++) {
         let left = Math.floor(Math.random() * window.innerWidth)
-        let top = Math.floor(Math.random() * window.innerHeight/1.5)
+        let top = Math.floor(Math.random() * window.innerHeight/2)
         stars[i].style.left = left + "px"
         stars[i].style.top = top + "px"
         stars[i].style.animationDelay = Math.floor(Math.random().toFixed(1) * i)+ "s"
