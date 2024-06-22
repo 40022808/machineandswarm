@@ -698,7 +698,7 @@ body {
     display: none;
     flex-direction: column;
     top: 20vh;
-    left: 25vw;
+    left: 23.5vw;
     background-color: rgb(54, 20, 206);
     height: 60vh;
     width: 50vw;
@@ -741,7 +741,7 @@ body {
 
 .冒险中选择_text {
     color: white;
-    padding: 0.2vmin;
+    padding: 0.4vmin;
     font-size: 1.8vmin;
 }
 
