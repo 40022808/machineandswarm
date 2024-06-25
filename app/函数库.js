@@ -355,7 +355,7 @@ export function 加载_显示(count, bgm, bgm2, func, funcnumber) {
         if (count == 0) {
             加载文字.textContent = `加载中`;
             count = 1
-            if (volumecode > 0) {
+            if (volumecode > 0.1) {
                 volumecode -= 0.1
             }
             bgm.volume = volumecode
@@ -364,7 +364,7 @@ export function 加载_显示(count, bgm, bgm2, func, funcnumber) {
         else if (count == 1) {
             加载文字.textContent = `加载中.`;
             count = 2
-            if (volumecode > 0) {
+            if (volumecode > 0.1) {
                 volumecode -= 0.1
             }
             bgm.volume = volumecode
@@ -373,7 +373,7 @@ export function 加载_显示(count, bgm, bgm2, func, funcnumber) {
         else if (count == 2) {
             加载文字.textContent = `加载中..`;
             count = 3
-            if (volumecode > 0) {
+            if (volumecode > 0.1) {
                 volumecode -= 0.1
             }
             bgm.volume = volumecode
@@ -382,7 +382,7 @@ export function 加载_显示(count, bgm, bgm2, func, funcnumber) {
         else if (count == 3) {
             加载文字.textContent = `加载中...`;
             count = 0
-            if (volumecode > 0) {
+            if (volumecode > 0.1) {
                 volumecode -= 0.1
             }
             bgm.volume = volumecode
@@ -496,12 +496,13 @@ export function showText(text, 对话框, number) {
     对话框.innerHTML =  ""
     let index = 0
     const intervalId = setInterval(() => {
-        对话框.innerHTML +=  text[index];
+        对话框.innerHTML +=  '<span class="冒险中选择_显示_text_文字">' + text[index] + '</span>';
         index++;
         if (index >= text.length) {
             clearInterval(intervalId);
             setTimeout(() => {
                 文本回答(number)
+                文本回答_函数(number)
             }, 300);
         }
     }, 100);
@@ -528,11 +529,30 @@ export function 背景剧情_播放_text(text, 对话框) {
 }
 
 
+function 文本回答_函数(number) {
+    if (number == 1) {
+        文本1_回答_1_函数()
+        文本1_回答_2_函数()
+    }
+    
+}
 
 
+function 文本1_回答_1_函数() {
+    const 文本1_回答_1 = document.querySelector('#文本1_回答_1')
+    文本1_回答_1.addEventListener('click',()=>{
+        alert("请在中间的方块里正确地输入难度等级!");
+    })
+    
+}
 
-
-
+function 文本1_回答_2_函数() {
+    const 文本1_回答_2 = document.querySelector('#文本1_回答_2')
+    文本1_回答_2.addEventListener('click',()=>{
+        alert("请在中间的方块里正确地输入难度等级!");
+    })
+    
+}
 
 
 

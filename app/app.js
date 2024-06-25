@@ -1,11 +1,11 @@
 import {
-    cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失, 冒险选择_消失, 开局选项_显示, 战斗开始,
+    cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失,冒险选择_消失, 开局选项_显示, 战斗开始,
     冒险中选择_显示, showText, texts, getRandomInt, start1, top_显示,夜色小镇_消失
 } from "./函数库.js";
 
 
 
-const 版本 = "版本:0.01.91"
+const 版本 = "版本:0.01.93"
 const 目前版本 = document.querySelector('.目前版本')
 目前版本.innerHTML = 版本
 console.log(版本)
@@ -70,6 +70,16 @@ const 深渊难度 = document.querySelector('#深渊难度')
         alert("请在中间的方块里正确地输入难度等级!");
     }
 })
+
+
+
+
+
+
+    
+
+
+
 
 
 
