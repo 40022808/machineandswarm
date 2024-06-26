@@ -5,7 +5,7 @@ import {
 
 
 
-const 版本 = "版本:0.01.93"
+const 版本 = "版本:0.02.11"
 const 目前版本 = document.querySelector('.目前版本')
 目前版本.innerHTML = 版本
 console.log(版本)
@@ -57,12 +57,12 @@ const 深渊难度 = document.querySelector('#深渊难度')
         let 彩蛋开局 = getRandomInt(1, 1000)
         let 彩蛋开局0 = 0
         if (!isNaN(彩蛋开局) && 彩蛋开局 >= 1 && 彩蛋开局 <= 999) {
-            彩蛋开局0 = 1
+            彩蛋开局0 = "1"
         }
         else {
-            彩蛋开局0 = 9999
+            彩蛋开局0 = "9999"
         }
-        加载_显示(1,城镇,悬疑bgm, 冒险中选择_显示, 彩蛋开局0 )
+        加载_显示(1,城镇,悬疑bgm, 冒险中选择_显示,"9999"/* 彩蛋开局0 */)
         top_显示()
         
     }

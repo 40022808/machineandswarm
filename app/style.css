@@ -324,8 +324,29 @@ body {
     left: calc(var(--main-left) - 16vmin);
     color: white;
     opacity: 0.85;
+    animation: blingbling2 7s infinite linear;
 }
 
+@keyframes blingbling2 {
+    0% {
+        opacity: 0.8;
+    }
+    20% {
+        opacity: 0.7;
+    }
+    40% {
+        opacity: 0.5;
+    }
+    60% {
+        opacity: 0.2;
+    }
+    80% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
 
 
 
@@ -820,7 +841,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 600px;
+    height: 60vh;
     width: 50vw;
     border: 3px solid rgb(0, 0, 0); /* 控制内部边框的宽度和颜色 */
     border-radius: 20px;

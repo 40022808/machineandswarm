@@ -1,28 +1,116 @@
 import {
-    文本1,彩蛋1,文本1_回答
+    文本1,彩蛋1,文本1_回答, 文本2,文本2_回答, 彩蛋1_回答, 彩蛋1_后续1, 彩蛋1_后续1_回答
 } from "./文本.js";
 
 
 export function texts(number) {
-    if (number == 1) {
+    if (number == "1") {
         var text = 文本1()
         return text
     }
-    else if (number == 9999) {
+    else if (number == "9999") {
         var text = 彩蛋1()
+        return text
+    }
+    else if (number == "9999_1") {
+        var text = 彩蛋1_后续1()
+        return text
+    }
+    else if (number == "2") {
+        var text = 文本2()
         return text
     }
 }
 
 
 export function 文本回答(number) {
-    if (number == 1) {
+    if (number == "1") {
         文本1_回答()
+    }
+    else if (number == "2") {
+        文本2_回答()
+    }
+    else if (number == "9999") {
+        彩蛋1_回答()
+    }
+    else if (number == "9999_1") {
+        彩蛋1_后续1_回答()
+    }
+}
+
+function 文本标题(number) {
+    if (number == "1") {
+        let 标题 =  "<h1>[冒险的开始]</h1><br>"
+        return 标题
+    }
+    else if (number == "2") {
+        let 标题 =  "<h1>[昏暗的走廊]</h1><br>"
+        return 标题
+    }
+    else if (number == "9999") {
+        let 标题 =  "<h1>[██████]</h1><br>"
+        return 标题
+    }
+    else if (number == "9999_1") {
+        let 标题 =  "<h1>[██████]</h1><br>"
+        return 标题
     }
 }
 
 
 
+function 文本回答_函数(number) {
+    if (number == "1") {
+        文本1_回答_1_函数()
+        文本1_回答_2_函数()
+        
+    }
+    else if (number == "9999") {
+        彩蛋1_回答_1_函数()
+    }
+    else if (number == "9999_1") {
+        彩蛋1_后续1_回答_1_函数()
+    }
+}
+
+
+function 文本1_回答_1_函数() {
+    const 文本1_回答_1 = document.querySelector('#文本1_回答_1')
+    文本1_回答_1.addEventListener('click',()=>{
+        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
+        冒险中选择_选择.innerHTML = ""
+        冒险中选择_显示("2")
+    })
+    
+}
+
+function 文本1_回答_2_函数() {
+    const 文本1_回答_2 = document.querySelector('#文本1_回答_2')
+    文本1_回答_2.addEventListener('click',()=>{
+        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
+        冒险中选择_选择.innerHTML = ""
+        冒险中选择_显示("2")
+    })
+    
+}
+
+function 彩蛋1_回答_1_函数() {
+    const 彩蛋1_回答_1 = document.querySelector('#彩蛋1_回答_1')
+    彩蛋1_回答_1.addEventListener('click',()=>{
+        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
+        冒险中选择_选择.innerHTML = ""
+        冒险中选择_显示("9999_1")
+    })
+}
+
+function 彩蛋1_后续1_回答_1_函数() {
+    const 彩蛋1_后续1_回答_1 = document.querySelector('#彩蛋1_后续1_回答_1')
+    彩蛋1_后续1_回答_1.addEventListener('click',()=>{
+        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
+        冒险中选择_选择.innerHTML = ""
+        冒险中选择_显示("1")
+    })
+}
 
 
 
@@ -114,6 +202,7 @@ export function start() {
     const start1 = document.querySelector('.start1')
     const start2 = document.querySelector('.start2')
     startbutton.addEventListener('click',()=>{
+        全屏()
         悬疑bgm.volume = 0.6
         悬疑bgm.play()
         start.style.display = 'none';
@@ -140,6 +229,23 @@ export function start1() {
     })
 }
 
+
+
+
+
+// 全屏事件
+function 全屏() {
+    var element = document.documentElement;
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    }
+}
+
+
+
+
 function 背景剧情_播放() {
     const logo = document.querySelector('.logo')
     const 剧情 = document.querySelector('.剧情')
@@ -158,7 +264,7 @@ function 背景剧情_播放() {
     let text5_tim = text4_tim + (text5.length * 260)
     let text6 = '全世界各地出现了名为副本的特殊空间。'
     let text6_tim = text5_tim + (text6.length * 260)
-    let text7 = '里面到处都是不能交流的敌人，会思考的机械，巨大的虫子。'
+    let text7 = '里面到处都是不能交流的敌人，会思考的机械，诡异的虫子。'
     let text7_tim = text6_tim + (text7.length * 260)
     let text8 = '虽然很危险，但是也充满了机遇。而你就是一名寻求机遇的冒险者!'
     let text8_tim = text7_tim + (text8.length * 260)
@@ -481,10 +587,10 @@ export function 冒险中选择_显示(number) {
     const 冒险中选择 = document.querySelector('.冒险中选择0')
     冒险中选择.style.display = 'flex';
     const 冒险中选择_text = document.querySelector('.冒险中选择_text')
+    冒险中选择_text.innerHTML = ""
     setTimeout(() => {
         showText(texts(number),冒险中选择_text, number)
-        
-    }, 1000);
+    }, 500);
     
 }
 
@@ -494,6 +600,7 @@ export function 冒险中选择_显示(number) {
 // 逐字显示文本
 export function showText(text, 对话框, number) {
     对话框.innerHTML =  ""
+    对话框.innerHTML = 文本标题(number)
     let index = 0
     const intervalId = setInterval(() => {
         对话框.innerHTML +=  '<span class="冒险中选择_显示_text_文字">' + text[index] + '</span>';
@@ -529,30 +636,6 @@ export function 背景剧情_播放_text(text, 对话框) {
 }
 
 
-function 文本回答_函数(number) {
-    if (number == 1) {
-        文本1_回答_1_函数()
-        文本1_回答_2_函数()
-    }
-    
-}
-
-
-function 文本1_回答_1_函数() {
-    const 文本1_回答_1 = document.querySelector('#文本1_回答_1')
-    文本1_回答_1.addEventListener('click',()=>{
-        alert("请在中间的方块里正确地输入难度等级!");
-    })
-    
-}
-
-function 文本1_回答_2_函数() {
-    const 文本1_回答_2 = document.querySelector('#文本1_回答_2')
-    文本1_回答_2.addEventListener('click',()=>{
-        alert("请在中间的方块里正确地输入难度等级!");
-    })
-    
-}
 
 
 
