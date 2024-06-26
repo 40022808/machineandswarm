@@ -38,7 +38,12 @@ const 开局选项_背包 = document.querySelector('.开局选项_背包')
     弹窗("背包功能未开放!请期待后续版本更新!")
 })
 
+const 冒险选择_关闭_button = document.querySelector('.冒险选择_关闭_button')
 
+冒险选择_关闭_button.addEventListener('click',()=>{
+    冒险选择_消失()
+    开局选项_显示(0)
+})
 
 const 开局选项_冒险 = document.querySelector('.开局选项_冒险')
 

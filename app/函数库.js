@@ -350,7 +350,7 @@ export function start2() {
         setTimeout(() => {
             场地_名称_显示()
         }, 2000);
-        开局选项_显示()
+        开局选项_显示(1)
         场地_名称_消失()
     })
 }
@@ -425,11 +425,16 @@ export function top_消失() {
 
 
 
-export function 开局选项_显示() {
+export function 开局选项_显示(off) {
     const 开局选项 = document.querySelector('.开局选项')
-    setTimeout(() => {
-        fadeElementIn(开局选项, 2000)
-    }, 4000);
+    if (off == 1) {
+        setTimeout(() => {
+            fadeElementIn(开局选项, 2000)
+        }, 4000);
+    }
+    else if (off == 0) {
+        fadeElementIn(开局选项, 50)
+    }
     开局选项.style.display = 'flex';
 }
 
