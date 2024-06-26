@@ -79,7 +79,10 @@ function 文本1_回答_1_函数() {
     文本1_回答_1.addEventListener('click',()=>{
         const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
         冒险中选择_选择.innerHTML = ""
-        冒险中选择_显示("2")
+        冒险中选择_消失()
+        setTimeout(() => {
+            冒险中选择_显示("2")
+        }, 100);
     })
     
 }
@@ -89,7 +92,10 @@ function 文本1_回答_2_函数() {
     文本1_回答_2.addEventListener('click',()=>{
         const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
         冒险中选择_选择.innerHTML = ""
-        冒险中选择_显示("2")
+        冒险中选择_消失()
+        setTimeout(() => {
+            冒险中选择_显示("2")
+        }, 100);
     })
     
 }
@@ -99,7 +105,10 @@ function 彩蛋1_回答_1_函数() {
     彩蛋1_回答_1.addEventListener('click',()=>{
         const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
         冒险中选择_选择.innerHTML = ""
-        冒险中选择_显示("9999_1")
+        setTimeout(() => {
+            冒险中选择_显示("9999_1")
+        }, 100);
+        
     })
 }
 
@@ -108,7 +117,10 @@ function 彩蛋1_后续1_回答_1_函数() {
     彩蛋1_后续1_回答_1.addEventListener('click',()=>{
         const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
         冒险中选择_选择.innerHTML = ""
-        冒险中选择_显示("1")
+        setTimeout(() => {
+            冒险中选择_显示("1")
+        }, 100);
+        
     })
 }
 
@@ -595,6 +607,12 @@ export function 冒险中选择_显示(number) {
 }
 
 
+export function 冒险中选择_消失() {
+    const 冒险中选择 = document.querySelector('.冒险中选择0')
+    冒险中选择.style.display = 'none';
+}
+
+
 
 
 // 逐字显示文本
@@ -635,6 +653,24 @@ export function 背景剧情_播放_text(text, 对话框) {
 
 }
 
+
+
+
+
+export function 弹窗(text) {
+    const 弹窗 = document.querySelector('.弹窗')
+    弹窗.style.display = 'flex';
+    const 弹窗_text = document.querySelector('.弹窗_text')
+    弹窗_text.innerHTML = text
+}
+
+
+
+
+export function 弹窗_关闭_函数() {
+    const 弹窗 = document.querySelector('.弹窗')
+    弹窗.style.display = 'none';
+}
 
 
 

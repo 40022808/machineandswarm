@@ -978,6 +978,66 @@ body {
 
 
 
+.弹窗 {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+
+}
+
+.弹窗_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 35vh;
+    height: 30vh;
+    justify-content: space-between;
+    background-color: white;
+    padding: 5vmin;
+    border-radius: 1vmin;
+}
+
+
+.弹窗_text {
+    background-color: #fff;
+    width: 50vw;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-size: 4vmin;
+    text-align: center;
+    
+}
+
+
+.弹窗_关闭 {
+    color: black;
+    background-color: aqua;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 2vmin;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
