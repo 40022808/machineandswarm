@@ -487,9 +487,9 @@ body {
 
 .bottom {
     position: fixed;
-    left: 1vw;
-    bottom: 5px;
-    width: 98vw;
+    left: 10vw;
+    bottom: 1vh;
+    width: 80vw;
     height: 13vh;
     background-color: white;
     border: solid rgb(134, 209, 14) 5px;
@@ -500,8 +500,8 @@ body {
 }
 
 .bottom div {
-    height: 150px;
-    width: 180px;
+    height: 15vmin;
+    width: 18vmin;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -509,7 +509,7 @@ body {
 
 
 .bottom div button {
-    font-size: 70px;
+    font-size: 7vmin;
     background-color:rgba(0, 0, 0, 0);
     border: 0;
 }
@@ -640,7 +640,7 @@ body {
     width: 30vmin;
 }
 
-.场地_名称_name {
+.场地_名称_name1 {
     color: rgb(76, 0, 255);
     font-size: 7vmin;
     margin-left: 1vmin;
@@ -815,7 +815,7 @@ body {
 
 .冒险选择_关闭_button {
     position: absolute;
-    border: black solid 2px;
+    border:0;
     background-color: white;
     height: 6vmin;
     width: 8vmin;
@@ -831,6 +831,7 @@ body {
 }
 
 .冒险选择_关闭_button:hover {
+    border: black solid 2px;
     background-color: black;
     color: white;
 }
@@ -873,7 +874,7 @@ body {
 
 
 
-.战斗 {
+.战斗区域 {
     display: none;
     position: absolute;
     top: 30vh;
@@ -895,7 +896,7 @@ body {
     border: solid white 0.5vmin;
     height: 20vmin;
     width: 20vmax;
-    font-size: 3vmin;
+    font-size: 2vmin;
     color: white;
 
 }
@@ -904,7 +905,7 @@ body {
     border: solid rgb(255, 0, 0) 0.5vmin;
     height: 20vmin;
     width: 20vmax;
-    font-size: 1vmin;
+    font-size: 2vmin;
     color: red;
 }
 

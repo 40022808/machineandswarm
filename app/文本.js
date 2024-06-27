@@ -39,8 +39,6 @@ export function 彩蛋1_后续1_回答() {
 
 
 
-
-
 export function 文本1() {
     let text = 
     `
@@ -48,7 +46,6 @@ export function 文本1() {
     `;
     return text
 }
-
 
 
 
@@ -65,17 +62,10 @@ export function 文本1_回答() {
 
 
 
-
-
-
-
-
-
-
 export function 文本2() {
     let text = 
     `
-    你打开了门，一个昏暗的走廊。你发现黑暗中还有些身影一动不动，你的旁边有一个疑似照明设备的开关...
+    你打开了门，看到了一个昏暗的走廊。你发现黑暗中还有些身影一动不动，你的旁边有一个疑似照明设备的开关...
     `;
     return text
 }
@@ -87,6 +77,25 @@ export function 文本2_回答() {
     `
     <button class="冒险中选择_选择_回答" id="文本2_回答_1">打开开关，查看那些身影</button>
     <button class="冒险中选择_选择_回答" id="文本2_回答_2">直接在黑暗中前进</button>
+    
+    `
+}
+
+
+export function 文本2_后续1() {
+    let text = 
+    `
+    你打开了照明设备，发现那些身影是危险的敌人!
+    `;
+    return text
+}
+
+
+export function 文本2_后续1_回答() {
+    const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
+    冒险中选择_选择.innerHTML = 
+    `
+    <button class="冒险中选择_选择_回答" id="文本2_后续1_回答_1">准备战斗!</button>
     
     `
 }

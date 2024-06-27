@@ -1,6 +1,18 @@
 import {
-    文本1,彩蛋1,文本1_回答, 文本2,文本2_回答, 彩蛋1_回答, 彩蛋1_后续1, 彩蛋1_后续1_回答
+    文本1,彩蛋1,文本1_回答, 文本2,文本2_回答, 彩蛋1_回答, 彩蛋1_后续1, 彩蛋1_后续1_回答,文本2_后续1,文本2_后续1_回答
 } from "./文本.js";
+
+import {
+    敌人名字信息
+} from "./npcs.js";
+
+
+export function 敌人名字信息_获取(number) {
+    if (number == "0") {
+        var name = 敌人名字信息("0")
+        return name
+    }
+}
 
 
 export function texts(number) {
@@ -8,16 +20,20 @@ export function texts(number) {
         var text = 文本1()
         return text
     }
-    else if (number == "9999") {
+    else if (number == "彩蛋1") {
         var text = 彩蛋1()
         return text
     }
-    else if (number == "9999_1") {
+    else if (number == "彩蛋1_1") {
         var text = 彩蛋1_后续1()
         return text
     }
     else if (number == "2") {
         var text = 文本2()
+        return text
+    }
+    else if (number == '2_1') {
+        var text = 文本2_后续1()
         return text
     }
 }
@@ -30,11 +46,14 @@ export function 文本回答(number) {
     else if (number == "2") {
         文本2_回答()
     }
-    else if (number == "9999") {
+    else if (number == "彩蛋1") {
         彩蛋1_回答()
     }
-    else if (number == "9999_1") {
+    else if (number == "彩蛋1_1") {
         彩蛋1_后续1_回答()
+    }
+    else if (number == "2_1") {
+        文本2_后续1_回答()
     }
 }
 
@@ -47,12 +66,16 @@ function 文本标题(number) {
         let 标题 =  "<h1>[昏暗的走廊]</h1><br>"
         return 标题
     }
-    else if (number == "9999") {
+    else if (number == "彩蛋1") {
         let 标题 =  "<h1>[██████]</h1><br>"
         return 标题
     }
-    else if (number == "9999_1") {
+    else if (number == "彩蛋1_1") {
         let 标题 =  "<h1>[██████]</h1><br>"
+        return 标题
+    }
+    else if (number == "2_1") {
+        let 标题 =  "<h1>[不再昏暗的走廊]</h1><br>"
         return 标题
     }
 }
@@ -62,14 +85,19 @@ function 文本标题(number) {
 function 文本回答_函数(number) {
     if (number == "1") {
         文本1_回答_1_函数()
-        文本1_回答_2_函数()
-        
+        文本1_回答_2_函数()       
     }
-    else if (number == "9999") {
+    else if (number == "彩蛋1") {
         彩蛋1_回答_1_函数()
     }
-    else if (number == "9999_1") {
+    else if (number == "彩蛋1_1") {
         彩蛋1_后续1_回答_1_函数()
+    }
+    else if (number == "2") {
+        文本2_回答_1_函数()
+    }
+    else if (number == "2_1") {
+        文本2_后续1_回答_1_函数()
     }
 }
 
@@ -106,7 +134,7 @@ function 彩蛋1_回答_1_函数() {
         const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
         冒险中选择_选择.innerHTML = ""
         setTimeout(() => {
-            冒险中选择_显示("9999_1")
+            冒险中选择_显示("彩蛋1_1")
         }, 100);
         
     })
@@ -117,8 +145,36 @@ function 彩蛋1_后续1_回答_1_函数() {
     彩蛋1_后续1_回答_1.addEventListener('click',()=>{
         const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
         冒险中选择_选择.innerHTML = ""
+        冒险中选择_消失()
         setTimeout(() => {
             冒险中选择_显示("1")
+        }, 500);
+        
+    })
+}
+
+function 文本2_回答_1_函数() {
+    const 文本2_回答_1 = document.querySelector('#文本2_回答_1')
+    文本2_回答_1.addEventListener('click',()=>{
+        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
+        冒险中选择_选择.innerHTML = ""
+        冒险中选择_消失()
+        setTimeout(() => {
+            冒险中选择_显示("2_1")
+        }, 100);
+        
+    })
+}
+
+
+function 文本2_后续1_回答_1_函数() {
+    const 文本2_后续1_回答_1 = document.querySelector('#文本2_后续1_回答_1')
+    文本2_后续1_回答_1.addEventListener('click',()=>{
+        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
+        冒险中选择_选择.innerHTML = ""
+        冒险中选择_消失()
+        setTimeout(() => {
+            战斗开始()
         }, 100);
         
     })
@@ -126,12 +182,11 @@ function 彩蛋1_后续1_回答_1_函数() {
 
 
 
-
-
 export function docbgm() {
     const 悬疑bgm = document.querySelector('#悬疑bgm')
     const 城镇 = document.querySelector('#城镇')
     const 热血战斗 = document.querySelector('#热血战斗')
+    const 战斗BGM = document.querySelector('#战斗BGM')
 }
 docbgm()
 
@@ -430,12 +485,17 @@ export function 开局选项_显示(off) {
     if (off == 1) {
         setTimeout(() => {
             fadeElementIn(开局选项, 2000)
+            开局选项.style.display = 'flex';
         }, 4000);
     }
     else if (off == 0) {
-        fadeElementIn(开局选项, 50)
+        setTimeout(() => {
+            开局选项.style.opacity = 0
+            fadeElementIn(开局选项, 1500)
+            开局选项.style.display = 'flex';
+        }, 100);
     }
-    开局选项.style.display = 'flex';
+    
 }
 
 
@@ -465,8 +525,8 @@ export function 战斗选项框_显示() {
 }
 
 
-export function 加载_显示(count, bgm, bgm2, func, funcnumber) {
-    let volumecode = 0.6
+export function 加载_显示(count, bgm, bgm2, func, funcnumber, func2, funcnumber2) {
+    音乐结束(bgm, 0)
     const 加载 = document.querySelector('.加载')
     加载.style.opacity = 1;
     加载.style.display = 'flex';
@@ -478,53 +538,33 @@ export function 加载_显示(count, bgm, bgm2, func, funcnumber) {
         if (count == 0) {
             加载文字.textContent = `加载中`;
             count = 1
-            if (volumecode > 0.1) {
-                volumecode -= 0.1
-            }
-            bgm.volume = volumecode
             
         }
         else if (count == 1) {
             加载文字.textContent = `加载中.`;
             count = 2
-            if (volumecode > 0.1) {
-                volumecode -= 0.1
-            }
-            bgm.volume = volumecode
             
         }
         else if (count == 2) {
             加载文字.textContent = `加载中..`;
             count = 3
-            if (volumecode > 0.1) {
-                volumecode -= 0.1
-            }
-            bgm.volume = volumecode
             
         }
         else if (count == 3) {
             加载文字.textContent = `加载中...`;
             count = 0
-            if (volumecode > 0.1) {
-                volumecode -= 0.1
-            }
-            bgm.volume = volumecode
             
         }
     }, 500);
-
-    if (volumecode == 0) {
-        bgm.pause()
-    }
     setTimeout(() => {
         count = 4
-        加载_消失(bgm2, func, funcnumber)
+        加载_消失(bgm2, func, funcnumber, func2, funcnumber2)
         clearInterval(timing); // 清除定时器
         加载文字.textContent = '加载完成';
     }, tim2);
 }
 
-export function 加载_消失(bgm2, func, funcnumber) {
+export function 加载_消失(bgm2, func, funcnumber, func2, funcnumber2) {
 
     const 加载 = document.querySelector('.加载')
     音乐开始(bgm2, 0.6)
@@ -540,9 +580,37 @@ export function 加载_消失(bgm2, func, funcnumber) {
 
     setTimeout(() => {
         func(funcnumber)
+        func2(funcnumber2)
     }, 4500);
     
 }
+
+
+function 音乐结束(bgm, volume) {
+    let volumecode = 0.6
+    bgm.volume = volumecode
+    let tim = 0
+    let timing = setInterval(() => {
+        if (tim == 0) {
+            if (volumecode > volume) {
+                volumecode -= 0.1
+            }
+            bgm.volume = volumecode
+        }
+        else if (tim == 1) {
+            if (volumecode > volume) {
+                volumecode -= 0.1
+            }
+            bgm.volume = volumecode
+        }
+        
+
+        if (volumecode <= volume) {
+            clearInterval(timing); // 清除定时器
+        }
+    }, 500)
+}
+
 
 
 function 音乐开始(bgm, volume) {
@@ -588,14 +656,28 @@ export function 冒险选择_消失() {
 
 
 export function 战斗开始() {
-    const 战斗 = document.querySelector('.战斗')
-    战斗.style.display = 'flex';
-    战斗开始_名字信息()
+    加载_显示(1, 悬疑bgm, 战斗BGM)
+    setTimeout(() => {
+        战斗区域_显示()
+        冒险中选择_消失()
+        战斗开始_名字信息()
+        战斗选项框_显示()
+    }, 1000);
+    
 }
+
+
+function 战斗区域_显示() {
+    const 战斗区域 = document.querySelector('.战斗区域')
+    战斗区域.style.display = 'flex';
+}
+
 
 function 战斗开始_名字信息() {
     const me = document.querySelector('.me')
-    me.innerHTML = name_code.value
+    me.innerHTML = "[" + name_code.value + "]"
+    const npc = document.querySelector('.npc')
+    npc.innerHTML = 敌人名字信息_获取(0)
 }
 
 
