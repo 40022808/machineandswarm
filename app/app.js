@@ -1,11 +1,12 @@
 import {
     cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失,冒险选择_消失, 开局选项_显示, 战斗开始,
-    冒险中选择_显示, showText, texts, getRandomInt, start1, top_显示,夜色小镇_消失,弹窗_关闭_函数,弹窗
+    冒险中选择_显示, showText, texts, getRandomInt, start1, top_显示,夜色小镇_消失,弹窗_关闭_函数,弹窗, 战斗_攻击_显示,战斗_技能_显示,
+    bottom_初始选项_消失
 } from "./函数库.js";
 
 
 
-const 版本 = "版本:0.02.15"
+const 版本 = "版本:0.02.16"
 const 目前版本 = document.querySelector('.目前版本')
 目前版本.innerHTML = 版本
 console.log(版本)
@@ -83,13 +84,37 @@ const 深渊难度 = document.querySelector('#深渊难度')
 })
 
 
+const 战斗_选项按钮 = document.querySelector('#战斗_选项按钮')
 
+战斗_选项按钮.addEventListener('click',()=>{
+    战斗_攻击_显示()
+    战斗_技能_显示()
+    bottom_初始选项_消失()
+})
 
+const 道具_选项按钮 = document.querySelector('#道具_选项按钮')
 
+道具_选项按钮.addEventListener('click',()=>{
+    弹窗("道具功能未开放!请期待后续版本更新!");
+})
 
-    
+const 逃跑_选项按钮 = document.querySelector('#逃跑_选项按钮')
 
+逃跑_选项按钮.addEventListener('click',()=>{
+    弹窗("逃跑功能未开放!请期待后续版本更新!");
+})
 
+const 战斗_攻击_选项按钮 = document.querySelector('#战斗_攻击_选项按钮')
+
+战斗_攻击_选项按钮.addEventListener('click', ()=>{
+    弹窗("攻击功能未开放!请期待后续版本更新!");
+})
+
+const 战斗_技能_选项按钮 = document.querySelector('#战斗_技能_选项按钮')
+
+战斗_技能_选项按钮.addEventListener('click', ()=>{
+    弹窗("技能功能未开放!请期待后续版本更新!");
+})
 
 
 

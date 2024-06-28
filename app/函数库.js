@@ -596,16 +596,9 @@ function 音乐结束(bgm, volume) {
                 volumecode -= 0.1
             }
             bgm.volume = volumecode
-        }
-        else if (tim == 1) {
-            if (volumecode > volume) {
-                volumecode -= 0.1
-            }
-            bgm.volume = volumecode
-        }
-        
+        }      
 
-        if (volumecode <= volume) {
+        if (volumecode = volume) {
             clearInterval(timing); // 清除定时器
         }
     }, 500)
@@ -656,7 +649,7 @@ export function 冒险选择_消失() {
 
 
 export function 战斗开始() {
-    加载_显示(5,8,1, 悬疑bgm, 战斗BGM)
+    加载_显示(4,6,1, 悬疑bgm, 战斗BGM)
     setTimeout(() => {
         战斗区域_显示()
         冒险中选择_消失()
@@ -700,6 +693,34 @@ export function 冒险中选择_消失() {
 }
 
 
+
+export function 战斗_攻击_显示() {
+    const 战斗_攻击 = document.querySelector('.战斗_攻击')
+    战斗_攻击.style.display = 'flex';
+}
+
+export function 战斗_技能_显示() {
+    const 战斗_技能 = document.querySelector('.战斗_技能')
+    战斗_技能.style.display = 'flex';
+}
+
+export function bottom_初始选项_消失() {
+    const 战斗 = document.querySelector('.战斗')
+    const 道具 = document.querySelector('.道具')
+    const 逃跑 = document.querySelector('.逃跑')
+    战斗.style.display = 'none';
+    道具.style.display = 'none';
+    逃跑.style.display = 'none';
+}
+
+export function bottom_初始选项_显示() {
+    const 战斗 = document.querySelector('.战斗')
+    const 道具 = document.querySelector('.道具')
+    const 逃跑 = document.querySelector('.逃跑')
+    战斗.style.display = 'flex';
+    道具.style.display = 'flex';
+    逃跑.style.display = 'flex';
+}
 
 
 // 逐字显示文本
