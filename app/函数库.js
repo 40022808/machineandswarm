@@ -525,14 +525,14 @@ export function 战斗选项框_显示() {
 }
 
 
-export function 加载_显示(count, bgm, bgm2, func, funcnumber, func2, funcnumber2) {
+export function 加载_显示(min, max, count, bgm, bgm2, func, funcnumber, func2, funcnumber2) {
     音乐结束(bgm, 0)
     const 加载 = document.querySelector('.加载')
     加载.style.opacity = 1;
     加载.style.display = 'flex';
     const 加载文字 = document.querySelector('.加载文字')
     加载文字.textContent = `加载中`;
-    let tim = getRandomInt(5 , 16)
+    let tim = getRandomInt(min , max)
     let tim2 = tim * 1000
     let timing = setInterval(() => {
         if (count == 0) {
@@ -656,7 +656,7 @@ export function 冒险选择_消失() {
 
 
 export function 战斗开始() {
-    加载_显示(1, 悬疑bgm, 战斗BGM)
+    加载_显示(5,8,1, 悬疑bgm, 战斗BGM)
     setTimeout(() => {
         战斗区域_显示()
         冒险中选择_消失()
