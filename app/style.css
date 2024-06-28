@@ -820,8 +820,8 @@ body {
     height: 6vmin;
     width: 8vmin;
     border-radius: 30%;
-    left: 2vmin;
-    top: 2vmin;
+    left: 20px;
+    top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -869,6 +869,7 @@ body {
     width: 50vw;
     border: 3px solid rgb(0, 0, 0); /* 控制内部边框的宽度和颜色 */
     border-radius: 20px;
+    justify-content: space-evenly;
 }
 
 
