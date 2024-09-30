@@ -6,10 +6,38 @@ import {
 
 
 
-const 版本 = "版本:0.02.16"
+const 版本 = "版本:0.02.17"
 const 目前版本 = document.querySelector('.目前版本')
 目前版本.innerHTML = 版本
 console.log(版本)
+
+const 增加难度按钮 = document.querySelector('#增加难度按钮')
+const 减少难度按钮 = document.querySelector('#减少难度按钮')
+增加难度按钮.addEventListener('click',()=>{
+    if (深渊难度.value == '') {
+        深渊难度.value =  parseInt(1)
+    }
+    else if (深渊难度.value <10) {
+        深渊难度.value = parseInt(深渊难度.value) + 1;
+    }
+    else {
+        弹窗("已达到最高难度!")
+    }
+    
+})
+减少难度按钮.addEventListener('click',()=>{
+    if (深渊难度.value == '') {
+        深渊难度.value =  parseInt(1)
+    }
+    else if (深渊难度.value >1) {
+        深渊难度.value = parseInt(深渊难度.value) - 1;
+    }
+    else {
+        弹窗("已达到最低难度!")
+    }
+    
+})
+
 
 
 cat()
@@ -60,7 +88,7 @@ const 深渊难度 = document.querySelector('#深渊难度')
 开始冒险.addEventListener('click',()=>{
     const abyssValue = parseInt(深渊难度.value); // 将深渊难度的值转换为整数
     if (深渊难度.value == "") {
-        弹窗("请在中间的方块里输入难度等级!");
+        弹窗("请先设置难度等级!");
     }
     else if (!isNaN(abyssValue) && abyssValue >= 1 && abyssValue <= 10) {
 
@@ -79,7 +107,7 @@ const 深渊难度 = document.querySelector('#深渊难度')
         
     }
     else {
-        弹窗("请在中间的方块里正确地输入难度等级!");
+        弹窗("请正确地设置难度等级!(最低1,最高10!)");
     }
 })
 
