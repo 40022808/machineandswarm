@@ -11,9 +11,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* 针对Firefox */
-input[type=number] {
+/*input[type=number] {
     -moz-appearance: textfield;
-}
+}*/
 
 body {
     background-color: black;
@@ -859,7 +859,7 @@ body {
 
 #深渊难度 {
     border-radius: 8px;
-    min-width: 5.5vmax;
+    max-width: 32.5vmin;
     text-align: center;
     padding: 1px;
     font-size: 6.5vmin;
