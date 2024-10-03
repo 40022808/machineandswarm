@@ -589,19 +589,26 @@ export function 加载_消失(bgm2, func = () => {}, funcnumber = "防止报错"
 
 
 
-function 音乐结束(bgm, volume) {
+function 音乐结束(bgm, volume1) {
     let volumecode = 0.6
     bgm.volume = volumecode
     let tim = 0
     let timing = setInterval(() => {
         if (tim == 0) {
-            if (volumecode > volume) {
+            if (volumecode > volume1) {
                 volumecode -= 0.1
             }
             bgm.volume = volumecode
-        }      
+        }
+        else if (tim == 1) {
+            if (volumecode > volume1) {
+                volumecode -= 0.1
+            }
+            bgm.volume = volumecode
+        }
 
-        if (volumecode = volume) {
+        if (volumecode = volume1) {
+            bgm.pause()
             clearInterval(timing); // 清除定时器
         }
     }, 500)
@@ -671,7 +678,7 @@ function 敌人生成(npcs,npcname) {
         newNpc.setAttribute('data-number',100); // 设置初始数字
         newNpc.addEventListener('click', function() {
             let currentNumber = parseInt(this.getAttribute('data-number'));
-            this.setAttribute('data-number', currentNumber + 1); // 数字加1
+            this.setAttribute('data-number', currentNumber - 1); // 数字加1
         });
         战斗区域.appendChild(newNpc);
         战斗开始_名字信息(i,npcname)
