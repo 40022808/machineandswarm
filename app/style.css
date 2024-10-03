@@ -511,6 +511,8 @@ body {
     justify-content: space-evenly;
 }
 
+
+
 .bottom div {
     height: 15vmin;
     width: 18vmin;
@@ -540,6 +542,13 @@ body {
     display: none;
 }
 
+
+.信息 {
+    width: 80vw !important;
+    height: 7vmin !important;
+    display: none;
+    font-size: 7vmin;
+}
 
 .top {
     position: fixed;
@@ -934,29 +943,45 @@ body {
 
 }
 
-.me, .npc {
+.战斗区域_遮挡 {
+    display: none;
+    position: absolute;
+    top: 30vh;
+    height: 40vh;
+    width: 100vw;
+}
+
+
+
+.npc1, .npc2, .npc3 {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-
-.me {
-    border: solid white 0.5vmin;
-    height: 20vmin;
-    width: 20vmax;
-    font-size: 2vmin;
-    color: white;
-
-}
-
-.npc {
     border: solid rgb(255, 0, 0) 0.5vmin;
-    height: 20vmin;
-    width: 20vmax;
+    background-color: black;
+    height: 15vmin;
+    width: 20vw;
     font-size: 2vmin;
     color: red;
+    position: relative;
 }
+
+.npc1::before, .npc2::before, .npc3::before {
+    content: attr(data-number);
+    position: absolute;
+    top: -5vmin; /* 调整数字的位置，使其更靠近按钮 */
+    background-color: rgba(255, 0, 0, 0);
+    color: white;
+    padding: 2px 5px; /* 调整内边距，使数字更小 */
+    font-size: 3vmin; /* 调整字体大小 */
+}
+
+
+
+.npc1:hover, .npc2:hover, .npc3:hover {
+    color: white;
+}
+
 
 
 .冒险中选择0 {

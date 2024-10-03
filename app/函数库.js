@@ -174,7 +174,7 @@ function 文本2_后续1_回答_1_函数() {
         冒险中选择_选择.innerHTML = ""
         冒险中选择_消失()
         setTimeout(() => {
-            战斗开始()
+            战斗开始(3,0)
         }, 100);
         
     })
@@ -322,19 +322,19 @@ function 背景剧情_播放() {
     let text1 = '这是个存在魔法的世界，生活着各种各样的种族。'
     let text1_tim = (text1.length * 500)
     let text2 = '人类，精灵，巨龙，恶魔....'
-    let text2_tim = text1_tim + (text2.length * 260)
+    let text2_tim = text1_tim + (text2.length * 250)
     let text3 = '突然有一天祂[██]出现了'
-    let text3_tim = text2_tim + (text3.length * 260)
+    let text3_tim = text2_tim + (text3.length * 250)
     let text4 = '一瞬间整个世界都被祂改造了，变得像游戏一样。'
-    let text4_tim = text3_tim + (text4.length * 260)
+    let text4_tim = text3_tim + (text4.length * 250)
     let text5 = '智慧生命拥有了像是游戏角色一样的个人面板,个人背包,可以通过获取经验值升级变强。'
-    let text5_tim = text4_tim + (text5.length * 260)
+    let text5_tim = text4_tim + (text5.length * 250)
     let text6 = '全世界各地出现了名为副本的特殊空间。'
-    let text6_tim = text5_tim + (text6.length * 260)
+    let text6_tim = text5_tim + (text6.length * 250)
     let text7 = '里面到处都是不能交流的敌人，会思考的机械，诡异的虫子。'
-    let text7_tim = text6_tim + (text7.length * 260)
+    let text7_tim = text6_tim + (text7.length * 250)
     let text8 = '虽然很危险，但是也充满了机遇。而你就是一名寻求机遇的冒险者!'
-    let text8_tim = text7_tim + (text8.length * 260)
+    let text8_tim = text7_tim + (text8.length * 250)
     setTimeout(() => {
         背景剧情_播放_text(text1 , 剧情_h1 )
     }, 1000);
@@ -507,7 +507,7 @@ export function 开局选项_消失() {
 
 function 默认名字() {
     if (name_code.value == '') {
-        name_code.value = "忘记输入自己名字的冒险者"
+        name_code.value = "无名者"
     }
 }
 
@@ -564,7 +564,7 @@ export function 加载_显示(min, max, count, bgm, bgm2, func, funcnumber, func
     }, tim2);
 }
 
-export function 加载_消失(bgm2, func, funcnumber, func2, funcnumber2) {
+export function 加载_消失(bgm2, func = () => {}, funcnumber = "防止报错", func2 =() => {}, funcnumber2 = "防止报错2") {
 
     const 加载 = document.querySelector('.加载')
     音乐开始(bgm2, 0.6)
@@ -580,10 +580,13 @@ export function 加载_消失(bgm2, func, funcnumber, func2, funcnumber2) {
 
     setTimeout(() => {
         func(funcnumber)
-        func2(funcnumber2)
+        func2(funcnumber2)     
     }, 4500);
     
 }
+
+
+
 
 
 function 音乐结束(bgm, volume) {
@@ -648,29 +651,58 @@ export function 冒险选择_消失() {
 
 
 
-export function 战斗开始() {
-    加载_显示(4,6,1, 悬疑bgm, 战斗BGM)
+export function 战斗开始(npcs,npcname) {
+    加载_显示(3,5,1, 悬疑bgm, 战斗BGM)
     setTimeout(() => {
         战斗区域_显示()
         冒险中选择_消失()
-        战斗开始_名字信息()
+        敌人生成(npcs,npcname)
         战斗选项框_显示()
     }, 1000);
     
 }
 
+function 敌人生成(npcs,npcname) {
+    const 战斗区域 = document.querySelector('.战斗区域')
+    let npcnuber = npcs + 1
+    for (let i = 1; i < npcnuber; i++) {
+        var newNpc = document.createElement('button')
+        newNpc.className = 'npc' + i; 
+        newNpc.setAttribute('data-number',100); // 设置初始数字
+        newNpc.addEventListener('click', function() {
+            let currentNumber = parseInt(this.getAttribute('data-number'));
+            this.setAttribute('data-number', currentNumber + 1); // 数字加1
+        });
+        战斗区域.appendChild(newNpc);
+        战斗开始_名字信息(i,npcname)
+    }
+
+    
+}
+
+
 
 function 战斗区域_显示() {
     const 战斗区域 = document.querySelector('.战斗区域')
     战斗区域.style.display = 'flex';
+    const 战斗区域_遮挡 = document.querySelector('.战斗区域_遮挡')
+    战斗区域_遮挡.style.display = 'flex';
+}
+
+export function 战斗区域_遮挡_消失() {
+    const 战斗区域_遮挡 = document.querySelector('.战斗区域_遮挡')
+    战斗区域_遮挡.style.display = 'none';
+}
+
+export function 战斗区域_遮挡_显示() {
+    const 战斗区域_遮挡 = document.querySelector('.战斗区域_遮挡')
+    战斗区域_遮挡.style.display = 'flex';
 }
 
 
-function 战斗开始_名字信息() {
-    const me = document.querySelector('.me')
-    me.innerHTML = "[" + name_code.value + "]"
-    const npc = document.querySelector('.npc')
-    npc.innerHTML = 敌人名字信息_获取(0)
+function 战斗开始_名字信息(i,npcname) {
+    const npc = document.querySelector('.npc' + i)
+    npc.innerHTML = 敌人名字信息_获取(npcname)
 }
 
 
@@ -703,6 +735,25 @@ export function 战斗_技能_显示() {
     const 战斗_技能 = document.querySelector('.战斗_技能')
     战斗_技能.style.display = 'flex';
 }
+
+export function 战斗_攻击_消失() {
+    const 战斗_攻击 = document.querySelector('.战斗_攻击')
+    战斗_攻击.style.display = 'none';
+}
+
+export function 战斗_技能_消失() {
+    const 战斗_技能 = document.querySelector('.战斗_技能')
+    战斗_技能.style.display = 'none';
+}
+
+
+export function bottom_信息_显示 (text) {
+    const 信息 = document.querySelector('.信息')
+    信息.style.display = 'flex';
+    信息.textContent = text 
+}
+
+
 
 export function bottom_初始选项_消失() {
     const 战斗 = document.querySelector('.战斗')
