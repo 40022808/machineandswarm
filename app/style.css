@@ -944,11 +944,13 @@ body {
 }
 
 .战斗区域_遮挡 {
-    display: none;
+    display: flex;
     position: absolute;
     top: 30vh;
     height: 40vh;
     width: 100vw;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 
@@ -964,6 +966,7 @@ body {
     font-size: 2vmin;
     color: red;
     position: relative;
+    margin-top: 20px;
 }
 
 .npc1::before, .npc2::before, .npc3::before {
@@ -974,12 +977,34 @@ body {
     color: red;
     padding: 2px 5px; /* 调整内边距，使数字更小 */
     font-size: 3vmin; /* 调整字体大小 */
+    
 }
 
 
 
 .npc1:hover, .npc2:hover, .npc3:hover {
     color: white;
+}
+
+
+
+.npc属性_信息框1,.npc属性_信息框2,.npc属性_信息框3 {
+    opacity: 0;
+    width: 20vw;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    position: relative;
+    z-index: 2;
+    top: 50px;
+}
+
+
+.npc属性_信息框1:hover,.npc属性_信息框2:hover,.npc属性_信息框3:hover {
+    opacity: 1;
+    transition: opacity 0.3s;
 }
 
 

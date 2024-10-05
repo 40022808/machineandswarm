@@ -3,7 +3,7 @@ import {
 } from "./文本.js";
 
 import {
-    敌人名字信息
+    敌人名字信息, 敌人属性信息
 } from "./npcs.js";
 
 
@@ -174,7 +174,7 @@ function 文本2_后续1_回答_1_函数() {
         冒险中选择_选择.innerHTML = ""
         冒险中选择_消失()
         setTimeout(() => {
-            战斗开始(3,0)
+            战斗开始(1,0)
         }, 100);
         
     })
@@ -241,18 +241,23 @@ export function 属性刷新() {
     const 体质 = document.querySelector('.体质')
     const 精神 = document.querySelector('.精神')
     const 等级 = document.querySelector('.等级')
-    const 经验值 = document.querySelector('.经验值')
-    攻击力.innerHTML += me攻击力
-    防御力.innerHTML += me防御力
-    体质.innerHTML += me体质
-    精神.innerHTML += me精神
-    等级.innerHTML += me等级
+    var 攻击力信息 = '攻击力:' + me攻击力
+    var 防御力信息 = '防御力:' + me防御力
+    var 体质信息 = '体质:' + me体质
+    var 精神信息 = '精神:' + me精神
+    var 等级信息 = '等级:' + me等级
+    攻击力.innerHTML = 攻击力信息
+    防御力.innerHTML = 防御力信息
+    体质.innerHTML = 体质信息
+    精神.innerHTML = 精神信息
+    等级.innerHTML = 等级信息
     状态刷新()
 }
 
 function 状态刷新() {
     const css生命 = document.querySelector('.css生命')
     const css魔力 = document.querySelector('.css魔力')
+    const 经验值 = document.querySelector('.经验值')
     let mehp = me生命 / me生命上限
     let memaxhp = 50
     css生命.style.width = (memaxhp * mehp) + 'vw'
@@ -674,19 +679,37 @@ function 敌人生成(npcs,npcname) {
     let npcnuber = npcs + 1
     for (let i = 1; i < npcnuber; i++) {
         var newNpc = document.createElement('button')
-        newNpc.className = 'npc' + i; 
-        newNpc.setAttribute('data-number',100); // 设置初始数字
+        newNpc.className = 'npc' + i;
+
+               
+
+        敌人属性信息(npcname)
+        var 敌人属性 = 敌人属性信息(npcname);
+        if (敌人属性) {
+        newNpc.setAttribute('data-number', 敌人属性.生命); // 设置初始数字
         newNpc.addEventListener('click', function() {
             let currentNumber = parseInt(this.getAttribute('data-number'));
-            this.setAttribute('data-number', currentNumber - 1); // 数字加1
+            this.setAttribute('data-number', currentNumber - (me攻击力 - 敌人属性.防御力)); // 数字减1
         });
+        
+        
         战斗区域.appendChild(newNpc);
-        战斗开始_名字信息(i,npcname)
+        敌人属性信息_显示(i)
+        战斗开始_名字信息(i, npcname);
+        }
     }
 
     
 }
 
+
+function 敌人属性信息_显示(i) {
+    var tooltip = document.createElement('div')
+    tooltip.className = 'npc属性_信息框' + i;
+    tooltip.textContent = '这是一个提示窗口';
+    const 战斗区域_遮挡 = document.querySelector('.战斗区域_遮挡')
+    战斗区域_遮挡.appendChild(tooltip);
+}
 
 
 function 战斗区域_显示() {
