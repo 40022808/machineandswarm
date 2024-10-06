@@ -174,7 +174,7 @@ function 文本2_后续1_回答_1_函数() {
         冒险中选择_选择.innerHTML = ""
         冒险中选择_消失()
         setTimeout(() => {
-            战斗开始(3,0)
+            战斗开始(2,0)
         }, 100);
         
     })
@@ -187,6 +187,8 @@ export function docbgm() {
     const 城镇 = document.querySelector('#城镇')
     const 热血战斗 = document.querySelector('#热血战斗')
     const 战斗BGM = document.querySelector('#战斗BGM')
+    const 按钮2 = document.querySelector('#按钮2')
+    const 受伤1 = document.querySelector('#受伤1')
 }
 docbgm()
 
@@ -674,44 +676,63 @@ export function 战斗开始(npcs,npcname) {
     
 }
 
-function 敌人生成(npcs,npcname) {
-    const 战斗区域 = document.querySelector('.战斗区域')
-    let npcnuber = npcs + 1
+function 敌人生成(npcs, npcname) {
+    const 战斗区域 = document.querySelector('.战斗区域');
+    let npcnuber = npcs + 1;
     for (let i = 1; i < npcnuber; i++) {
-        var newNpc = document.createElement('button')
+        var newNpc = document.createElement('button');
         newNpc.className = 'npc' + i;
 
-               
-
-        敌人属性信息(npcname)
         var 敌人属性 = 敌人属性信息(npcname);
         if (敌人属性) {
-        newNpc.setAttribute('data-number', 敌人属性.生命); // 设置初始数字
-        newNpc.addEventListener('click', function() {
-            let currentNumber = parseInt(this.getAttribute('data-number'));
-            this.setAttribute('data-number', currentNumber - (me攻击力 - 敌人属性.防御力)); // 数字减1
-        });
-        
-        
-        战斗区域.appendChild(newNpc);
-        敌人属性信息_显示(i,npcname)
-        战斗开始_名字信息(i, npcname);
+            newNpc.setAttribute('data-number', 敌人属性.生命); // 设置初始数字
+            (function(敌人属性) {
+                newNpc.addEventListener('click', function() {
+                    let currentNumber = parseInt(this.getAttribute('data-number'));
+                    this.setAttribute('data-number', currentNumber - (me攻击力 - 敌人属性.防御力)); // 数字减1
+                    受伤1.play()
+                    攻击敌人后(i);
+                });
+            })(敌人属性);
+            敌人属性生成(敌人属性,i)
+            战斗区域.appendChild(newNpc);
+            敌人属性信息_显示(i,敌人属性);
+            战斗开始_名字信息(i, npcname);
         }
     }
-
-    
 }
 
 
-function 敌人属性信息_显示(i ,npcname ) {
-    var 敌人属性 = 敌人属性信息(npcname);
+
+function 敌人属性生成(敌人属性,i) {
+    var npc_属性_存放 = document.querySelector('.npc_属性_存放' + i)
+    var 攻击力 = document.querySelector('.攻击力' + i)
+    var 防御力 = document.querySelector('.防御力' + i)
+    var 体质 = document.querySelector('.体质' + i)
+    var 精神 = document.querySelector('.精神' + i)
+    var 等级 = document.querySelector('.等级' + i)
+    var 生命 = document.querySelector('.生命' + i)
+    var 魔力 = document.querySelector('.魔力' + i)
+    攻击力.textContent = 敌人属性.攻击力
+    防御力.textContent = 敌人属性.防御力
+    体质.textContent = 敌人属性.体质
+    精神.textContent = 敌人属性.精神
+    等级.textContent = 敌人属性.等级
+    生命.textContent = 敌人属性.生命
+    魔力.textContent = 敌人属性.魔力
+}
+
+
+function 敌人属性信息_显示(i,敌人属性) {
     var tooltip = document.createElement('div')
     tooltip.className = 'npc属性_信息框' + i;
-    tooltip.textContent = " | " + `等级:` + 敌人属性.等级 + " | ";
-    tooltip.textContent += `防御力:` + 敌人属性.防御力 + " | ";
-    tooltip.textContent += `攻击力:` + 敌人属性.攻击力 + " | ";
-    const 战斗区域_遮挡 = document.querySelector('.战斗区域_遮挡' + i)
-    战斗区域_遮挡.appendChild(tooltip);
+    tooltip.innerHTML = `等级:` + 敌人属性.等级 + '<br>' + `防御力:` + 敌人属性.防御力 + '<br>' + `攻击力:` + 敌人属性.攻击力;
+
+    var 战斗区域_遮挡s = document.createElement('div')
+    战斗区域_遮挡s.className = '战斗区域_遮挡' + i;
+    const 战斗区域_遮挡 = document.querySelector('.战斗区域_遮挡')
+    战斗区域_遮挡.appendChild(战斗区域_遮挡s);
+    战斗区域_遮挡s.appendChild(tooltip);
 }
 
 
@@ -786,6 +807,11 @@ export function bottom_信息_显示 (text) {
     信息.textContent = text 
 }
 
+export function bottom_信息_消失() {
+    const 信息 = document.querySelector('.信息')
+    信息.style.display = 'none';
+    信息.textContent = '' 
+}
 
 
 export function bottom_初始选项_消失() {
@@ -898,3 +924,100 @@ function fadeElementIn2(element, duration) {
 }
   
 
+
+function 攻击敌人后(i) {
+    var npc_属性_存放 = document.querySelector('.npc_属性_存放' + i)
+    var 攻击力 = document.querySelector('.攻击力' + i)
+    var 防御力 = document.querySelector('.防御力' + i)
+    var 体质 = document.querySelector('.体质' + i)
+    var 精神 = document.querySelector('.精神' + i)
+    var 等级 = document.querySelector('.等级' + i)
+    var 生命 = document.querySelector('.生命' + i)
+    var 魔力 = document.querySelector('.魔力' + i)
+    let npcs = document.querySelector('.npc' + i)
+    战斗区域_遮挡_显示()
+    npcs.classList.add('shrunk');
+    npcs.classList.remove('enlarged');                   
+    // 在300毫秒后移除类，以恢复原状
+    setTimeout(function() {
+        npcs.classList.remove('shrunk');
+    }, 300);
+    bottom_信息_显示('')
+    敌人攻击()
+    
+}
+
+
+
+function 敌人攻击() {
+    const npc1 = document.querySelector('.npc1')
+    const npc2 = document.querySelector('.npc2')
+    const npc3 = document.querySelector('.npc3')
+    const 攻击力1 = document.querySelector('.攻击力1')
+    const 攻击力2 = document.querySelector('.攻击力2')
+    const 攻击力3 = document.querySelector('.攻击力3')
+    if (攻击力1 && 攻击力1.textContent != '') {
+        setTimeout(() => {
+            bottom_信息_显示('敌人行动中')
+            let number攻击力 = parseInt(攻击力1.textContent)
+            me生命 = me生命 - number攻击力
+            敌人攻击特效(1)
+            受伤1.play()
+            状态刷新()
+            if (攻击力2 && 攻击力2.textContent != '') {
+                setTimeout(() => {
+                    let number攻击力 = parseInt(攻击力2.textContent)
+                    me生命 = me生命 - number攻击力
+                    敌人攻击特效(2)
+                    受伤1.play()
+                    状态刷新()
+                    if (攻击力3 && 攻击力3.textContent != '') {
+                        setTimeout(() => {
+                            let number攻击力 = parseInt(攻击力3.textContent)
+                            me生命 = me生命 - number攻击力
+                            敌人攻击特效(3)
+                            受伤1.play()
+                            状态刷新()
+                            setTimeout(() => {
+                                敌人攻击后()
+                            }, 1000);
+                        }, 1000);
+                    }
+                    else {
+                        setTimeout(() => {
+                            敌人攻击后()
+                        }, 1000);
+                    }
+                }, 1000);
+            }
+            else {
+                setTimeout(() => {
+                    敌人攻击后()
+                }, 1000);
+            }
+        }, 1000);
+    }
+
+    
+    
+
+    
+}
+
+
+function 敌人攻击后() {
+    bottom_信息_消失()
+    bottom_初始选项_显示()
+}
+
+
+
+function 敌人攻击特效(number) {
+    let npcs = document.querySelector('.npc' + number)
+    npcs.classList.add('enlarged');
+    npcs.classList.remove('shrunk');
+    // 在300毫秒后移除类，以恢复原状
+    setTimeout(function() {
+        npcs.classList.remove('enlarged');
+    }, 300);
+}

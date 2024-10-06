@@ -958,7 +958,25 @@ body {
     width: 20vw;
 }
 
+.npc1 {
+    transition: transform 0.2s ease;
+}
+.npc2 {
+    transition: transform 0.2s ease;
+}
+.npc3 {
+    transition: transform 0.2s ease;
+}
 
+
+
+.npc1.enlarged,.npc2.enlarged,.npc3.enlarged {
+    transform: scale(1.7);
+}
+
+.npc1.shrunk,.npc2.shrunk,.npc3.shrunk {
+    transform: scale(0.9);
+}
 
 .npc1, .npc2, .npc3 {
     display: flex;
@@ -1157,12 +1175,18 @@ body {
     padding: 2vmin;
 }
 
+.npc_属性_总存放 {
+    display: none;
+}
+
+.npc_属性_存放1,.npc_属性_存放2,.npc_属性_存放3 {
+    display: none;
+}
 
 
-
-
-
-
+.npc_属性_存放1 div,.npc_属性_存放2 div,.npc_属性_存放3 div {
+    display: none;
+}
 
 
 
