@@ -174,7 +174,7 @@ function 文本2_后续1_回答_1_函数() {
         冒险中选择_选择.innerHTML = ""
         冒险中选择_消失()
         setTimeout(() => {
-            战斗开始(1,0)
+            战斗开始(3,0)
         }, 100);
         
     })
@@ -694,7 +694,7 @@ function 敌人生成(npcs,npcname) {
         
         
         战斗区域.appendChild(newNpc);
-        敌人属性信息_显示(i)
+        敌人属性信息_显示(i,npcname)
         战斗开始_名字信息(i, npcname);
         }
     }
@@ -703,11 +703,14 @@ function 敌人生成(npcs,npcname) {
 }
 
 
-function 敌人属性信息_显示(i) {
+function 敌人属性信息_显示(i ,npcname ) {
+    var 敌人属性 = 敌人属性信息(npcname);
     var tooltip = document.createElement('div')
     tooltip.className = 'npc属性_信息框' + i;
-    tooltip.textContent = '这是一个提示窗口';
-    const 战斗区域_遮挡 = document.querySelector('.战斗区域_遮挡')
+    tooltip.textContent = " | " + `等级:` + 敌人属性.等级 + " | ";
+    tooltip.textContent += `防御力:` + 敌人属性.防御力 + " | ";
+    tooltip.textContent += `攻击力:` + 敌人属性.攻击力 + " | ";
+    const 战斗区域_遮挡 = document.querySelector('.战斗区域_遮挡' + i)
     战斗区域_遮挡.appendChild(tooltip);
 }
 

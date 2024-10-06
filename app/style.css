@@ -953,6 +953,11 @@ body {
     justify-content: space-evenly;
 }
 
+.战斗区域_遮挡1,.战斗区域_遮挡2,.战斗区域_遮挡3 {
+    height: 15vmin;
+    width: 20vw;
+}
+
 
 
 .npc1, .npc2, .npc3 {
@@ -966,7 +971,7 @@ body {
     font-size: 2vmin;
     color: red;
     position: relative;
-    margin-top: 20px;
+    
 }
 
 .npc1::before, .npc2::before, .npc3::before {
@@ -990,19 +995,18 @@ body {
 
 .npc属性_信息框1,.npc属性_信息框2,.npc属性_信息框3 {
     opacity: 0;
-    width: 20vw;
     background-color: white;
     color: black;
     text-align: center;
     padding: 5px;
-    border-radius: 6px;
+    border-radius: 0 0 6px 6px;
     position: relative;
     z-index: 2;
-    top: 50px;
+    top: 15vmin;
 }
 
 
-.npc属性_信息框1:hover,.npc属性_信息框2:hover,.npc属性_信息框3:hover {
+.战斗区域_遮挡1:hover .npc属性_信息框1,.战斗区域_遮挡2:hover .npc属性_信息框2,.战斗区域_遮挡3:hover .npc属性_信息框3 {
     opacity: 1;
     transition: opacity 0.3s;
 }
