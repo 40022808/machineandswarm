@@ -277,8 +277,7 @@ export function start() {
     const start2 = document.querySelector('.start2')
     startbutton.addEventListener('click',()=>{
         全屏()
-        悬疑bgm.volume = 0.6
-        悬疑bgm.play()
+        音乐播放(悬疑bgm)
         start.style.display = 'none';
         start1.style.display = 'block';
         
@@ -400,9 +399,8 @@ export function start2() {
     const start2 = document.querySelector('.start2')
     const 游戏 = document.querySelector('.游戏')
     startbutton.addEventListener('click',()=>{
-        悬疑bgm.pause()
-        城镇.volume = 0.6
-        城镇.play()
+        当前bgm_停止播放()
+        音乐播放(城镇)
         默认名字()
         个人信息_名字()
         start2.style.display = 'none';
@@ -597,31 +595,42 @@ export function 加载_消失(bgm2, func = () => {}, funcnumber = "防止报错"
 
 
 function 音乐结束(bgm, volume1) {
-    let volumecode = 0.6
-    bgm.volume = volumecode
-    let tim = 0
+    let volumecode = 0.6;
+    bgm.volume = volumecode;
     let timing = setInterval(() => {
-        if (tim == 0) {
-            if (volumecode > volume1) {
-                volumecode -= 0.1
-            }
-            bgm.volume = volumecode
-        }
-        else if (tim == 1) {
-            if (volumecode > volume1) {
-                volumecode -= 0.1
-            }
-            bgm.volume = volumecode
+        if (volumecode > volume1) {
+            volumecode -= 0.1;
+            bgm.volume = volumecode;
         }
 
-        if (volumecode = volume1) {
-            bgm.pause()
+        if (volumecode <= volume1) {
+            bgm.pause();
             clearInterval(timing); // 清除定时器
         }
-    }, 500)
+    }, 500);
 }
 
 
+var nowbgm  //当前bgm
+
+function 当前bgm(bgm) {
+    nowbgm = bgm
+}
+
+function 当前bgm_停止播放() {
+    nowbgm.pause()
+}
+
+function 当前bgm_开始播放() {
+    nowbgm.play()
+}
+
+
+function 音乐播放(bgm) {
+    bgm.volume = 0.6
+    bgm.play()
+    当前bgm(bgm)
+}
 
 function 音乐开始(bgm, volume) {
     let volumecode = 0
@@ -669,6 +678,7 @@ export function 战斗开始(npcs,npcname) {
     加载_显示(3,5,1, 悬疑bgm, 战斗BGM)
     setTimeout(() => {
         战斗区域_显示()
+        战斗区域_遮挡_显示() 
         冒险中选择_消失()
         敌人生成(npcs,npcname)
         战斗选项框_显示()
@@ -1020,4 +1030,24 @@ function 敌人攻击特效(number) {
     setTimeout(function() {
         npcs.classList.remove('enlarged');
     }, 300);
+}
+
+
+
+export function 死亡结局触发() {
+    const 死亡end = document.querySelector('.死亡end')
+    当前bgm_停止播放()
+    死亡end.style.display = 'flex'
+    setTimeout(() => {
+        死亡end.style.opacity = '0.5';
+    }, 500);
+    setTimeout(() => {
+        死亡end.style.opacity = '0';
+        setTimeout(() => {
+            死亡end.style.opacity = '0.5';
+            setTimeout(() => {
+                死亡end.style.opacity = '1';
+            }, 2000);
+        }, 2000);
+    }, 3000);
 }

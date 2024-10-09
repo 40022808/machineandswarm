@@ -1,12 +1,12 @@
 import {
     cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失,冒险选择_消失, 开局选项_显示, 战斗开始,
     冒险中选择_显示, showText, texts, getRandomInt, start1, top_显示,夜色小镇_消失,弹窗_关闭_函数,弹窗, 战斗_攻击_显示,战斗_技能_显示,
-    bottom_初始选项_消失,战斗区域_遮挡_消失,战斗区域_遮挡_显示,战斗_攻击_消失,战斗_技能_消失,bottom_信息_显示, docbgm
+    bottom_初始选项_消失,战斗区域_遮挡_消失,战斗区域_遮挡_显示,战斗_攻击_消失,战斗_技能_消失,bottom_信息_显示, docbgm,死亡结局触发
 } from "./函数库.js";
 
 
 
-const 版本 = "版本:0.02.240"
+const 版本 = "版本:0.02.250"
 const 目前版本 = document.querySelector('.目前版本')
 目前版本.innerHTML = 版本
 console.log(版本)

@@ -717,8 +717,6 @@ body {
 
 .star {
     position: absolute;
-/*     top: 5vmin;
-    left: 5vmin; */
     width: 0;
     height: 0;
     border: solid 2px white;
@@ -944,7 +942,7 @@ body {
 }
 
 .战斗区域_遮挡 {
-    display: flex;
+    display: none;
     position: absolute;
     top: 30vh;
     height: 40vh;
@@ -958,15 +956,7 @@ body {
     width: 20vw;
 }
 
-.npc1 {
-    transition: transform 0.2s ease;
-}
-.npc2 {
-    transition: transform 0.2s ease;
-}
-.npc3 {
-    transition: transform 0.2s ease;
-}
+
 
 
 
@@ -989,7 +979,7 @@ body {
     font-size: 2vmin;
     color: red;
     position: relative;
-    
+    transition: transform 0.2s ease;
 }
 
 .npc1::before, .npc2::before, .npc3::before {
@@ -1189,7 +1179,25 @@ body {
 }
 
 
+.死亡end {
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9;
+    opacity: 0;
+    display: none;
+    position: absolute;
+    transition: opacity 2s linear;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
 
+}
 
+.死亡end_标题 {
+    color: white;
+}
 
-
+.死亡end_text {
+    color: white;
+}
