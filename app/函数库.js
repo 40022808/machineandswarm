@@ -189,6 +189,7 @@ export function docbgm() {
     const 战斗BGM = document.querySelector('#战斗BGM')
     const 按钮2 = document.querySelector('#按钮2')
     const 受伤1 = document.querySelector('#受伤1')
+    const end1 = document.querySelector('#end1')
 }
 docbgm()
 
@@ -260,6 +261,10 @@ function 状态刷新() {
     const css生命 = document.querySelector('.css生命')
     const css魔力 = document.querySelector('.css魔力')
     const 经验值 = document.querySelector('.经验值')
+    const 生命信息 = document.querySelector('.生命信息')
+    const 魔力信息 = document.querySelector('.魔力信息')
+    生命信息.textContent = me生命
+    魔力信息.textContent = me魔力
     let mehp = me生命 / me生命上限
     let memaxhp = 50
     css生命.style.width = (memaxhp * mehp) + 'vw'
@@ -600,7 +605,9 @@ function 音乐结束(bgm, volume1) {
     let timing = setInterval(() => {
         if (volumecode > volume1) {
             volumecode -= 0.1;
-            bgm.volume = volumecode;
+            if (volumecode > 0) {
+                bgm.volume = volumecode;
+            }
         }
 
         if (volumecode <= volume1) {
@@ -633,6 +640,7 @@ function 音乐播放(bgm) {
 }
 
 function 音乐开始(bgm, volume) {
+    当前bgm(bgm)
     let volumecode = 0
     bgm.volume = volumecode
     bgm.play()
@@ -699,7 +707,14 @@ function 敌人生成(npcs, npcname) {
             (function(敌人属性) {
                 newNpc.addEventListener('click', function() {
                     let currentNumber = parseInt(this.getAttribute('data-number'));
-                    this.setAttribute('data-number', currentNumber - (me攻击力 - 敌人属性.防御力)); // 数字减1
+                    let 伤害 = 0
+                    if (me攻击力 >= 敌人属性.防御力) {
+                        伤害 = me攻击力 - 敌人属性.防御力
+                    }
+                    else {
+                        伤害 = 0
+                    }
+                    this.setAttribute('data-number', currentNumber - 伤害); // 数字减1
                     受伤1.play()
                     攻击敌人后(i);
                 });
@@ -970,21 +985,57 @@ function 敌人攻击() {
         setTimeout(() => {
             bottom_信息_显示('敌人行动中')
             let number攻击力 = parseInt(攻击力1.textContent)
-            me生命 = me生命 - number攻击力
+            let 伤害 = 0
+            if (number攻击力 <= me防御力) {
+                伤害 = 0
+            }
+            else {
+                伤害 = number攻击力 - me防御力
+            }
+            if (me生命 <= 伤害){
+                me生命 = 0
+            }
+            else {
+                me生命 = me生命 - 伤害
+            }
             敌人攻击特效(1)
             受伤1.play()
             状态刷新()
             if (攻击力2 && 攻击力2.textContent != '') {
                 setTimeout(() => {
                     let number攻击力 = parseInt(攻击力2.textContent)
-                    me生命 = me生命 - number攻击力
+                    let 伤害 = 0
+                    if (number攻击力 <= me防御力) {
+                        伤害 = 0
+                    }
+                    else {
+                        伤害 = number攻击力 - me防御力
+                    }
+                    if (me生命 <= 伤害){
+                        me生命 = 0
+                    }
+                    else {
+                        me生命 = me生命 - 伤害
+                    }
                     敌人攻击特效(2)
                     受伤1.play()
                     状态刷新()
                     if (攻击力3 && 攻击力3.textContent != '') {
                         setTimeout(() => {
                             let number攻击力 = parseInt(攻击力3.textContent)
-                            me生命 = me生命 - number攻击力
+                            let 伤害 = 0
+                            if (number攻击力 <= me防御力) {
+                                伤害 = 0
+                            }
+                            else {
+                                伤害 = number攻击力 - me防御力
+                            }
+                            if (me生命 <= 伤害){
+                                me生命 = 0
+                            }
+                            else {
+                                me生命 = me生命 - 伤害
+                            }
                             敌人攻击特效(3)
                             受伤1.play()
                             状态刷新()
@@ -1016,8 +1067,14 @@ function 敌人攻击() {
 
 
 function 敌人攻击后() {
-    bottom_信息_消失()
-    bottom_初始选项_显示()
+    if (me生命 == 0) {
+        死亡结局触发()
+    }
+    else {
+        bottom_信息_消失()
+        bottom_初始选项_显示()
+    }
+    
 }
 
 
@@ -1047,7 +1104,44 @@ export function 死亡结局触发() {
             死亡end.style.opacity = '0.5';
             setTimeout(() => {
                 死亡end.style.opacity = '1';
+                setTimeout(() => {
+                    死亡结局播放()
+                }, 2600);
             }, 2000);
         }, 2000);
     }, 3000);
+}
+
+
+function 死亡结局播放() {
+    const 死亡end_text = document.querySelector('.死亡end_text');
+    const 死亡end_标题 = document.querySelector('.死亡end_标题');
+
+    if (me等级 == 1) {
+        let text1 = '世界发生如此巨大的改变';
+        let text2 = '只要打败敌人就可以获得力量和财富';
+        let text3 = '有人发现珍贵道具一夜暴富';
+        let text4 = '有人发现强大神器力量暴增';
+        let text5 = '可惜这一切都和你没关系';
+        let text6 = '因为你已经死了，死在了第一次冒险';
+
+        const texts = [text1, text2, text3, text4, text5, text6];
+
+        async function playTexts() {
+            for (let i = 0; i < texts.length; i++) {
+                await new Promise(resolve => setTimeout(() => {
+                    背景剧情_播放_text(texts[i], 死亡end_text);
+                    resolve();
+                }, 5000));
+            }
+            setTimeout(() => {
+                死亡end_text.textContent = '';
+                音乐播放(end1);
+                死亡end_标题.innerHTML = '[结局1:倒霉蛋]<br>如果不是运气不好,我实在是想不到你是怎么死的';
+            }, 5000);
+            
+        }
+
+        playTexts();
+    }
 }
