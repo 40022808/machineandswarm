@@ -174,7 +174,7 @@ function 文本2_后续1_回答_1_函数() {
         冒险中选择_选择.innerHTML = ""
         冒险中选择_消失()
         setTimeout(() => {
-            战斗开始(2,0)
+            战斗开始(3,0)
         }, 100);
         
     })
@@ -190,6 +190,7 @@ export function docbgm() {
     const 按钮2 = document.querySelector('#按钮2')
     const 受伤1 = document.querySelector('#受伤1')
     const end1 = document.querySelector('#end1')
+    const 敌人死亡 = document.querySelector('#敌人死亡')
 }
 docbgm()
 
@@ -226,9 +227,9 @@ export function getRandomInt(min, max) {
 
 var name_code = document.querySelector('#name_code')
 var me攻击力 = 10
-var me防御力 = 5
+var me防御力 = 1
 var me体质 = 10
-var me精神 = 10
+var me精神 = 5
 var me等级 = 1
 var me经验 = 0
 var me经验上限 = 100
@@ -973,10 +974,9 @@ function 攻击敌人后(i,currentNumber) {
     // 在300毫秒后移除类，以恢复原状
     setTimeout(function() {
         npcs.classList.remove('shrunk');
-    }, 300);
-    敌人死亡判定()
+    }, 300);  
     bottom_信息_显示('')
-    敌人攻击()
+    敌人死亡判定();
     
 }
 
@@ -985,29 +985,70 @@ function 敌人死亡判定() {
     const 生命1 = document.querySelector('.生命1')
     const 生命2 = document.querySelector('.生命2')
     const 生命3 = document.querySelector('.生命3')
+    var npc行动 = 'ok' 
     if (parseInt(生命1.textContent) == 0) {
         const npc = document.querySelector(".npc1");
-        npc.remove();
-
         const 战斗区域_遮挡 = document.querySelector(".战斗区域_遮挡1");
-        战斗区域_遮挡.remove();
-        敌人属性删除(1)
+        npc行动 = 'no'
+        npc.classList.add('npcdie');
+        setTimeout(() => {
+            敌人死亡.play()
+            npc.style.opacity = '0';
+        }, 1000); 
+        setTimeout(() => {
+            npc.remove();
+            战斗区域_遮挡.remove();
+            敌人属性删除(1)
+        }, 3000); 
     }
     if (parseInt(生命2.textContent) == 0) {
         const npc = document.querySelector(".npc2");
-        npc.remove();
-
         const 战斗区域_遮挡 = document.querySelector(".战斗区域_遮挡2");
-        战斗区域_遮挡.remove();
-        敌人属性删除(2)
+        npc行动 = 'no'
+        npc.classList.add('npcdie');
+        setTimeout(() => {
+            敌人死亡.play()
+            npc.style.opacity = '0';
+        }, 1000); 
+        setTimeout(() => {
+            npc.remove();
+            战斗区域_遮挡.remove();
+            敌人属性删除(2)
+        }, 3000); 
     }
     if (parseInt(生命3.textContent) == 0) {
         const npc = document.querySelector(".npc3");
-        npc.remove();
-        
         const 战斗区域_遮挡 = document.querySelector(".战斗区域_遮挡3");
-        战斗区域_遮挡.remove();
-        敌人属性删除(3)
+        npc行动 = 'no'
+        npc.classList.add('npcdie');
+        setTimeout(() => {
+            敌人死亡.play()
+            npc.style.opacity = '0';
+        }, 1000); 
+        setTimeout(() => {
+            npc.remove();
+            战斗区域_遮挡.remove();
+            敌人属性删除(3)
+        }, 3000); 
+    }
+
+
+
+    if (生命1.textContent !== '' || 生命2.textContent !== '' || 生命3.textContent !== '') {
+        if (npc行动 == 'no') {
+            setTimeout(() => {
+                敌人攻击()
+            }, 3000);
+        }
+        else if (npc行动 == 'ok') {
+            敌人攻击()
+        }
+        setTimeout(() => {
+            if (生命1.textContent === '' && 生命2.textContent === '' && 生命3.textContent === '') {
+                bottom_信息_显示('战斗胜利!')
+            }
+        }, 3500);
+        
     }
 }
 
@@ -1106,6 +1147,30 @@ function 敌人攻击() {
                     }
                 }, 1000);
             }
+            else if (攻击力3 && 攻击力3.textContent != '') {
+                setTimeout(() => {
+                    let number攻击力 = parseInt(攻击力3.textContent)
+                    let 伤害 = 0
+                    if (number攻击力 <= me防御力) {
+                        伤害 = 0
+                    }
+                    else {
+                        伤害 = number攻击力 - me防御力
+                    }
+                    if (me生命 <= 伤害){
+                        me生命 = 0
+                    }
+                    else {
+                        me生命 = me生命 - 伤害
+                    }
+                    敌人攻击特效(3)
+                    受伤1.play()
+                    状态刷新()
+                    setTimeout(() => {
+                        敌人攻击后()
+                    }, 1000);
+                }, 1000);
+            }
             else {
                 setTimeout(() => {
                     敌人攻击后()
@@ -1168,6 +1233,7 @@ function 敌人攻击() {
     
     else if (攻击力3 && 攻击力3.textContent != '') {
         setTimeout(() => {
+            bottom_信息_显示('敌人行动中')
             let number攻击力 = parseInt(攻击力3.textContent)
             let 伤害 = 0
             if (number攻击力 <= me防御力) {
