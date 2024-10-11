@@ -714,9 +714,15 @@ function 敌人生成(npcs, npcname) {
                     else {
                         伤害 = 0
                     }
-                    this.setAttribute('data-number', currentNumber - 伤害); // 数字减1
+                    if (伤害 >= currentNumber) {
+                        this.setAttribute('data-number', currentNumber = 0); 
+                    }
+                    else {
+                        this.setAttribute('data-number', currentNumber - 伤害); 
+                    }
                     受伤1.play()
-                    攻击敌人后(i);
+                    let currentNumber2 = parseInt(this.getAttribute('data-number'));
+                    攻击敌人后(i,currentNumber2);
                 });
             })(敌人属性);
             敌人属性生成(敌人属性,i)
@@ -950,7 +956,7 @@ function fadeElementIn2(element, duration) {
   
 
 
-function 攻击敌人后(i) {
+function 攻击敌人后(i,currentNumber) {
     var npc_属性_存放 = document.querySelector('.npc_属性_存放' + i)
     var 攻击力 = document.querySelector('.攻击力' + i)
     var 防御力 = document.querySelector('.防御力' + i)
@@ -960,6 +966,7 @@ function 攻击敌人后(i) {
     var 生命 = document.querySelector('.生命' + i)
     var 魔力 = document.querySelector('.魔力' + i)
     let npcs = document.querySelector('.npc' + i)
+    生命.textContent = currentNumber
     战斗区域_遮挡_显示()
     npcs.classList.add('shrunk');
     npcs.classList.remove('enlarged');                   
@@ -967,12 +974,60 @@ function 攻击敌人后(i) {
     setTimeout(function() {
         npcs.classList.remove('shrunk');
     }, 300);
+    敌人死亡判定()
     bottom_信息_显示('')
     敌人攻击()
     
 }
 
 
+function 敌人死亡判定() {
+    const 生命1 = document.querySelector('.生命1')
+    const 生命2 = document.querySelector('.生命2')
+    const 生命3 = document.querySelector('.生命3')
+    if (parseInt(生命1.textContent) == 0) {
+        const npc = document.querySelector(".npc1");
+        npc.remove();
+
+        const 战斗区域_遮挡 = document.querySelector(".战斗区域_遮挡1");
+        战斗区域_遮挡.remove();
+        敌人属性删除(1)
+    }
+    if (parseInt(生命2.textContent) == 0) {
+        const npc = document.querySelector(".npc2");
+        npc.remove();
+
+        const 战斗区域_遮挡 = document.querySelector(".战斗区域_遮挡2");
+        战斗区域_遮挡.remove();
+        敌人属性删除(2)
+    }
+    if (parseInt(生命3.textContent) == 0) {
+        const npc = document.querySelector(".npc3");
+        npc.remove();
+        
+        const 战斗区域_遮挡 = document.querySelector(".战斗区域_遮挡3");
+        战斗区域_遮挡.remove();
+        敌人属性删除(3)
+    }
+}
+
+
+function 敌人属性删除(i) {
+    var 攻击力 = document.querySelector('.攻击力' + i)
+    var 防御力 = document.querySelector('.防御力' + i)
+    var 体质 = document.querySelector('.体质' + i)
+    var 精神 = document.querySelector('.精神' + i)
+    var 等级 = document.querySelector('.等级' + i)
+    var 生命 = document.querySelector('.生命' + i)
+    var 魔力 = document.querySelector('.魔力' + i)
+    攻击力.textContent = ''
+    防御力.textContent = ''
+    体质.textContent = ''
+    精神.textContent = ''
+    等级.textContent = ''
+    生命.textContent = ''
+    魔力.textContent = ''
+}
 
 function 敌人攻击() {
     const npc1 = document.querySelector('.npc1')
@@ -1058,6 +1113,83 @@ function 敌人攻击() {
             }
         }, 1000);
     }
+    
+    else if (攻击力2 && 攻击力2.textContent != '') {
+        setTimeout(() => {
+            bottom_信息_显示('敌人行动中')
+            let number攻击力 = parseInt(攻击力2.textContent)
+            let 伤害 = 0
+            if (number攻击力 <= me防御力) {
+                伤害 = 0
+            }
+            else {
+                伤害 = number攻击力 - me防御力
+            }
+            if (me生命 <= 伤害){
+                me生命 = 0
+            }
+            else {
+                me生命 = me生命 - 伤害
+            }
+            敌人攻击特效(2)
+            受伤1.play()
+            状态刷新()
+            if (攻击力3 && 攻击力3.textContent != '') {
+                setTimeout(() => {
+                    let number攻击力 = parseInt(攻击力3.textContent)
+                    let 伤害 = 0
+                    if (number攻击力 <= me防御力) {
+                        伤害 = 0
+                    }
+                    else {
+                        伤害 = number攻击力 - me防御力
+                    }
+                    if (me生命 <= 伤害){
+                        me生命 = 0
+                    }
+                    else {
+                        me生命 = me生命 - 伤害
+                    }
+                    敌人攻击特效(3)
+                    受伤1.play()
+                    状态刷新()
+                    setTimeout(() => {
+                        敌人攻击后()
+                    }, 1000);
+                }, 1000);
+            }
+            else {
+                setTimeout(() => {
+                    敌人攻击后()
+                }, 1000);
+            }
+        }, 1000);
+    }
+    
+    else if (攻击力3 && 攻击力3.textContent != '') {
+        setTimeout(() => {
+            let number攻击力 = parseInt(攻击力3.textContent)
+            let 伤害 = 0
+            if (number攻击力 <= me防御力) {
+                伤害 = 0
+            }
+            else {
+                伤害 = number攻击力 - me防御力
+            }
+            if (me生命 <= 伤害){
+                me生命 = 0
+            }
+            else {
+                me生命 = me生命 - 伤害
+            }
+            敌人攻击特效(3)
+            受伤1.play()
+            状态刷新()
+            setTimeout(() => {
+                敌人攻击后()
+            }, 1000);
+        }, 1000);
+    }
 
     
     
@@ -1096,7 +1228,7 @@ export function 死亡结局触发() {
     当前bgm_停止播放()
     死亡end.style.display = 'flex'
     setTimeout(() => {
-        死亡end.style.opacity = '0.5';
+        死亡end.style.opacity = '0.7';
     }, 500);
     setTimeout(() => {
         死亡end.style.opacity = '0';
@@ -1106,7 +1238,7 @@ export function 死亡结局触发() {
                 死亡end.style.opacity = '1';
                 setTimeout(() => {
                     死亡结局播放()
-                }, 2600);
+                }, 100);
             }, 2000);
         }, 2000);
     }, 3000);
@@ -1138,7 +1270,34 @@ function 死亡结局播放() {
                 死亡end_text.textContent = '';
                 音乐播放(end1);
                 死亡end_标题.innerHTML = '[结局1:倒霉蛋]<br>如果不是运气不好,我实在是想不到你是怎么死的';
-            }, 5000);
+            }, 4800);
+            
+        }
+
+        playTexts();
+    }
+    else if (me等级 >= 2 && me等级 <= 5) {
+        let text1 = '世界发生改变已经过去了好几年';
+        let text2 = '包括你在内所有人都适应了这些新常识';
+        let text3 = '因为副本的原因人们获得了新科技';
+        let text4 = '世界正在快速发展中';
+        let text5 = '就算在这过程中死了很多人';
+        let text6 = '人们也不会去在意那些报告中的数字';
+
+        const texts = [text1, text2, text3, text4, text5, text6];
+
+        async function playTexts() {
+            for (let i = 0; i < texts.length; i++) {
+                await new Promise(resolve => setTimeout(() => {
+                    背景剧情_播放_text(texts[i], 死亡end_text);
+                    resolve();
+                }, 5000));
+            }
+            setTimeout(() => {
+                死亡end_text.textContent = '';
+                音乐播放(end1);
+                死亡end_标题.innerHTML = '[结局2:数字]<br>你成为了大时代里一串数字中的一员';
+            }, 4800);
             
         }
 
