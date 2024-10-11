@@ -523,14 +523,14 @@ body {
 
 
 .bottom div button {
-    font-size: 7vmin;
+    font-size: 6.5vmin;
     background-color:rgba(0, 0, 0, 0);
     border: 0;
 }
 
 
 .bottom div button:hover {
-    font-size: 8vmin;
+    font-size: 7vmin;
 }
 
 
@@ -540,6 +540,24 @@ body {
 
 .战斗_攻击, .战斗_技能 {
     display: none;
+}
+
+.战斗_技能_库_上一个,.战斗_技能_库_下一个 {
+    display: none;
+}
+
+.战斗_技能_库 {
+    display: none;
+    width: 40vw !important;
+}
+
+.技能按钮 {
+    display: none;
+}
+
+.技能按钮.显示 {
+    display: block;
+
 }
 
 

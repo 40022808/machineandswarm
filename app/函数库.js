@@ -189,8 +189,13 @@ export function docbgm() {
     const 战斗BGM = document.querySelector('#战斗BGM')
     const 按钮2 = document.querySelector('#按钮2')
     const 受伤1 = document.querySelector('#受伤1')
+    const 受伤1_2 = document.querySelector('#受伤1_2')
+    const 受伤1_3 = document.querySelector('#受伤1_3')
     const end1 = document.querySelector('#end1')
     const 敌人死亡 = document.querySelector('#敌人死亡')
+    const 攻击1 = document.querySelector('#攻击1')
+    const error1 = document.querySelector('#error1')
+
 }
 docbgm()
 
@@ -683,90 +688,6 @@ export function 冒险选择_消失() {
 
 
 
-export function 战斗开始(npcs,npcname) {
-    加载_显示(3,5,1, 悬疑bgm, 战斗BGM)
-    setTimeout(() => {
-        战斗区域_显示()
-        战斗区域_遮挡_显示() 
-        冒险中选择_消失()
-        敌人生成(npcs,npcname)
-        战斗选项框_显示()
-    }, 1000);
-    
-}
-
-function 敌人生成(npcs, npcname) {
-    const 战斗区域 = document.querySelector('.战斗区域');
-    let npcnuber = npcs + 1;
-    for (let i = 1; i < npcnuber; i++) {
-        var newNpc = document.createElement('button');
-        newNpc.className = 'npc' + i;
-
-        var 敌人属性 = 敌人属性信息(npcname);
-        if (敌人属性) {
-            newNpc.setAttribute('data-number', 敌人属性.生命); // 设置初始数字
-            (function(敌人属性) {
-                newNpc.addEventListener('click', function() {
-                    let currentNumber = parseInt(this.getAttribute('data-number'));
-                    let 伤害 = 0
-                    if (me攻击力 >= 敌人属性.防御力) {
-                        伤害 = me攻击力 - 敌人属性.防御力
-                    }
-                    else {
-                        伤害 = 0
-                    }
-                    if (伤害 >= currentNumber) {
-                        this.setAttribute('data-number', currentNumber = 0); 
-                    }
-                    else {
-                        this.setAttribute('data-number', currentNumber - 伤害); 
-                    }
-                    受伤1.play()
-                    let currentNumber2 = parseInt(this.getAttribute('data-number'));
-                    攻击敌人后(i,currentNumber2);
-                });
-            })(敌人属性);
-            敌人属性生成(敌人属性,i)
-            战斗区域.appendChild(newNpc);
-            敌人属性信息_显示(i,敌人属性);
-            战斗开始_名字信息(i, npcname);
-        }
-    }
-}
-
-
-
-function 敌人属性生成(敌人属性,i) {
-    var npc_属性_存放 = document.querySelector('.npc_属性_存放' + i)
-    var 攻击力 = document.querySelector('.攻击力' + i)
-    var 防御力 = document.querySelector('.防御力' + i)
-    var 体质 = document.querySelector('.体质' + i)
-    var 精神 = document.querySelector('.精神' + i)
-    var 等级 = document.querySelector('.等级' + i)
-    var 生命 = document.querySelector('.生命' + i)
-    var 魔力 = document.querySelector('.魔力' + i)
-    攻击力.textContent = 敌人属性.攻击力
-    防御力.textContent = 敌人属性.防御力
-    体质.textContent = 敌人属性.体质
-    精神.textContent = 敌人属性.精神
-    等级.textContent = 敌人属性.等级
-    生命.textContent = 敌人属性.生命
-    魔力.textContent = 敌人属性.魔力
-}
-
-
-function 敌人属性信息_显示(i,敌人属性) {
-    var tooltip = document.createElement('div')
-    tooltip.className = 'npc属性_信息框' + i;
-    tooltip.innerHTML = `等级:` + 敌人属性.等级 + '<br>' + `防御力:` + 敌人属性.防御力 + '<br>' + `攻击力:` + 敌人属性.攻击力;
-
-    var 战斗区域_遮挡s = document.createElement('div')
-    战斗区域_遮挡s.className = '战斗区域_遮挡' + i;
-    const 战斗区域_遮挡 = document.querySelector('.战斗区域_遮挡')
-    战斗区域_遮挡.appendChild(战斗区域_遮挡s);
-    战斗区域_遮挡s.appendChild(tooltip);
-}
-
 
 function 战斗区域_显示() {
     const 战斗区域 = document.querySelector('.战斗区域')
@@ -903,7 +824,36 @@ export function 背景剧情_播放_text(text, 对话框) {
 
 }
 
+export function 战斗_技能_库_显示() {
+    const 战斗_技能_库 = document.querySelector('.战斗_技能_库')
+    战斗_技能_库.style.display = 'flex';
+}
 
+export function 战斗_技能_库_消失() {
+    const 战斗_技能_库 = document.querySelector('.战斗_技能_库')
+    战斗_技能_库.style.display = 'none';
+}
+
+export function 战斗_技能_库_上下选择_显示() {
+    const 技能按钮 = document.querySelectorAll('.技能按钮');
+    const 战斗_技能_库_上一个 = document.querySelector('.战斗_技能_库_上一个')
+    const 战斗_技能_库_下一个 = document.querySelector('.战斗_技能_库_下一个')
+    if (技能按钮.length == 1) {
+        战斗_技能_库_下一个.style.display = 'none';
+        战斗_技能_库_上一个.style.display = 'none';
+    }
+    else {
+        战斗_技能_库_上一个.style.display = 'flex';
+        战斗_技能_库_下一个.style.display = 'flex';
+    }
+}
+
+export function 战斗_技能_库_上下选择_消失() {
+    const 战斗_技能_库_上一个 = document.querySelector('.战斗_技能_库_上一个')
+    战斗_技能_库_上一个.style.display = 'none';
+    const 战斗_技能_库_下一个 = document.querySelector('.战斗_技能_库_下一个')
+    战斗_技能_库_下一个.style.display = 'none';
+}
 
 
 
@@ -957,6 +907,90 @@ function fadeElementIn2(element, duration) {
   
 
 
+
+export function 战斗开始(npcs,npcname) {
+    加载_显示(3,5,1, 悬疑bgm, 战斗BGM)
+    setTimeout(() => {
+        战斗区域_显示()
+        战斗区域_遮挡_显示() 
+        冒险中选择_消失()
+        敌人生成(npcs,npcname)
+        战斗选项框_显示()
+    }, 1000);
+    
+}
+
+var npc数量 = 0
+
+function 敌人生成(npcs, npcname) {
+    const 战斗区域 = document.querySelector('.战斗区域');
+    let npcnuber = npcs + 1;
+    npc数量 = npcs
+    for (let i = 1; i < npcnuber; i++) {
+        var newNpc = document.createElement('button');
+        newNpc.className = 'npc' + i;
+
+        var 敌人属性 = 敌人属性信息(npcname);
+        if (敌人属性) {
+            newNpc.setAttribute('data-number', 敌人属性.生命); // 设置初始数字
+            (function(敌人属性) {
+                newNpc.addEventListener('click', function() {
+                    let currentNumber = parseInt(this.getAttribute('data-number'));
+                    let 伤害 = me攻击力 >= 敌人属性.防御力 ? me攻击力 - 敌人属性.防御力 : 0;
+                    if (伤害 >= currentNumber) {
+                        this.setAttribute('data-number', 0); 
+                    }
+                    else {
+                        this.setAttribute('data-number', currentNumber - 伤害); 
+                    }
+                    受伤1.play()
+                    let currentNumber2 = parseInt(this.getAttribute('data-number'));
+                    攻击敌人后(i,currentNumber2);
+                });
+            })(敌人属性);
+            敌人属性生成(敌人属性,i)
+            战斗区域.appendChild(newNpc);
+            敌人属性信息_显示(i,敌人属性);
+            战斗开始_名字信息(i, npcname);
+        }
+    }
+}
+
+
+
+function 敌人属性生成(敌人属性,i) {
+    var npc_属性_存放 = document.querySelector('.npc_属性_存放' + i)
+    var 攻击力 = document.querySelector('.攻击力' + i)
+    var 防御力 = document.querySelector('.防御力' + i)
+    var 体质 = document.querySelector('.体质' + i)
+    var 精神 = document.querySelector('.精神' + i)
+    var 等级 = document.querySelector('.等级' + i)
+    var 生命 = document.querySelector('.生命' + i)
+    var 魔力 = document.querySelector('.魔力' + i)
+    攻击力.textContent = 敌人属性.攻击力
+    防御力.textContent = 敌人属性.防御力
+    体质.textContent = 敌人属性.体质
+    精神.textContent = 敌人属性.精神
+    等级.textContent = 敌人属性.等级
+    生命.textContent = 敌人属性.生命
+    魔力.textContent = 敌人属性.魔力
+}
+
+
+function 敌人属性信息_显示(i,敌人属性) {
+    var tooltip = document.createElement('div')
+    tooltip.className = 'npc属性_信息框' + i;
+    tooltip.innerHTML = `等级:` + 敌人属性.等级 + '<br>' + `防御力:` + 敌人属性.防御力 + '<br>' + `攻击力:` + 敌人属性.攻击力;
+
+    var 战斗区域_遮挡s = document.createElement('div')
+    战斗区域_遮挡s.className = '战斗区域_遮挡' + i;
+    const 战斗区域_遮挡 = document.querySelector('.战斗区域_遮挡')
+    战斗区域_遮挡.appendChild(战斗区域_遮挡s);
+    战斗区域_遮挡s.appendChild(tooltip);
+}
+
+
+
 function 攻击敌人后(i,currentNumber) {
     var npc_属性_存放 = document.querySelector('.npc_属性_存放' + i)
     var 攻击力 = document.querySelector('.攻击力' + i)
@@ -999,6 +1033,7 @@ function 敌人死亡判定() {
             npc.remove();
             战斗区域_遮挡.remove();
             敌人属性删除(1)
+            npc数量 = npc数量 - 1
         }, 3000); 
     }
     if (parseInt(生命2.textContent) == 0) {
@@ -1014,6 +1049,7 @@ function 敌人死亡判定() {
             npc.remove();
             战斗区域_遮挡.remove();
             敌人属性删除(2)
+            npc数量 = npc数量 - 1
         }, 3000); 
     }
     if (parseInt(生命3.textContent) == 0) {
@@ -1029,6 +1065,7 @@ function 敌人死亡判定() {
             npc.remove();
             战斗区域_遮挡.remove();
             敌人属性删除(3)
+            npc数量 = npc数量 - 1
         }, 3000); 
     }
 
@@ -1081,13 +1118,7 @@ function 敌人攻击() {
         setTimeout(() => {
             bottom_信息_显示('敌人行动中')
             let number攻击力 = parseInt(攻击力1.textContent)
-            let 伤害 = 0
-            if (number攻击力 <= me防御力) {
-                伤害 = 0
-            }
-            else {
-                伤害 = number攻击力 - me防御力
-            }
+            let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
             if (me生命 <= 伤害){
                 me生命 = 0
             }
@@ -1100,13 +1131,7 @@ function 敌人攻击() {
             if (攻击力2 && 攻击力2.textContent != '') {
                 setTimeout(() => {
                     let number攻击力 = parseInt(攻击力2.textContent)
-                    let 伤害 = 0
-                    if (number攻击力 <= me防御力) {
-                        伤害 = 0
-                    }
-                    else {
-                        伤害 = number攻击力 - me防御力
-                    }
+                    let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
                     if (me生命 <= 伤害){
                         me生命 = 0
                     }
@@ -1119,13 +1144,7 @@ function 敌人攻击() {
                     if (攻击力3 && 攻击力3.textContent != '') {
                         setTimeout(() => {
                             let number攻击力 = parseInt(攻击力3.textContent)
-                            let 伤害 = 0
-                            if (number攻击力 <= me防御力) {
-                                伤害 = 0
-                            }
-                            else {
-                                伤害 = number攻击力 - me防御力
-                            }
+                            let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
                             if (me生命 <= 伤害){
                                 me生命 = 0
                             }
@@ -1150,13 +1169,7 @@ function 敌人攻击() {
             else if (攻击力3 && 攻击力3.textContent != '') {
                 setTimeout(() => {
                     let number攻击力 = parseInt(攻击力3.textContent)
-                    let 伤害 = 0
-                    if (number攻击力 <= me防御力) {
-                        伤害 = 0
-                    }
-                    else {
-                        伤害 = number攻击力 - me防御力
-                    }
+                    let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
                     if (me生命 <= 伤害){
                         me生命 = 0
                     }
@@ -1183,13 +1196,7 @@ function 敌人攻击() {
         setTimeout(() => {
             bottom_信息_显示('敌人行动中')
             let number攻击力 = parseInt(攻击力2.textContent)
-            let 伤害 = 0
-            if (number攻击力 <= me防御力) {
-                伤害 = 0
-            }
-            else {
-                伤害 = number攻击力 - me防御力
-            }
+            let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
             if (me生命 <= 伤害){
                 me生命 = 0
             }
@@ -1202,13 +1209,7 @@ function 敌人攻击() {
             if (攻击力3 && 攻击力3.textContent != '') {
                 setTimeout(() => {
                     let number攻击力 = parseInt(攻击力3.textContent)
-                    let 伤害 = 0
-                    if (number攻击力 <= me防御力) {
-                        伤害 = 0
-                    }
-                    else {
-                        伤害 = number攻击力 - me防御力
-                    }
+                    let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
                     if (me生命 <= 伤害){
                         me生命 = 0
                     }
@@ -1235,13 +1236,7 @@ function 敌人攻击() {
         setTimeout(() => {
             bottom_信息_显示('敌人行动中')
             let number攻击力 = parseInt(攻击力3.textContent)
-            let 伤害 = 0
-            if (number攻击力 <= me防御力) {
-                伤害 = 0
-            }
-            else {
-                伤害 = number攻击力 - me防御力
-            }
+            let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
             if (me生命 <= 伤害){
                 me生命 = 0
             }
@@ -1370,3 +1365,102 @@ function 死亡结局播放() {
         playTexts();
     }
 }
+
+export function 技能使用判断(skill) {
+    if (skill == '顺风斩') {
+        if (me魔力 >= 5) {
+            me魔力 = me魔力 - 5
+            状态刷新()
+            技能_顺风斩()
+        }
+        else {
+            战斗_技能_库_消失()
+            战斗_技能_库_上下选择_消失()
+            bottom_信息_显示('魔力不足')
+            error1.play()
+            setTimeout(() => {
+                bottom_初始选项_显示()
+                bottom_信息_消失()
+            }, 1500);
+            
+        }
+    }
+}
+
+
+
+export function 技能_顺风斩() {
+    const 生命1 = document.querySelector('.生命1');
+    const 生命2 = document.querySelector('.生命2');
+    const 生命3 = document.querySelector('.生命3');
+    攻击1.play()
+    var abc = 1
+    function 处理NPC(npcSelector, 防御力Selector, 生命Selector) {
+        const npc = document.querySelector(npcSelector);
+        const 防御力 = parseInt(document.querySelector(防御力Selector).textContent);
+        const 生命 = document.querySelector(生命Selector);
+        
+        if (生命.textContent !== '') {
+            let currentNumber = parseInt(npc.dataset.number);
+            let 伤害 = me攻击力 >= 防御力 ? me攻击力 - 防御力 : 0;
+
+            if (伤害 >= currentNumber) {
+                npc.dataset.number = 0;
+            }
+            else {
+                npc.dataset.number = currentNumber - 伤害;
+            }
+
+
+            if (abc == 1) {
+                受伤1.play();
+                abc = 2
+            }
+            else if (abc == 2) {
+                受伤1_2.play();
+                abc = 3
+            }
+            else if (abc == 3) {
+                受伤1_3.play();
+                abc = 1
+            }
+                                  
+            生命.textContent = npc.dataset.number;
+            npc.classList.add('shrunk');
+            npc.classList.remove('enlarged');
+
+            setTimeout(() => {
+                npc.classList.remove('shrunk');
+            }, 300);
+        }
+    }
+    setTimeout(() => {
+        function 处理NPC顺序(index) {
+            if (index >= 3) return; // 终止条件
+        
+            setTimeout(() => {
+                if (index == 0) {
+                    处理NPC('.npc1', '.防御力1', '.生命1');
+                } else if (index == 1) {
+                    处理NPC('.npc2', '.防御力2', '.生命2');
+                } else if (index == 2) {
+                    处理NPC('.npc3', '.防御力3', '.生命3');
+                }
+                处理NPC顺序(index + 1); // 递归调用下一个
+            }, 100);
+        }
+        
+        // 开始处理
+        处理NPC顺序(0);
+    }, 700);
+
+
+
+    bottom_信息_显示('');
+    setTimeout(() => {
+        敌人死亡判定();
+    }, 1100);
+
+}
+
+

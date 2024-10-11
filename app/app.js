@@ -1,7 +1,8 @@
 import {
     cat, start, start2, 属性刷新, 战斗选项框_显示, 加载_显示, 冒险选择_显示, 开局选项_消失,冒险选择_消失, 开局选项_显示, 战斗开始,
     冒险中选择_显示, showText, texts, getRandomInt, start1, top_显示,夜色小镇_消失,弹窗_关闭_函数,弹窗, 战斗_攻击_显示,战斗_技能_显示,
-    bottom_初始选项_消失,战斗区域_遮挡_消失,战斗区域_遮挡_显示,战斗_攻击_消失,战斗_技能_消失,bottom_信息_显示, docbgm,死亡结局触发
+    bottom_初始选项_消失,战斗区域_遮挡_消失,战斗区域_遮挡_显示,战斗_攻击_消失,战斗_技能_消失,bottom_信息_显示, docbgm,死亡结局触发,战斗_技能_库_显示,
+    战斗_技能_库_上下选择_显示,战斗_技能_库_消失,战斗_技能_库_上下选择_消失,技能使用判断
 } from "./函数库.js";
 
 
@@ -146,11 +147,38 @@ const 战斗_攻击_选项按钮 = document.querySelector('#战斗_攻击_选项
 const 战斗_技能_选项按钮 = document.querySelector('#战斗_技能_选项按钮')
 
 战斗_技能_选项按钮.addEventListener('click', ()=>{
-    弹窗("技能功能未开放!请期待后续版本更新!");
+    战斗_技能_消失()
+    战斗_攻击_消失()
+    战斗_技能_库_显示()
+    战斗_技能_库_上下选择_显示()
+    按钮2.play()
 })
 
+const 顺风斩 = document.querySelector('#顺风斩')
 
+顺风斩.addEventListener('click',()=>{
+    战斗_技能_库_消失()
+    战斗_技能_库_上下选择_消失()
+    技能使用判断('顺风斩')
+})
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+const 技能按钮 = document.querySelectorAll('.技能按钮');
+let currentIndex = 0;
+document.getElementById('战斗_技能_库_上一个_选项按钮').addEventListener('click', () => {
+    技能按钮[currentIndex].classList.remove('显示');
+    currentIndex = (currentIndex - 1 + 技能按钮.length) % 技能按钮.length;
+    技能按钮[currentIndex].classList.add('显示');
+    按钮2.play()
+});
+
+document.getElementById('战斗_技能_库_下一个_选项按钮').addEventListener('click', () => {
+    技能按钮[currentIndex].classList.remove('显示');
+    currentIndex = (currentIndex + 1) % 技能按钮.length;
+    技能按钮[currentIndex].classList.add('显示');
+    按钮2.play()
+});
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
