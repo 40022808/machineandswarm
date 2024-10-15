@@ -1,5 +1,5 @@
 import {
-    文本1,彩蛋1,文本1_回答, 文本2,文本2_回答, 彩蛋1_回答, 彩蛋1_后续1, 彩蛋1_后续1_回答,文本2_后续1,文本2_后续1_回答
+    文本1,文本0,文本1_回答, 文本2,文本2_回答, 文本0_回答, 文本0_后续1, 文本0_后续1_回答,文本2_后续1,文本2_后续1_回答
 } from "./文本.js";
 
 import {
@@ -15,17 +15,18 @@ export function 敌人名字信息_获取(number) {
 }
 
 
+
 export function texts(number) {
     if (number == "1") {
         var text = 文本1()
         return text
     }
-    else if (number == "彩蛋1") {
-        var text = 彩蛋1()
+    else if (number == "0") {
+        var text = 文本0()
         return text
     }
-    else if (number == "彩蛋1_1") {
-        var text = 彩蛋1_后续1()
+    else if (number == "0_1") {
+        var text = 文本0_后续1()
         return text
     }
     else if (number == "2") {
@@ -46,11 +47,11 @@ export function 文本回答(number) {
     else if (number == "2") {
         文本2_回答()
     }
-    else if (number == "彩蛋1") {
-        彩蛋1_回答()
+    else if (number == "0") {
+        文本0_回答()
     }
-    else if (number == "彩蛋1_1") {
-        彩蛋1_后续1_回答()
+    else if (number == "0_1") {
+        文本0_后续1_回答()
     }
     else if (number == "2_1") {
         文本2_后续1_回答()
@@ -66,11 +67,11 @@ function 文本标题(number) {
         let 标题 =  "<h1>[昏暗的走廊]</h1><br>"
         return 标题
     }
-    else if (number == "彩蛋1") {
+    else if (number == "0") {
         let 标题 =  "<h1>[██████]</h1><br>"
         return 标题
     }
-    else if (number == "彩蛋1_1") {
+    else if (number == "0_1") {
         let 标题 =  "<h1>[██████]</h1><br>"
         return 标题
     }
@@ -87,11 +88,11 @@ function 文本回答_函数(number) {
         文本1_回答_1_函数()
         文本1_回答_2_函数()       
     }
-    else if (number == "彩蛋1") {
-        彩蛋1_回答_1_函数()
+    else if (number == "0") {
+        文本0_回答_1_函数()
     }
-    else if (number == "彩蛋1_1") {
-        彩蛋1_后续1_回答_1_函数()
+    else if (number == "0_1") {
+        文本0_后续1_回答_1_函数()
     }
     else if (number == "2") {
         文本2_回答_1_函数()
@@ -128,21 +129,21 @@ function 文本1_回答_2_函数() {
     
 }
 
-function 彩蛋1_回答_1_函数() {
-    const 彩蛋1_回答_1 = document.querySelector('#彩蛋1_回答_1')
-    彩蛋1_回答_1.addEventListener('click',()=>{
+function 文本0_回答_1_函数() {
+    const 文本0_回答_1 = document.querySelector('#文本0_回答_1')
+    文本0_回答_1.addEventListener('click',()=>{
         const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
         冒险中选择_选择.innerHTML = ""
         setTimeout(() => {
-            冒险中选择_显示("彩蛋1_1")
+            冒险中选择_显示("0_1")
         }, 100);
         
     })
 }
 
-function 彩蛋1_后续1_回答_1_函数() {
-    const 彩蛋1_后续1_回答_1 = document.querySelector('#彩蛋1_后续1_回答_1')
-    彩蛋1_后续1_回答_1.addEventListener('click',()=>{
+function 文本0_后续1_回答_1_函数() {
+    const 文本0_后续1_回答_1 = document.querySelector('#文本0_后续1_回答_1')
+    文本0_后续1_回答_1.addEventListener('click',()=>{
         const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
         冒险中选择_选择.innerHTML = ""
         冒险中选择_消失()
@@ -178,6 +179,36 @@ function 文本2_后续1_回答_1_函数() {
         }, 100);
         
     })
+}
+
+export function 冒险中选择_显示(number) {
+    const 冒险中选择 = document.querySelector('.冒险中选择0')
+    冒险中选择.style.display = 'flex';
+    const 冒险中选择_text = document.querySelector('.冒险中选择_text')
+    冒险中选择_text.innerHTML = ""
+    setTimeout(() => {
+        showText(texts(number),冒险中选择_text, number)
+    }, 500);
+    
+}
+
+// 逐字显示文本
+export function showText(text, 对话框, number) {
+    对话框.innerHTML =  ""
+    对话框.innerHTML = 文本标题(number)
+    let index = 0
+    const intervalId = setInterval(() => {
+        对话框.innerHTML +=  '<span class="冒险中选择_显示_text_文字">' + text[index] + '</span>';
+        index++;
+        if (index >= text.length) {
+            clearInterval(intervalId);
+            setTimeout(() => {
+                文本回答(number)
+                文本回答_函数(number)
+            }, 300);
+        }
+    }, 100);
+
 }
 
 
@@ -337,7 +368,7 @@ function 背景剧情_播放() {
     const 剧情_h2 = document.querySelector('#剧情_h2')
     剧情.style.display = 'block';
     let text1 = '这是个存在魔法的世界，生活着各种各样的种族。'
-    let text1_tim = (text1.length * 500)
+    let text1_tim = (text1.length * 260)
     let text2 = '人类，精灵，巨龙，恶魔....'
     let text2_tim = text1_tim + (text2.length * 250)
     let text3 = '突然有一天祂[██]出现了'
@@ -714,16 +745,7 @@ function 战斗开始_名字信息(i,npcname) {
 
 
 
-export function 冒险中选择_显示(number) {
-    const 冒险中选择 = document.querySelector('.冒险中选择0')
-    冒险中选择.style.display = 'flex';
-    const 冒险中选择_text = document.querySelector('.冒险中选择_text')
-    冒险中选择_text.innerHTML = ""
-    setTimeout(() => {
-        showText(texts(number),冒险中选择_text, number)
-    }, 500);
-    
-}
+
 
 
 export function 冒险中选择_消失() {
@@ -786,24 +808,7 @@ export function bottom_初始选项_显示() {
 }
 
 
-// 逐字显示文本
-export function showText(text, 对话框, number) {
-    对话框.innerHTML =  ""
-    对话框.innerHTML = 文本标题(number)
-    let index = 0
-    const intervalId = setInterval(() => {
-        对话框.innerHTML +=  '<span class="冒险中选择_显示_text_文字">' + text[index] + '</span>';
-        index++;
-        if (index >= text.length) {
-            clearInterval(intervalId);
-            setTimeout(() => {
-                文本回答(number)
-                文本回答_函数(number)
-            }, 300);
-        }
-    }, 100);
 
-}
 
 export function 背景剧情_播放_text(text, 对话框) {
     对话框.innerHTML =  ""

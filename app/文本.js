@@ -2,7 +2,7 @@
 
 
 
-export function 彩蛋1() {
+export function 文本0() {
     let text = 
     `
     当你进入副本的时候，你突然感觉有什么东西盯着你。还没等你反应过来，你就失去了意识。
@@ -11,16 +11,16 @@ export function 彩蛋1() {
     return text
 }
 
-export function 彩蛋1_回答() {
+export function 文本0_回答() {
     const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
     冒险中选择_选择.innerHTML = 
     `
-    <button class="冒险中选择_选择_回答" id="彩蛋1_回答_1">......</button>
+    <button class="冒险中选择_选择_回答" id="文本0_回答_1">......</button>
     `
 }
 
 
-export function 彩蛋1_后续1() {
+export function 文本0_后续1() {
     let text = 
     `
     你看着这些目光感觉到自己的意识逐渐破碎，就在你快承受不住的时候，你发现回来了。
@@ -29,11 +29,11 @@ export function 彩蛋1_后续1() {
 }
 
 
-export function 彩蛋1_后续1_回答() {
+export function 文本0_后续1_回答() {
     const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
     冒险中选择_选择.innerHTML = 
     `
-    <button class="冒险中选择_选择_回答" id="彩蛋1_后续1_回答_1">进入副本</button>
+    <button class="冒险中选择_选择_回答" id="文本0_后续1_回答_1">进入副本</button>
     `
 }
 
