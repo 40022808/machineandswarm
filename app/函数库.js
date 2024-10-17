@@ -16,47 +16,34 @@ export function 敌人名字信息_获取(number) {
 
 
 
+const textsMap = {
+    "0": 文本0,
+    "0_1": 文本0_后续1,
+    "1": 文本1,
+    "2": 文本2,
+    "2_1": 文本2_后续1
+};
+
 export function texts(number) {
-    if (number == "1") {
-        var text = 文本1()
-        return text
-    }
-    else if (number == "0") {
-        var text = 文本0()
-        return text
-    }
-    else if (number == "0_1") {
-        var text = 文本0_后续1()
-        return text
-    }
-    else if (number == "2") {
-        var text = 文本2()
-        return text
-    }
-    else if (number == '2_1') {
-        var text = 文本2_后续1()
-        return text
-    }
+    const textFunction = textsMap[number];
+    return textFunction ? textFunction() : null;
 }
 
+
+
+const 文本回答Map= {
+    "0": 文本0_回答,
+    "0_1": 文本0_后续1_回答,
+    "1": 文本1_回答,
+    "2": 文本2_回答,
+    "2_1": 文本2_后续1_回答
+}
 
 export function 文本回答(number) {
-    if (number == "1") {
-        文本1_回答()
-    }
-    else if (number == "2") {
-        文本2_回答()
-    }
-    else if (number == "0") {
-        文本0_回答()
-    }
-    else if (number == "0_1") {
-        文本0_后续1_回答()
-    }
-    else if (number == "2_1") {
-        文本2_后续1_回答()
-    }
+    const textFunction = 文本回答Map[number];
+    return textFunction ? textFunction() : null;
 }
+
 
 function 文本标题(number) {
     if (number == "1") {
@@ -84,101 +71,36 @@ function 文本标题(number) {
 
 
 function 文本回答_函数(number) {
-    if (number == "1") {
-        文本1_回答_1_函数()
-        文本1_回答_2_函数()       
-    }
-    else if (number == "0") {
-        文本0_回答_1_函数()
-    }
-    else if (number == "0_1") {
-        文本0_后续1_回答_1_函数()
-    }
-    else if (number == "2") {
-        文本2_回答_1_函数()
-    }
-    else if (number == "2_1") {
-        文本2_后续1_回答_1_函数()
+    const actions = {
+        "1": () => {
+            handleClick('#文本1_回答_1', "2");
+            handleClick('#文本1_回答_2', "2");
+        },
+        "0": () => handleClick('#文本0_回答_1', "0_1"),
+        "0_1": () => handleClick('#文本0_后续1_回答_1', "1", 500),
+        "2": () => handleClick('#文本2_回答_1', "2_1"),
+        "2_1": () => handleClick('#文本2_后续1_回答_1', () => 战斗开始(3, 0))
+    };
+
+    if (actions[number]) {
+        actions[number]();
     }
 }
 
-
-function 文本1_回答_1_函数() {
-    const 文本1_回答_1 = document.querySelector('#文本1_回答_1')
-    文本1_回答_1.addEventListener('click',()=>{
-        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
-        冒险中选择_选择.innerHTML = ""
-        冒险中选择_消失()
+function handleClick(selector, nextStep, delay = 100) {
+    const element = document.querySelector(selector);
+    element.addEventListener('click', () => {
+        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择');
+        冒险中选择_选择.innerHTML = "";
+        冒险中选择_消失();
         setTimeout(() => {
-            冒险中选择_显示("2")
-        }, 100);
-    })
-    
-}
-
-function 文本1_回答_2_函数() {
-    const 文本1_回答_2 = document.querySelector('#文本1_回答_2')
-    文本1_回答_2.addEventListener('click',()=>{
-        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
-        冒险中选择_选择.innerHTML = ""
-        冒险中选择_消失()
-        setTimeout(() => {
-            冒险中选择_显示("2")
-        }, 100);
-    })
-    
-}
-
-function 文本0_回答_1_函数() {
-    const 文本0_回答_1 = document.querySelector('#文本0_回答_1')
-    文本0_回答_1.addEventListener('click',()=>{
-        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
-        冒险中选择_选择.innerHTML = ""
-        setTimeout(() => {
-            冒险中选择_显示("0_1")
-        }, 100);
-        
-    })
-}
-
-function 文本0_后续1_回答_1_函数() {
-    const 文本0_后续1_回答_1 = document.querySelector('#文本0_后续1_回答_1')
-    文本0_后续1_回答_1.addEventListener('click',()=>{
-        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
-        冒险中选择_选择.innerHTML = ""
-        冒险中选择_消失()
-        setTimeout(() => {
-            冒险中选择_显示("1")
-        }, 500);
-        
-    })
-}
-
-function 文本2_回答_1_函数() {
-    const 文本2_回答_1 = document.querySelector('#文本2_回答_1')
-    文本2_回答_1.addEventListener('click',()=>{
-        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
-        冒险中选择_选择.innerHTML = ""
-        冒险中选择_消失()
-        setTimeout(() => {
-            冒险中选择_显示("2_1")
-        }, 100);
-        
-    })
-}
-
-
-function 文本2_后续1_回答_1_函数() {
-    const 文本2_后续1_回答_1 = document.querySelector('#文本2_后续1_回答_1')
-    文本2_后续1_回答_1.addEventListener('click',()=>{
-        const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
-        冒险中选择_选择.innerHTML = ""
-        冒险中选择_消失()
-        setTimeout(() => {
-            战斗开始(3,0)
-        }, 100);
-        
-    })
+            if (typeof nextStep === 'function') {
+                nextStep();
+            } else {
+                冒险中选择_显示(nextStep);
+            }
+        }, delay);
+    });
 }
 
 export function 冒险中选择_显示(number) {
