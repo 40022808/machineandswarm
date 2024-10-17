@@ -1,5 +1,6 @@
 import {
-    文本1,文本0,文本1_回答, 文本2,文本2_回答, 文本0_回答, 文本0_后续1, 文本0_后续1_回答,文本2_后续1,文本2_后续1_回答
+    文本1,文本0,文本1_回答, 文本2,文本2_回答, 文本0_回答, 文本0_后续1, 文本0_后续1_回答,文本2_后续1,文本2_后续1_回答,文本3,文本3_回答,文本2_后续2,
+    文本2_后续2_回答,文本2_后续3,文本2_后续3_回答,文本2_后续2_效果
 } from "./文本.js";
 
 import {
@@ -15,16 +16,43 @@ export function 敌人名字信息_获取(number) {
 }
 
 
+function 随机事件(number, min, max) {
+    let randomnumber;
+    do {
+        randomnumber = getRandomInt(min, max);
+    } 
+    while (randomnumber == number[0]);
+    return randomnumber;
+}
+
+function 随机后续(number,min, max) {
+    let randomnumber = number + '_' + getRandomInt(min,max)
+    return randomnumber
+}
+
+
+const 事件效果Map = {
+    "2_2":文本2_后续2_效果
+};
+
+function 事件效果(number) {
+    const textFunction = 事件效果Map[number];
+    return textFunction ? textFunction() : null;
+}
+
 
 const textsMap = {
     "0": 文本0,
     "0_1": 文本0_后续1,
     "1": 文本1,
     "2": 文本2,
-    "2_1": 文本2_后续1
+    "2_1": 文本2_后续1,
+    "2_2":文本2_后续2,
+    "2_3":文本2_后续3,
+    "3":文本3
 };
 
-export function texts(number) {
+function texts(number) {
     const textFunction = textsMap[number];
     return textFunction ? textFunction() : null;
 }
@@ -36,7 +64,10 @@ const 文本回答Map= {
     "0_1": 文本0_后续1_回答,
     "1": 文本1_回答,
     "2": 文本2_回答,
-    "2_1": 文本2_后续1_回答
+    "2_1": 文本2_后续1_回答,
+    "2_2":文本2_后续2_回答,
+    "2_3":文本2_后续3_回答,
+    "3":文本3_回答
 }
 
 export function 文本回答(number) {
@@ -44,42 +75,34 @@ export function 文本回答(number) {
     return textFunction ? textFunction() : null;
 }
 
+const 文本标题Map = {
+    "0":"<h1>[██████]</h1><br>",
+    "0_1":"<h1>[██████]</h1><br>",
+    "1":"<h1>[冒险的开始]</h1><br>",
+    "2":"<h1>[昏暗的走廊]</h1><br>",
+    "2_1":"<h1>[不再昏暗的走廊]</h1><br>",
+    "2_2":"<h1>[昏暗的走廊]</h1><br>",
+    "2_3":"<h1>[昏暗的走廊]</h1><br>",
+    "3":"<h1>[智慧与财富]</h1><br>"
+}
 
 function 文本标题(number) {
-    if (number == "1") {
-        let 标题 =  "<h1>[冒险的开始]</h1><br>"
-        return 标题
-    }
-    else if (number == "2") {
-        let 标题 =  "<h1>[昏暗的走廊]</h1><br>"
-        return 标题
-    }
-    else if (number == "0") {
-        let 标题 =  "<h1>[██████]</h1><br>"
-        return 标题
-    }
-    else if (number == "0_1") {
-        let 标题 =  "<h1>[██████]</h1><br>"
-        return 标题
-    }
-    else if (number == "2_1") {
-        let 标题 =  "<h1>[不再昏暗的走廊]</h1><br>"
-        return 标题
-    }
+    const text =  文本标题Map[number];
+    return text
 }
 
 
 
 function 文本回答_函数(number) {
     const actions = {
-        "1": () => {
-            handleClick('#文本1_回答_1', "2");
-            handleClick('#文本1_回答_2', "2");
-        },
-        "0": () => handleClick('#文本0_回答_1', "0_1"),
-        "0_1": () => handleClick('#文本0_后续1_回答_1', "1", 500),
-        "2": () => handleClick('#文本2_回答_1', "2_1"),
-        "2_1": () => handleClick('#文本2_后续1_回答_1', () => 战斗开始(3, 0))
+        "1": () => {handleClick('#文本1_回答_1', 随机事件(number, 2, 3),number);handleClick('#文本1_回答_2', 随机事件(number, 2, 3),number);},
+        "0": () => handleClick('#文本0_回答_1', "0_1",number),
+        "0_1": () => handleClick('#文本0_后续1_回答_1', "1", number,500),
+        "2": () => {handleClick('#文本2_回答_1', "2_1",number);handleClick('#文本2_回答_2',  随机后续(number,2, 3),number)},
+        "2_1": () => handleClick('#文本2_后续1_回答_1', () => 战斗开始(3, 0),number),
+        "2_2":() => handleClick('#文本2_后续2_回答_1', () => 战斗开始(3, 0), number),
+        "2_3":() => handleClick('#文本2_后续3_回答_1',随机事件(number, 2, 3),number),
+        "3":() => {handleClick('#文本3_回答_1', () => 战斗开始(3, 0),number);handleClick('#文本3_回答_2', () => 战斗开始(3, 0),number);}
     };
 
     if (actions[number]) {
@@ -87,7 +110,7 @@ function 文本回答_函数(number) {
     }
 }
 
-function handleClick(selector, nextStep, delay = 100) {
+function handleClick(selector, nextStep,number , delay = 100) {
     const element = document.querySelector(selector);
     element.addEventListener('click', () => {
         const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择');
@@ -99,6 +122,9 @@ function handleClick(selector, nextStep, delay = 100) {
             } else {
                 冒险中选择_显示(nextStep);
             }
+        }, delay);
+        setTimeout(() => {
+            事件效果(number)
         }, delay);
     });
 }
@@ -183,18 +209,21 @@ export function getRandomInt(min, max) {
 
 
 
-var name_code = document.querySelector('#name_code')
-var me攻击力 = 10
-var me防御力 = 1
-var me体质 = 10
-var me精神 = 5
-var me等级 = 1
-var me经验 = 0
-var me经验上限 = 100
-var me生命上限 = me体质 * 10
-var me生命 = me生命上限
-var me魔力上限 = me精神 * 10
-var me魔力 = me魔力上限
+export var name_code = document.querySelector('#name_code')
+export var medate = {
+    me攻击力 : 10,
+    me防御力 : 1,
+    me体质 : 10,
+    me精神 : 5,
+    me等级 : 1,
+    me经验 : 0,
+    me经验上限 : 100,
+    me生命上限 : 100,
+    me生命 : 100,
+    me魔力上限 : 50,
+    me魔力 : 50
+};
+
 
 
 export function 属性刷新() {
@@ -203,11 +232,11 @@ export function 属性刷新() {
     const 体质 = document.querySelector('.体质')
     const 精神 = document.querySelector('.精神')
     const 等级 = document.querySelector('.等级')
-    var 攻击力信息 = '攻击力:' + me攻击力
-    var 防御力信息 = '防御力:' + me防御力
-    var 体质信息 = '体质:' + me体质
-    var 精神信息 = '精神:' + me精神
-    var 等级信息 = '等级:' + me等级
+    var 攻击力信息 = '攻击力:' + medate.me攻击力
+    var 防御力信息 = '防御力:' + medate.me防御力
+    var 体质信息 = '体质:' + medate.me体质
+    var 精神信息 = '精神:' + medate.me精神
+    var 等级信息 = '等级:' + medate.me等级
     攻击力.innerHTML = 攻击力信息
     防御力.innerHTML = 防御力信息
     体质.innerHTML = 体质信息
@@ -216,18 +245,18 @@ export function 属性刷新() {
     状态刷新()
 }
 
-function 状态刷新() {
+export function 状态刷新() {
     const css生命 = document.querySelector('.css生命')
     const css魔力 = document.querySelector('.css魔力')
     const 经验值 = document.querySelector('.经验值')
     const 生命信息 = document.querySelector('.生命信息')
     const 魔力信息 = document.querySelector('.魔力信息')
-    生命信息.textContent = me生命
-    魔力信息.textContent = me魔力
-    let mehp = me生命 / me生命上限
+    生命信息.textContent = medate.me生命
+    魔力信息.textContent = medate.me魔力
+    let mehp = medate.me生命 / medate.me生命上限
     let memaxhp = 50
     css生命.style.width = (memaxhp * mehp) + 'vw'
-    let memp = me魔力 / me魔力上限
+    let memp = medate.me魔力 / medate.me魔力上限
     let memaxmp = 50
     css魔力.style.width = (memaxmp * memp) + 'vw'
 }
@@ -863,7 +892,7 @@ function 敌人生成(npcs, npcname) {
             (function(敌人属性) {
                 newNpc.addEventListener('click', function() {
                     let currentNumber = parseInt(this.getAttribute('data-number'));
-                    let 伤害 = me攻击力 >= 敌人属性.防御力 ? me攻击力 - 敌人属性.防御力 : 0;
+                    let 伤害 = medate.me攻击力 >= 敌人属性.防御力 ? medate.me攻击力 - 敌人属性.防御力 : 0;
                     if (伤害 >= currentNumber) {
                         this.setAttribute('data-number', 0); 
                     }
@@ -1045,12 +1074,12 @@ function 敌人攻击() {
         setTimeout(() => {
             bottom_信息_显示('敌人行动中')
             let number攻击力 = parseInt(攻击力1.textContent)
-            let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
-            if (me生命 <= 伤害){
-                me生命 = 0
+            let 伤害 = number攻击力 >= medate.me防御力 ? number攻击力 - medate.me防御力 : 0;
+            if (medate.me生命 <= 伤害){
+                medate.me生命 = 0
             }
             else {
-                me生命 = me生命 - 伤害
+                medate.me生命 = medate.me生命 - 伤害
             }
             敌人攻击特效(1)
             受伤1.play()
@@ -1058,12 +1087,12 @@ function 敌人攻击() {
             if (攻击力2 && 攻击力2.textContent != '') {
                 setTimeout(() => {
                     let number攻击力 = parseInt(攻击力2.textContent)
-                    let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
-                    if (me生命 <= 伤害){
-                        me生命 = 0
+                    let 伤害 = number攻击力 >= medate.me防御力 ? number攻击力 - medate.me防御力 : 0;
+                    if (medate.me生命 <= 伤害){
+                        medate.me生命 = 0
                     }
                     else {
-                        me生命 = me生命 - 伤害
+                        medate.me生命 = medate.me生命 - 伤害
                     }
                     敌人攻击特效(2)
                     受伤1.play()
@@ -1071,12 +1100,12 @@ function 敌人攻击() {
                     if (攻击力3 && 攻击力3.textContent != '') {
                         setTimeout(() => {
                             let number攻击力 = parseInt(攻击力3.textContent)
-                            let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
-                            if (me生命 <= 伤害){
-                                me生命 = 0
+                            let 伤害 = number攻击力 >= medate.me防御力 ? number攻击力 - medate.me防御力 : 0;
+                            if (medate.me生命 <= 伤害){
+                                medate.me生命 = 0
                             }
                             else {
-                                me生命 = me生命 - 伤害
+                                medate.me生命 = medate.me生命 - 伤害
                             }
                             敌人攻击特效(3)
                             受伤1.play()
@@ -1096,12 +1125,12 @@ function 敌人攻击() {
             else if (攻击力3 && 攻击力3.textContent != '') {
                 setTimeout(() => {
                     let number攻击力 = parseInt(攻击力3.textContent)
-                    let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
-                    if (me生命 <= 伤害){
-                        me生命 = 0
+                    let 伤害 = number攻击力 >= medate.me防御力 ? number攻击力 - medate.me防御力 : 0;
+                    if (medate.me生命 <= 伤害){
+                        medate.me生命 = 0
                     }
                     else {
-                        me生命 = me生命 - 伤害
+                        medate.me生命 = medate.me生命 - 伤害
                     }
                     敌人攻击特效(3)
                     受伤1.play()
@@ -1123,12 +1152,12 @@ function 敌人攻击() {
         setTimeout(() => {
             bottom_信息_显示('敌人行动中')
             let number攻击力 = parseInt(攻击力2.textContent)
-            let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
-            if (me生命 <= 伤害){
-                me生命 = 0
+            let 伤害 = number攻击力 >= medate.me防御力 ? number攻击力 - medate.me防御力 : 0;
+            if (medate.me生命 <= 伤害){
+                medate.me生命 = 0
             }
             else {
-                me生命 = me生命 - 伤害
+                medate.me生命 = medate.me生命 - 伤害
             }
             敌人攻击特效(2)
             受伤1.play()
@@ -1136,12 +1165,12 @@ function 敌人攻击() {
             if (攻击力3 && 攻击力3.textContent != '') {
                 setTimeout(() => {
                     let number攻击力 = parseInt(攻击力3.textContent)
-                    let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
-                    if (me生命 <= 伤害){
-                        me生命 = 0
+                    let 伤害 = number攻击力 >= medate.me防御力 ? number攻击力 - medate.me防御力 : 0;
+                    if (medate.me生命 <= 伤害){
+                        medate.me生命 = 0
                     }
                     else {
-                        me生命 = me生命 - 伤害
+                        medate.me生命 = medate.me生命 - 伤害
                     }
                     敌人攻击特效(3)
                     受伤1.play()
@@ -1163,12 +1192,12 @@ function 敌人攻击() {
         setTimeout(() => {
             bottom_信息_显示('敌人行动中')
             let number攻击力 = parseInt(攻击力3.textContent)
-            let 伤害 = number攻击力 >= me防御力 ? number攻击力 - me防御力 : 0;
-            if (me生命 <= 伤害){
-                me生命 = 0
+            let 伤害 = number攻击力 >= medate.me防御力 ? number攻击力 - medate.me防御力 : 0;
+            if (medate.me生命 <= 伤害){
+                medate.me生命 = 0
             }
             else {
-                me生命 = me生命 - 伤害
+                medate.me生命 = medate.me生命 - 伤害
             }
             敌人攻击特效(3)
             受伤1.play()
@@ -1187,7 +1216,7 @@ function 敌人攻击() {
 
 
 function 敌人攻击后() {
-    if (me生命 == 0) {
+    if (medate.me生命 == 0) {
         死亡结局触发()
     }
     else {
@@ -1222,11 +1251,9 @@ export function 死亡结局触发() {
         死亡end.style.opacity = '0';
         setTimeout(() => {
             死亡end.style.opacity = '0.5';
+            死亡结局播放()
             setTimeout(() => {
-                死亡end.style.opacity = '1';
-                setTimeout(() => {
-                    死亡结局播放()
-                }, 100);
+                死亡end.style.opacity = '1';               
             }, 2000);
         }, 2000);
     }, 3000);
@@ -1237,7 +1264,7 @@ function 死亡结局播放() {
     const 死亡end_text = document.querySelector('.死亡end_text');
     const 死亡end_标题 = document.querySelector('.死亡end_标题');
 
-    if (me等级 == 1) {
+    if (medate.me等级 == 1) {
         let text1 = '世界发生如此巨大的改变';
         let text2 = '只要打败敌人就可以获得力量和财富';
         let text3 = '有人发现珍贵道具一夜暴富';
@@ -1264,7 +1291,7 @@ function 死亡结局播放() {
 
         playTexts();
     }
-    else if (me等级 >= 2 && me等级 <= 5) {
+    else if (medate.me等级 >= 2 && medate.me等级 <= 5) {
         let text1 = '世界发生改变已经过去了好几年';
         let text2 = '包括你在内所有人都适应了这些新常识';
         let text3 = '因为副本的原因人们获得了新科技';
@@ -1295,8 +1322,8 @@ function 死亡结局播放() {
 
 export function 技能使用判断(skill) {
     if (skill == '顺风斩') {
-        if (me魔力 >= 5) {
-            me魔力 = me魔力 - 5
+        if (medate.me魔力 >= 5) {
+            medate.me魔力 = medate.me魔力 - 5
             状态刷新()
             技能_顺风斩()
         }
@@ -1329,7 +1356,7 @@ export function 技能_顺风斩() {
         
         if (生命.textContent !== '') {
             let currentNumber = parseInt(npc.dataset.number);
-            let 伤害 = me攻击力 >= 防御力 ? me攻击力 - 防御力 : 0;
+            let 伤害 = medate.me攻击力 >= 防御力 ? medate.me攻击力 - 防御力 : 0;
 
             if (伤害 >= currentNumber) {
                 npc.dataset.number = 0;

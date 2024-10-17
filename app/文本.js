@@ -1,4 +1,6 @@
-
+import{
+    medate,状态刷新
+}from "./函数库.js";
 
 
 
@@ -97,6 +99,65 @@ export function 文本2_后续1_回答() {
     冒险中选择_选择.innerHTML = 
     `
     <button class="冒险中选择_选择_回答" id="文本2_后续1_回答_1">准备战斗!</button>
+    
+    `
+}
+
+export function 文本2_后续2() {
+    let text = 
+    `
+    你强忍着心中的恐惧向前走，结果那些身影向你发动了攻击!(-50%的血量)
+    `;
+    return text
+}
+
+export function 文本2_后续2_回答() {
+    const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
+    冒险中选择_选择.innerHTML = 
+    `
+    <button class="冒险中选择_选择_回答" id="文本2_后续2_回答_1">准备战斗!</button>
+    
+    `
+}
+
+
+export function 文本2_后续2_效果() {
+    medate.me生命 = Math.round(medate.me生命 / 2);
+    状态刷新()
+}
+
+
+export function 文本2_后续3() {
+    let text = 
+    `
+    你强忍着心中的恐惧向前走，你发现那些身影只是雕像
+    `;
+    return text
+}
+
+export function 文本2_后续3_回答() {
+    const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
+    冒险中选择_选择.innerHTML = 
+    `
+    <button class="冒险中选择_选择_回答" id="文本2_后续3_回答_1">继续前进</button>
+    
+    `
+}
+
+export function 文本3() {
+    let text = 
+    `
+    在你的面前出现了两扇门，你发现只要打败门里的敌人就可以拿到奖励。不过只能选择其中之一。
+    `;
+    return text
+}
+
+export function 文本3_回答() {
+    const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择')
+    冒险中选择_选择.innerHTML = 
+    `
+    <button class="冒险中选择_选择_回答" id="文本3_回答_1">选择智慧之门，获得经验值</button>
+    <button class="冒险中选择_选择_回答" id="文本3_回答_2">选择财富之门，获得星空币</button>
     
     `
 }
