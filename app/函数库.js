@@ -221,12 +221,19 @@ export var medate = {
     me生命上限 : 100,
     me生命 : 100,
     me魔力上限 : 50,
-    me魔力 : 50
+    me魔力 : 50,
+    me财富:0
 };
 
 
 
 export function 属性刷新() {
+    let 星空币数量 = medate.me财富
+    let 星空币单位 = ''
+    if (星空币数量.toString().length == 4) {
+        星空币数量 = 星空币数量 / 1000
+        星空币单位 = '千'
+    }
     const 攻击力 = document.querySelector('.攻击力')
     const 防御力 = document.querySelector('.防御力')
     const 体质 = document.querySelector('.体质')
@@ -239,6 +246,7 @@ export function 属性刷新() {
     var 等级信息 = '等级:' + medate.me等级
     var 生命上限信息 = '生命上限:' + medate.me生命上限
     var 魔力上限信息 = '魔力上限:' + medate.me魔力上限
+    var 财富信息 = '星空币: ' + 星空币数量 + 星空币单位
     攻击力.innerHTML = 攻击力信息
     防御力.innerHTML = 防御力信息
     体质.innerHTML = 体质信息
@@ -252,6 +260,7 @@ export function 属性刷新() {
     const 人物详细信息_属性信息_体质 = document.querySelector('.人物详细信息_属性信息_体质')
     const 人物详细信息_属性信息_精神 = document.querySelector('.人物详细信息_属性信息_精神')
     const 人物详细信息_属性信息_等级 = document.querySelector('.人物详细信息_属性信息_等级')
+    const 人物详细信息_其他信息_财富 = document.querySelector('.人物详细信息_其他信息_财富')
     人物详细信息_属性信息_生命上限.innerHTML = 生命上限信息
     人物详细信息_属性信息_魔力上限.innerHTML = 魔力上限信息
     人物详细信息_属性信息_攻击力.innerHTML = 攻击力信息
@@ -259,6 +268,7 @@ export function 属性刷新() {
     人物详细信息_属性信息_体质.innerHTML = 体质信息
     人物详细信息_属性信息_精神.innerHTML = 精神信息
     人物详细信息_属性信息_等级.innerHTML = 等级信息
+    人物详细信息_其他信息_财富.innerHTML = 财富信息
     /////////////////////////////////////////////////////
     状态刷新()
 }

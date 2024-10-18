@@ -1255,10 +1255,10 @@ body {
     left: 0.5vw;
     display: none;
     background-color: rgb(255, 255, 255);
-    border-top: solid rgb(134, 209, 14) 0.5vh;
-    border-bottom: solid rgb(134, 209, 14) 0.5vh;
-    border-left: solid rgb(134, 209, 14) 0.5vw;
-    border-right: solid rgb(134, 209, 14) 0.5vw;
+    border-top: solid rgb(95, 139, 24) 0.5vh;
+    border-bottom: solid rgb(95, 139, 24) 0.5vh;
+    border-left: solid rgb(95, 139, 24) 0.5vw;
+    border-right: solid rgb(95, 139, 24) 0.5vw;
     flex-direction: column;
     background-color: rgb(160, 159, 159);
 }
@@ -1318,7 +1318,17 @@ body {
     height: 53vh;
 }
 
-.人物详细信息_属性信息 {
+.人物详细信息 {
+    display: flex;
+}
+
+.人物详细信息_属性信息 { 
+    font-size: 3vmin;
+    padding: 3px;
+    margin-right: 5vw;
+}
+
+.人物详细信息_其他信息 {
     font-size: 3vmin;
     padding: 3px;
 }
