@@ -654,7 +654,7 @@ body {
 }
 
 
-.经验条 {
+.经验条, .人物详细信息_属性信息_经验条 {
     margin-top: 0.6vmin;
     height: 0.6vmin;
     width: 10vw;
@@ -662,7 +662,7 @@ body {
     border-radius: 5px;
 }
 
-.经验值 {
+.经验值, .人物详细信息_属性信息_经验值 {
     background-color: rgb(78, 255, 78);
     border-radius: 5px;
     height: 0.6vmin;
@@ -1244,4 +1244,81 @@ body {
 .死亡end_text {
     color: white;
     font-size: 3vmin;
+}
+
+
+.个人面板 {
+    width: 98vw;
+    height: 98vh;
+    position: absolute;
+    top: 0.5vh;
+    left: 0.5vw;
+    display: none;
+    background-color: rgb(255, 255, 255);
+    border-top: solid rgb(134, 209, 14) 0.5vh;
+    border-bottom: solid rgb(134, 209, 14) 0.5vh;
+    border-left: solid rgb(134, 209, 14) 0.5vw;
+    border-right: solid rgb(134, 209, 14) 0.5vw;
+    flex-direction: column;
+    background-color: rgb(160, 159, 159);
+}
+
+
+.个人面板_关闭按钮 {
+    height: 7vmin;
+    width: 7vmin;
+    position: absolute;
+    top: 0.5vh;
+    right: 0.5vw;
+    font-size: 3.5vmin;
+    z-index: 2;
+    
+}
+
+.按钮组 {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-top: solid black 2px;
+}
+
+.按钮组_按钮 {
+    flex: 1;
+    height: 5vh;
+    border: none;
+    font-size: 3vmin;
+    background-color: rgb(94, 93, 93);
+    color: white;
+}
+
+.按钮组_按钮:hover {
+    background-color: white;
+    color: black;
+}
+
+.内容_部分 h1 {
+    font-size: 7vmin;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.内容_上半部分 {
+    width: 100%;
+    background-color: rgb(182, 182, 182);
+    height: 40vh;
+    border-bottom: solid black 1px;
+}
+
+.背包物品 {
+    width: 100%;
+    background-color: rgb(160, 159, 159);
+    height: 53vh;
+}
+
+.人物详细信息_属性信息 {
+    font-size: 3vmin;
+    padding: 3px;
 }

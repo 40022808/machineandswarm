@@ -217,7 +217,7 @@ export var medate = {
     me精神 : 5,
     me等级 : 1,
     me经验 : 0,
-    me经验上限 : 100,
+    me经验上限 : 10,
     me生命上限 : 100,
     me生命 : 100,
     me魔力上限 : 50,
@@ -237,11 +237,29 @@ export function 属性刷新() {
     var 体质信息 = '体质:' + medate.me体质
     var 精神信息 = '精神:' + medate.me精神
     var 等级信息 = '等级:' + medate.me等级
+    var 生命上限信息 = '生命上限:' + medate.me生命上限
+    var 魔力上限信息 = '魔力上限:' + medate.me魔力上限
     攻击力.innerHTML = 攻击力信息
     防御力.innerHTML = 防御力信息
     体质.innerHTML = 体质信息
     精神.innerHTML = 精神信息
     等级.innerHTML = 等级信息
+    /////////////////////////////////////////////////////
+    const 人物详细信息_属性信息_生命上限 = document.querySelector('.人物详细信息_属性信息_生命上限')
+    const 人物详细信息_属性信息_魔力上限 = document.querySelector('.人物详细信息_属性信息_魔力上限')
+    const 人物详细信息_属性信息_攻击力 = document.querySelector('.人物详细信息_属性信息_攻击力')
+    const 人物详细信息_属性信息_防御力 = document.querySelector('.人物详细信息_属性信息_防御力')
+    const 人物详细信息_属性信息_体质 = document.querySelector('.人物详细信息_属性信息_体质')
+    const 人物详细信息_属性信息_精神 = document.querySelector('.人物详细信息_属性信息_精神')
+    const 人物详细信息_属性信息_等级 = document.querySelector('.人物详细信息_属性信息_等级')
+    人物详细信息_属性信息_生命上限.innerHTML = 生命上限信息
+    人物详细信息_属性信息_魔力上限.innerHTML = 魔力上限信息
+    人物详细信息_属性信息_攻击力.innerHTML = 攻击力信息
+    人物详细信息_属性信息_防御力.innerHTML = 防御力信息
+    人物详细信息_属性信息_体质.innerHTML = 体质信息
+    人物详细信息_属性信息_精神.innerHTML = 精神信息
+    人物详细信息_属性信息_等级.innerHTML = 等级信息
+    /////////////////////////////////////////////////////
     状态刷新()
 }
 
@@ -249,16 +267,24 @@ export function 状态刷新() {
     const css生命 = document.querySelector('.css生命')
     const css魔力 = document.querySelector('.css魔力')
     const 经验值 = document.querySelector('.经验值')
+    const 人物详细信息_属性信息_经验值 = document.querySelector('.人物详细信息_属性信息_经验值')
     const 生命信息 = document.querySelector('.生命信息')
     const 魔力信息 = document.querySelector('.魔力信息')
     生命信息.textContent = medate.me生命
     魔力信息.textContent = medate.me魔力
+
     let mehp = medate.me生命 / medate.me生命上限
     let memaxhp = 50
     css生命.style.width = (memaxhp * mehp) + 'vw'
+
     let memp = medate.me魔力 / medate.me魔力上限
     let memaxmp = 50
     css魔力.style.width = (memaxmp * memp) + 'vw'
+    
+    let meex = medate.me经验 / medate.me经验上限
+    let memaxex = 50
+    经验值.style.width = (memaxex * meex) + 'vw'
+    人物详细信息_属性信息_经验值.style.width = (memaxex * meex) + 'vw'
 }
 
 
@@ -695,7 +721,58 @@ function 战斗开始_名字信息(i,npcname) {
 }
 
 
+export function 个人面板_显示() {
+    const 个人面板 = document.querySelector('.个人面板')
+    个人面板.style.display = 'flex';
+    属性刷新()
+}
 
+export function 个人面板_消失() {
+    const 个人面板 = document.querySelector('.个人面板')
+    个人面板.style.display = 'none';
+}
+
+export function 部分_背包_显示() {
+    const 部分_背包 = document.querySelector('#部分_背包')
+    部分_背包.style.display = 'block';
+}
+export function 部分_人物_显示() {
+    const 部分_人物 = document.querySelector('#部分_人物')
+    部分_人物.style.display = 'block';
+}
+export function 部分_其他_显示() {
+    const 部分_其他 = document.querySelector('#部分_其他')
+    部分_其他.style.display = 'block';
+}
+
+export function 部分_背包_消失() {
+    const 部分_背包 = document.querySelector('#部分_背包')
+    部分_背包.style.display = 'none';
+}
+export function 部分_人物_消失() {
+    const 部分_人物 = document.querySelector('#部分_人物')
+    部分_人物.style.display = 'none';
+}
+export function 部分_其他_消失() {
+    const 部分_其他 = document.querySelector('#部分_其他')
+    部分_其他.style.display = 'none';
+}
+export function 部分_装备_显示() {
+    const 部分_装备 = document.querySelector('#部分_装备')
+    部分_装备.style.display = 'block';
+}
+export function 部分_装备_消失() {
+    const 部分_装备 = document.querySelector('#部分_装备')
+    部分_装备.style.display = 'none';
+}
+export function 部分_技能_显示() {
+    const 部分_技能 = document.querySelector('#部分_技能')
+    部分_技能.style.display = 'block';
+}
+export function 部分_技能_消失() {
+    const 部分_技能 = document.querySelector('#部分_技能')
+    部分_技能.style.display = 'none';
+}
 
 
 
@@ -1312,6 +1389,33 @@ function 死亡结局播放() {
                 死亡end_text.textContent = '';
                 音乐播放(end1);
                 死亡end_标题.innerHTML = '[结局2:数字]<br>你成为了大时代里一串数字中的一员';
+            }, 4800);
+            
+        }
+
+        playTexts();
+    }
+    else if (medate.me等级 >= 6 && medate.me等级 <= 10) {
+        let text1 = '随着你越来越多次的冒险';
+        let text2 = '你的名气也越来越大';
+        let text3 = '你的实力也变得不错';
+        let text4 = '你的野心也逐渐膨胀';
+        let text5 = '但是很可惜你还是没有走出这个小地方';
+        let text6 = '并且因为自己的大意永远的留在了这里';
+
+        const texts = [text1, text2, text3, text4, text5, text6];
+
+        async function playTexts() {
+            for (let i = 0; i < texts.length; i++) {
+                await new Promise(resolve => setTimeout(() => {
+                    背景剧情_播放_text(texts[i], 死亡end_text);
+                    resolve();
+                }, 5000));
+            }
+            setTimeout(() => {
+                死亡end_text.textContent = '';
+                音乐播放(end1);
+                死亡end_标题.innerHTML = '[结局3:高手]<br>如果只看小地方的话你确实是高手';
             }, 4800);
             
         }
