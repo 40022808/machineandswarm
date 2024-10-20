@@ -584,6 +584,13 @@ body {
 .名字显示 {
     font-size: 2vmin;
     width: 20vw;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.名字显示:hover {
+    font-size: 2.2vmin;
+    color: rgb(255, 0, 0);
 }
 
 .分界线 {
@@ -1331,4 +1338,70 @@ body {
 .人物详细信息_其他信息 {
     font-size: 3vmin;
     padding: 3px;
+}
+
+
+
+.奖励弹窗 {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+
+}
+
+.奖励弹窗_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 25vh;
+    height: 50vh;
+    background-color: white;
+    padding: 5vmin;
+    border-radius: 1vmin;
+}
+
+
+.奖励弹窗_text1 {
+    background-color: #fff;
+    width: 50vw;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-size: 3vmin;
+    text-align: center;
+    margin-top: 3vh;
+    
+}
+.奖励弹窗_text2 {
+    background-color: #fff;
+    width: 50vw;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-size: 3vmin;
+    text-align: center;
+    margin-top: 10px;
+    
+}
+
+
+.奖励弹窗_关闭 {
+    color: black;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 1vmin;
+    position: absolute;
+    right: 2px;
+    top: 2px;
 }

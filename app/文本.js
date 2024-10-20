@@ -1,7 +1,13 @@
 import{
-    medate,状态刷新
+    medate,rewardData,状态刷新
 }from "./函数库.js";
 
+
+
+function 奖励重置() {
+    rewardData.exp = 0
+    rewardData.coin = 0
+}
 
 
 export function 文本0() {
@@ -103,6 +109,14 @@ export function 文本2_后续1_回答() {
     `
 }
 
+export function 文本2_后续1_奖励(rewar) {
+    奖励重置()
+    rewardData.exp = 10
+    rewardData.coin = 6
+}
+
+
+
 export function 文本2_后续2() {
     let text = 
     `
@@ -124,6 +138,12 @@ export function 文本2_后续2_回答() {
 export function 文本2_后续2_效果() {
     medate.me生命 = Math.round(medate.me生命 / 2);
     状态刷新()
+}
+
+export function 文本2_后续2_奖励(rewar) {
+    奖励重置()
+    rewardData.exp = 10
+    rewardData.coin = 6
 }
 
 
@@ -160,4 +180,15 @@ export function 文本3_回答() {
     <button class="冒险中选择_选择_回答" id="文本3_回答_2">选择财富之门，获得星空币</button>
     
     `
+}
+
+export function 文本3_奖励(rewar) {
+    奖励重置()
+    if (rewar == 1) {
+        rewardData.exp = 30
+
+    }
+    else if (rewar == 2) {
+        rewardData.coin = 18
+    }
 }

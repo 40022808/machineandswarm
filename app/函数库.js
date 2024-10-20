@@ -1,6 +1,6 @@
 import {
     文本1,文本0,文本1_回答, 文本2,文本2_回答, 文本0_回答, 文本0_后续1, 文本0_后续1_回答,文本2_后续1,文本2_后续1_回答,文本3,文本3_回答,文本2_后续2,
-    文本2_后续2_回答,文本2_后续3,文本2_后续3_回答,文本2_后续2_效果
+    文本2_后续2_回答,文本2_后续3,文本2_后续3_回答,文本2_后续2_效果, 文本2_后续1_奖励, 文本2_后续2_奖励, 文本3_奖励
 } from "./文本.js";
 
 import {
@@ -38,6 +38,18 @@ const 事件效果Map = {
 function 事件效果(number) {
     const textFunction = 事件效果Map[number];
     return textFunction ? textFunction() : null;
+}
+
+
+const 事件奖励Map = {
+    "2_1":文本2_后续1_奖励,
+    "2_2":文本2_后续2_奖励,
+    "3":文本3_奖励
+};
+
+function 获取事件奖励(number,rewar) {
+    const textFunction = 事件奖励Map[number];
+    return textFunction ? textFunction(rewar) : null;
 }
 
 
@@ -95,14 +107,14 @@ function 文本标题(number) {
 
 function 文本回答_函数(number) {
     const actions = {
-        "1": () => {handleClick('#文本1_回答_1', 随机事件(number, 2, 3),number);handleClick('#文本1_回答_2', 随机事件(number, 2, 3),number);},
-        "0": () => handleClick('#文本0_回答_1', "0_1",number),
-        "0_1": () => handleClick('#文本0_后续1_回答_1', "1", number,500),
-        "2": () => {handleClick('#文本2_回答_1', "2_1",number);handleClick('#文本2_回答_2',  随机后续(number,2, 3),number)},
-        "2_1": () => handleClick('#文本2_后续1_回答_1', () => 战斗开始(3, 0),number),
-        "2_2":() => handleClick('#文本2_后续2_回答_1', () => 战斗开始(3, 0), number),
-        "2_3":() => handleClick('#文本2_后续3_回答_1',随机事件(number, 2, 3),number),
-        "3":() => {handleClick('#文本3_回答_1', () => 战斗开始(3, 0),number);handleClick('#文本3_回答_2', () => 战斗开始(3, 0),number);}
+        "1": () => {handleClick('#文本1_回答_1', 随机事件(number, 2, 3),number,1);   handleClick('#文本1_回答_2', 随机事件(number, 2, 3),number,2);},
+        "0": () => handleClick('#文本0_回答_1', "0_1",number,1),
+        "0_1": () => handleClick('#文本0_后续1_回答_1', "1", number,1,500),
+        "2": () => {handleClick('#文本2_回答_1', "2_1",number,1);    handleClick('#文本2_回答_2',  随机后续(number,2, 3),number,2)},
+        "2_1": () => handleClick('#文本2_后续1_回答_1', () => 战斗开始(3, 0),number,1),
+        "2_2":() => handleClick('#文本2_后续2_回答_1', () => 战斗开始(3, 0), number,1),
+        "2_3":() => handleClick('#文本2_后续3_回答_1',随机事件(number, 2, 3),number,1),
+        "3":() => {handleClick('#文本3_回答_1', () => 战斗开始(3, 0),number,1);     handleClick('#文本3_回答_2', () => 战斗开始(3, 0),number,2);}
     };
 
     if (actions[number]) {
@@ -110,7 +122,7 @@ function 文本回答_函数(number) {
     }
 }
 
-function handleClick(selector, nextStep,number , delay = 100) {
+function handleClick(selector, nextStep,number ,rewar,delay = 100) {
     const element = document.querySelector(selector);
     element.addEventListener('click', () => {
         const 冒险中选择_选择 = document.querySelector('.冒险中选择_选择');
@@ -125,6 +137,7 @@ function handleClick(selector, nextStep,number , delay = 100) {
         }, delay);
         setTimeout(() => {
             事件效果(number)
+            获取事件奖励(number,rewar)
         }, delay);
     });
 }
@@ -211,7 +224,7 @@ export function getRandomInt(min, max) {
 
 export var name_code = document.querySelector('#name_code')
 export var medate = {
-    me攻击力 : 10,
+    me攻击力 : 100,
     me防御力 : 1,
     me体质 : 10,
     me精神 : 5,
@@ -226,13 +239,18 @@ export var medate = {
 };
 
 
+export var rewardData = {
+    exp : 0,
+    coin : 0
+}
+
 
 export function 属性刷新() {
     let 星空币数量 = medate.me财富
     let 星空币单位 = ''
-    if (星空币数量.toString().length == 4) {
-        星空币数量 = 星空币数量 / 1000
-        星空币单位 = '千'
+    if (星空币数量.toString().length == 5) {
+        星空币数量 = 星空币数量 / 10000
+        星空币单位 = '万'
     }
     const 攻击力 = document.querySelector('.攻击力')
     const 防御力 = document.querySelector('.防御力')
@@ -295,6 +313,21 @@ export function 状态刷新() {
     let memaxex = 50
     经验值.style.width = (memaxex * meex) + 'vw'
     人物详细信息_属性信息_经验值.style.width = (memaxex * meex) + 'vw'
+}
+
+
+function 升级检测() {
+    let interval = window.setInterval(function() {
+        if (medate.me经验 >= medate.me经验上限) {
+            medate.me经验 = medate.me经验 - medate.me经验上限
+            medate.me经验上限 = medate.me经验上限 * 2
+            medate.me等级 = medate.me等级 + 1
+            属性刷新()
+        }   
+        else {
+          clearInterval(interval); // 清除定时器
+        }
+    }, 0); 
 }
 
 
@@ -551,6 +584,12 @@ function 个人信息_名字() {
     名字显示.innerHTML += '[' + name_code.value + ']'
 }
 
+
+const 名字显示 = document.querySelector('.名字显示')
+名字显示.addEventListener('click',()=>{
+    个人面板_显示()
+    部分_人物_显示()
+})
 
 
 export function 战斗选项框_显示() {
@@ -817,13 +856,13 @@ export function 战斗_技能_消失() {
 export function bottom_信息_显示 (text) {
     const 信息 = document.querySelector('.信息')
     信息.style.display = 'flex';
-    信息.textContent = text 
+    信息.innerHTML = text 
 }
 
 export function bottom_信息_消失() {
     const 信息 = document.querySelector('.信息')
     信息.style.display = 'none';
-    信息.textContent = '' 
+    信息.innerHTML = '' 
 }
 
 
@@ -916,6 +955,22 @@ export function 弹窗_关闭_函数() {
 }
 
 
+export function 奖励弹窗(text,text2) {
+    const 奖励弹窗 = document.querySelector('.奖励弹窗')
+    奖励弹窗.style.display = 'flex';
+    const 奖励弹窗_text1 = document.querySelector('.奖励弹窗_text1')
+    奖励弹窗_text1.innerHTML = text
+    const 奖励弹窗_text2 = document.querySelector('.奖励弹窗_text2')
+    奖励弹窗_text2.innerHTML = text2
+}
+
+
+
+
+export function 奖励弹窗_关闭_函数() {
+    const 奖励弹窗 = document.querySelector('.奖励弹窗')
+    奖励弹窗.style.display = 'none';
+}
 
 
 
@@ -1126,11 +1181,24 @@ function 敌人死亡判定() {
         setTimeout(() => {
             if (生命1.textContent === '' && 生命2.textContent === '' && 生命3.textContent === '') {
                 bottom_信息_显示('战斗胜利!')
+                战斗胜利()
             }
         }, 3500);
         
     }
 }
+
+
+function 战斗胜利() {
+    奖励弹窗('获得' + rewardData.exp + '点经验值','获得' + rewardData.coin + '星空币')
+    medate.me经验 = medate.me经验 + rewardData.exp
+    medate.me财富 = medate.me财富 + rewardData.coin
+    升级检测()
+}
+
+
+
+
 
 
 function 敌人属性删除(i) {
