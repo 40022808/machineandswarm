@@ -131,18 +131,24 @@ function handleClick(selector, nextStep,number ,rewar,delay = 100) {
         setTimeout(() => {
             if (typeof nextStep === 'function') {
                 nextStep();
-            } else {
+            }
+            else {
                 冒险中选择_显示(nextStep);
+                
             }
         }, delay);
         setTimeout(() => {
             事件效果(number)
             获取事件奖励(number,rewar)
+            当前事件 = number
+            console.log(当前事件)
         }, delay);
     });
 }
 
 export function 冒险中选择_显示(number) {
+    当前事件 = number
+    console.log(当前事件)
     const 冒险中选择 = document.querySelector('.冒险中选择0')
     冒险中选择.style.display = 'flex';
     const 冒险中选择_text = document.querySelector('.冒险中选择_text')
@@ -310,7 +316,7 @@ export function 状态刷新() {
     css魔力.style.width = (memaxmp * memp) + 'vw'
     
     let meex = medate.me经验 / medate.me经验上限
-    let memaxex = 50
+    let memaxex = 10
     经验值.style.width = (memaxex * meex) + 'vw'
     人物详细信息_属性信息_经验值.style.width = (memaxex * meex) + 'vw'
 }
@@ -595,6 +601,11 @@ const 名字显示 = document.querySelector('.名字显示')
 export function 战斗选项框_显示() {
     const bottom = document.querySelector('.bottom')
     bottom.style.display = 'flex';
+}
+
+export function 战斗选项框_消失() {
+    const bottom = document.querySelector('.bottom')
+    bottom.style.display = 'none';
 }
 
 
@@ -973,6 +984,17 @@ export function 奖励弹窗_关闭_函数() {
 }
 
 
+var 当前事件 = ''
+
+export function 游戏继续() {
+    let number = 当前事件
+    console.log(number)
+    bottom_信息_消失()
+    战斗选项框_消失()
+    加载_显示(4,6,1,nowbgm,悬疑bgm, 冒险中选择_显示,随机事件(number, 2, 3))
+    
+}
+
 
 
 function fadeElementIn(element, duration) {
@@ -1014,6 +1036,7 @@ export function 战斗开始(npcs,npcname) {
         冒险中选择_消失()
         敌人生成(npcs,npcname)
         战斗选项框_显示()
+        bottom_初始选项_显示()
     }, 1000);
     
 }
@@ -1183,14 +1206,16 @@ function 敌人死亡判定() {
                 bottom_信息_显示('战斗胜利!')
                 战斗胜利()
             }
-        }, 3500);
+        }, 3000);
         
     }
 }
 
 
 function 战斗胜利() {
-    奖励弹窗('获得' + rewardData.exp + '点经验值','获得' + rewardData.coin + '星空币')
+    setTimeout(() => {
+        奖励弹窗('获得' + rewardData.exp + '点经验值','获得' + rewardData.coin + '星空币')
+    }, 1500);
     medate.me经验 = medate.me经验 + rewardData.exp
     medate.me财富 = medate.me财富 + rewardData.coin
     升级检测()
