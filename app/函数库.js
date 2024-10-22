@@ -16,12 +16,13 @@ export function 敌人名字信息_获取(number) {
 }
 
 
-function 随机事件(number, min, max) {
+function 随机事件(number) {
     let randomnumber;
+    let firstDigit = parseInt(number.toString()[0]); // 获取 number 的第一个数字
     do {
-        randomnumber = getRandomInt(min, max);
+        randomnumber = getRandomInt(2,3);
     } 
-    while (randomnumber == number[0]);
+    while (randomnumber == firstDigit || randomnumber == number);
     return randomnumber;
 }
 
@@ -107,13 +108,13 @@ function 文本标题(number) {
 
 function 文本回答_函数(number) {
     const actions = {
-        "1": () => {handleClick('#文本1_回答_1', 随机事件(number, 2, 3),number,1);   handleClick('#文本1_回答_2', 随机事件(number, 2, 3),number,2);},
+        "1": () => {handleClick('#文本1_回答_1', 随机事件(number),number,1);   handleClick('#文本1_回答_2', 随机事件(number),number,2);},
         "0": () => handleClick('#文本0_回答_1', "0_1",number,1),
         "0_1": () => handleClick('#文本0_后续1_回答_1', "1", number,1,500),
         "2": () => {handleClick('#文本2_回答_1', "2_1",number,1);    handleClick('#文本2_回答_2',  随机后续(number,2, 3),number,2)},
         "2_1": () => handleClick('#文本2_后续1_回答_1', () => 战斗开始(3, 0),number,1),
         "2_2":() => handleClick('#文本2_后续2_回答_1', () => 战斗开始(3, 0), number,1),
-        "2_3":() => handleClick('#文本2_后续3_回答_1',随机事件(number, 2, 3),number,1),
+        "2_3":() => handleClick('#文本2_后续3_回答_1',随机事件(number),number,1),
         "3":() => {handleClick('#文本3_回答_1', () => 战斗开始(3, 0),number,1);     handleClick('#文本3_回答_2', () => 战斗开始(3, 0),number,2);}
     };
 
@@ -140,15 +141,12 @@ function handleClick(selector, nextStep,number ,rewar,delay = 100) {
         setTimeout(() => {
             事件效果(number)
             获取事件奖励(number,rewar)
-            当前事件 = number
-            console.log(当前事件)
         }, delay);
     });
 }
 
 export function 冒险中选择_显示(number) {
     当前事件 = number
-    console.log(当前事件)
     const 冒险中选择 = document.querySelector('.冒险中选择0')
     冒险中选择.style.display = 'flex';
     const 冒险中选择_text = document.querySelector('.冒险中选择_text')
@@ -229,6 +227,7 @@ export function getRandomInt(min, max) {
 
 
 export var name_code = document.querySelector('#name_code')
+
 export var medate = {
     me攻击力 : 100,
     me防御力 : 1,
@@ -237,12 +236,25 @@ export var medate = {
     me等级 : 1,
     me经验 : 0,
     me经验上限 : 10,
-    me生命上限 : 100,
-    me生命 : 100,
-    me魔力上限 : 50,
-    me魔力 : 50,
+    me生命上限 : 0,
+    me生命 : 0,
+    me魔力上限 : 0,
+    me魔力 : 0,
     me财富:0
 };
+
+属性初始化()
+
+function 属性初始化() {
+    medate.me生命上限 = medate.me体质 * 10
+    medate.me生命 = medate.me生命上限
+    medate.me魔力上限 = medate.me精神 * 10
+    medate.me魔力 = medate.me魔力上限
+}
+function 属性初始化2() {
+    medate.me生命上限 = medate.me体质 * 10
+    medate.me魔力上限 = medate.me精神 * 10
+}
 
 
 export var rewardData = {
@@ -252,6 +264,7 @@ export var rewardData = {
 
 
 export function 属性刷新() {
+    属性初始化2()
     let 星空币数量 = medate.me财富
     let 星空币单位 = ''
     if (星空币数量.toString().length == 5) {
@@ -321,21 +334,118 @@ export function 状态刷新() {
     人物详细信息_属性信息_经验值.style.width = (memaxex * meex) + 'vw'
 }
 
+var 升级次数 = 0
 
 function 升级检测() {
+    
     let interval = window.setInterval(function() {
         if (medate.me经验 >= medate.me经验上限) {
             medate.me经验 = medate.me经验 - medate.me经验上限
             medate.me经验上限 = medate.me经验上限 * 2
             medate.me等级 = medate.me等级 + 1
+            升级次数 = 升级次数 + 1 
             属性刷新()
         }   
         else {
           clearInterval(interval); // 清除定时器
+          属性刷新()
         }
     }, 0); 
 }
 
+
+
+function 升级奖励() {
+    清除奖励信息()
+    升级次数 = 升级次数 - 1
+    var newh1 = document.createElement('h1')
+    newh1.innerHTML = '恭喜你等级提升!'
+    var newdiv = document.createElement('div')
+    newdiv.className = '升级奖励_box'
+    var newh2 = document.createElement('h2')
+    newh2.innerHTML = '请选择奖励'
+    document.querySelector('.奖励弹窗_box').appendChild(newh1)
+    document.querySelector('.奖励弹窗_box').appendChild(newh2)
+    document.querySelector('.奖励弹窗_box').appendChild(newdiv)
+    var rewar1 = document.createElement('button')
+    var rewar2 = document.createElement('button')
+    var rewar3 = document.createElement('button')
+    升级奖励_随机一个奖励(rewar1,rewar2,rewar3)
+    newdiv.appendChild(rewar1)
+    newdiv.appendChild(rewar2)
+    newdiv.appendChild(rewar3)
+
+}
+
+function 升级奖励_随机一个奖励(rewar1, rewar2, rewar3) {
+    // 定义四个不同的 class 名称、内容和对应的函数
+    let rewards = [
+        { className: '升级奖励_增加攻击力', content: '增加攻击力 +5', action: function() { 升级奖励_奖励执行(1) } },
+        { className: '升级奖励_增加防御力', content: '增加防御力 +1', action: function() { 升级奖励_奖励执行(2) } },
+        { className: '升级奖励_增加体质', content: '增加体质 +2', action: function() { 升级奖励_奖励执行(3) } },
+        { className: '升级奖励_增加精神', content: '增加精神 +1', action: function() { 升级奖励_奖励执行(4) } }
+    ];
+
+    // 随机打乱 rewards 数组
+    rewards.sort(() => Math.random() - 0.5);
+
+    // 分配 class 名称、内容和函数
+    rewar1.className = rewards[0].className;
+    rewar1.textContent = rewards[0].content;
+    rewar1.onclick = rewards[0].action;
+
+    rewar2.className = rewards[1].className;
+    rewar2.textContent = rewards[1].content;
+    rewar2.onclick = rewards[1].action;
+
+    rewar3.className = rewards[2].className;
+    rewar3.textContent = rewards[2].content;
+    rewar3.onclick = rewards[2].action;
+}
+
+function 升级奖励_奖励执行(type) {
+    if (type == 1) {
+        medate.me攻击力 = medate.me攻击力 + 5
+    }
+    else if (type == 2) {
+        medate.me防御力 = medate.me防御力 + 1
+    }
+    else if (type == 3) {
+        medate.me体质 = medate.me体质 + 2
+    }
+    else if (type == 4) {
+        medate.me精神 = medate.me精神 + 1
+    }
+    属性初始化()
+    属性刷新()
+    清除奖励信息()
+    var newdiv = document.createElement('div')
+    newdiv.className = '升级奖励_box'
+    var newh1 = document.createElement('h1')
+    newh1.innerHTML = '属性已提升!'
+    document.querySelector('.奖励弹窗_box').appendChild(newdiv)
+    newdiv.appendChild(newh1)
+}
+
+
+function 清除奖励信息() {
+    // 获取父元素
+    var parentElement = document.querySelector('.奖励弹窗_box');
+
+    // 获取所有子元素
+    var childElements = parentElement.children;
+
+    // 将子元素转换为数组，以便使用数组方法
+    var childArray = Array.from(childElements);
+
+    // 遍历子元素数组
+    childArray.forEach(function(child) {
+        // 如果子元素不是 class='奖励弹窗_关闭'，则删除
+        if (!child.classList.contains('奖励弹窗_关闭')) {
+            parentElement.removeChild(child);
+        }
+    });
+}
 
 
 export function start() {
@@ -966,13 +1076,32 @@ export function 弹窗_关闭_函数() {
 }
 
 
-export function 奖励弹窗(text,text2) {
+export function 奖励弹窗(text1,text2) {
     const 奖励弹窗 = document.querySelector('.奖励弹窗')
     奖励弹窗.style.display = 'flex';
-    const 奖励弹窗_text1 = document.querySelector('.奖励弹窗_text1')
-    奖励弹窗_text1.innerHTML = text
-    const 奖励弹窗_text2 = document.querySelector('.奖励弹窗_text2')
-    奖励弹窗_text2.innerHTML = text2
+    const texts = [text1, text2];
+    for (let i = 0; i < 2; i++) {
+        var newtext = document.createElement('div');
+        newtext.className = '奖励弹窗_text' + (i + 1);
+        newtext.innerHTML = texts[i]
+
+        document.querySelector('.奖励弹窗_box').appendChild(newtext)
+        
+    }
+
+}
+
+
+
+export function 检查升级次数() {
+    if (升级次数 == 0) {
+        奖励弹窗_关闭_函数()
+        游戏继续()
+    }
+    else {
+        升级奖励()
+    }
+
 }
 
 
@@ -987,11 +1116,11 @@ export function 奖励弹窗_关闭_函数() {
 var 当前事件 = ''
 
 export function 游戏继续() {
-    let number = 当前事件
-    console.log(number)
+    let number1 = 当前事件
     bottom_信息_消失()
     战斗选项框_消失()
-    加载_显示(4,6,1,nowbgm,悬疑bgm, 冒险中选择_显示,随机事件(number, 2, 3))
+    let number2 = 随机事件(number1, 2, 3)
+    加载_显示(4,6,1,nowbgm,悬疑bgm, 冒险中选择_显示,number2)
     
 }
 
@@ -1213,6 +1342,7 @@ function 敌人死亡判定() {
 
 
 function 战斗胜利() {
+    清除奖励信息()
     setTimeout(() => {
         奖励弹窗('获得' + rewardData.exp + '点经验值','获得' + rewardData.coin + '星空币')
     }, 1500);
