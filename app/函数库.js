@@ -105,6 +105,19 @@ function 文本标题(number) {
 }
 
 
+const 文本回答_函数_战斗开始Map = {
+    "2_1": '30',
+    "2_2": '30',
+    "3": '30'
+}
+
+
+function 文本回答_函数_战斗开始(number) {
+    const textFunction = 文本回答_函数_战斗开始Map[number];
+    const [param1, param2] = textFunction.split('').map(char => parseInt(char, 10));
+    return 战斗开始(param1,param2)
+}
+
 
 function 文本回答_函数(number) {
     const actions = {
@@ -112,10 +125,10 @@ function 文本回答_函数(number) {
         "0": () => handleClick('#文本0_回答_1', "0_1",number,1),
         "0_1": () => handleClick('#文本0_后续1_回答_1', "1", number,1,500),
         "2": () => {handleClick('#文本2_回答_1', "2_1",number,1);    handleClick('#文本2_回答_2',  随机后续(number,2, 3),number,2)},
-        "2_1": () => handleClick('#文本2_后续1_回答_1', () => 战斗开始(3, 0),number,1),
-        "2_2":() => handleClick('#文本2_后续2_回答_1', () => 战斗开始(3, 0), number,1),
+        "2_1": () => handleClick('#文本2_后续1_回答_1', () => 文本回答_函数_战斗开始(number),number,1),
+        "2_2":() => handleClick('#文本2_后续2_回答_1', () => 文本回答_函数_战斗开始(number), number,1),
         "2_3":() => handleClick('#文本2_后续3_回答_1',随机事件(number),number,1),
-        "3":() => {handleClick('#文本3_回答_1', () => 战斗开始(3, 0),number,1);     handleClick('#文本3_回答_2', () => 战斗开始(3, 0),number,2);}
+        "3":() => {handleClick('#文本3_回答_1', () => 文本回答_函数_战斗开始(number),number,1);     handleClick('#文本3_回答_2', () =>文本回答_函数_战斗开始(number),number,2);}
     };
 
     if (actions[number]) {
@@ -229,7 +242,7 @@ export function getRandomInt(min, max) {
 export var name_code = document.querySelector('#name_code')
 
 export var medate = {
-    me攻击力 : 100,
+    me攻击力 : 10,
     me防御力 : 1,
     me体质 : 10,
     me精神 : 5,

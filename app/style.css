@@ -669,6 +669,10 @@ body {
     border-radius: 5px;
 }
 
+.人物详细信息_属性信息_经验条 {
+    border: solid white 1px;
+}
+
 .经验值, .人物详细信息_属性信息_经验值 {
     background-color: rgb(78, 255, 78);
     border-radius: 5px;
@@ -1267,7 +1271,7 @@ body {
     border-left: solid rgb(95, 139, 24) 0.5vw;
     border-right: solid rgb(95, 139, 24) 0.5vw;
     flex-direction: column;
-    background-color: rgb(160, 159, 159);
+    background-color: rgb(27, 27, 27);
 }
 
 
@@ -1297,7 +1301,7 @@ body {
     height: 5vh;
     border: none;
     font-size: 3vmin;
-    background-color: rgb(94, 93, 93);
+    background-color: rgb(34, 34, 34);
     color: white;
 }
 
@@ -1309,19 +1313,20 @@ body {
 .内容_部分 h1 {
     font-size: 7vmin;
     position: relative;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
 }
 
 .内容_上半部分 {
-    width: 100%;
-    background-color: rgb(182, 182, 182);
+    width: 97vw;
+    background-color: rgb(27, 27, 27);
     height: 40vh;
-    border-bottom: solid black 1px;
+    border-bottom: solid rgb(255, 255, 255) 1px;
+    padding-left: 1vw;
 }
 
 .背包物品 {
     width: 100%;
-    background-color: rgb(160, 159, 159);
     height: 53vh;
 }
 
@@ -1330,12 +1335,14 @@ body {
 }
 
 .人物详细信息_属性信息 { 
+    color: white;
     font-size: 3vmin;
     padding: 3px;
     margin-right: 5vw;
 }
 
 .人物详细信息_其他信息 {
+    color: white;
     font-size: 3vmin;
     padding: 3px;
 }
