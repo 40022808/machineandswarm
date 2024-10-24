@@ -57,7 +57,7 @@ function 获取事件奖励(number,rewar) {
 const textsMap = {
     "0": 文本0,
     "0_1": 文本0_后续1,
-    "1": 文本1,
+    "文本1": 文本1,
     "2": 文本2,
     "2_1": 文本2_后续1,
     "2_2":文本2_后续2,
@@ -75,7 +75,7 @@ function texts(number) {
 const 文本回答Map= {
     "0": 文本0_回答,
     "0_1": 文本0_后续1_回答,
-    "1": 文本1_回答,
+    "文本1": 文本1_回答,
     "2": 文本2_回答,
     "2_1": 文本2_后续1_回答,
     "2_2":文本2_后续2_回答,
@@ -91,7 +91,7 @@ export function 文本回答(number) {
 const 文本标题Map = {
     "0":"<h1>[██████]</h1><br>",
     "0_1":"<h1>[██████]</h1><br>",
-    "1":"<h1>[冒险的开始]</h1><br>",
+    "文本1":"<h1>[冒险的开始]</h1><br>",
     "2":"<h1>[昏暗的走廊]</h1><br>",
     "2_1":"<h1>[不再昏暗的走廊]</h1><br>",
     "2_2":"<h1>[昏暗的走廊]</h1><br>",
@@ -121,9 +121,9 @@ function 文本回答_函数_战斗开始(number) {
 
 function 文本回答_函数(number) {
     const actions = {
-        "1": () => {handleClick('#文本1_回答_1', 随机事件(number),number,1);   handleClick('#文本1_回答_2', 随机事件(number),number,2);},
+        "文本1": () => {handleClick('#文本1_回答_1', 随机事件(number),number,1);   handleClick('#文本1_回答_2', 随机事件(number),number,2);},
         "0": () => handleClick('#文本0_回答_1', "0_1",number,1),
-        "0_1": () => handleClick('#文本0_后续1_回答_1', "1", number,1,500),
+        "0_1": () => handleClick('#文本0_后续1_回答_1', "文本1", number,1,500),
         "2": () => {handleClick('#文本2_回答_1', "2_1",number,1);    handleClick('#文本2_回答_2',  随机后续(number,2, 3),number,2)},
         "2_1": () => handleClick('#文本2_后续1_回答_1', () => 文本回答_函数_战斗开始(number),number,1),
         "2_2":() => handleClick('#文本2_后续2_回答_1', () => 文本回答_函数_战斗开始(number), number,1),
@@ -158,7 +158,13 @@ function handleClick(selector, nextStep,number ,rewar,delay = 100) {
     });
 }
 
+export var boss生成倒计时_变量 = 0
+
+
+boss生成倒计时_变化_初始化()
+
 export function 冒险中选择_显示(number) {
+    boss生成倒计时_变化(number)
     当前事件 = number
     const 冒险中选择 = document.querySelector('.冒险中选择0')
     冒险中选择.style.display = 'flex';
@@ -964,6 +970,16 @@ export function 冒险中选择_消失() {
     冒险中选择.style.display = 'none';
 }
 
+export function boss生成倒计时_消失() {
+    const boss生成倒计时 = document.querySelector('.boss生成倒计时')
+    boss生成倒计时.style.display = 'none';
+}
+
+export function boss生成倒计时_显示() {
+    const boss生成倒计时 = document.querySelector('.boss生成倒计时')
+    boss生成倒计时.style.display = 'flex';
+}
+
 
 
 export function 战斗_攻击_显示() {
@@ -1132,6 +1148,7 @@ export function 游戏继续() {
     let number1 = 当前事件
     bottom_信息_消失()
     战斗选项框_消失()
+    boss生成倒计时_显示()
     let number2 = 随机事件(number1, 2, 3)
     加载_显示(4,6,1,nowbgm,悬疑bgm, 冒险中选择_显示,number2)
     
@@ -1172,6 +1189,7 @@ function fadeElementIn2(element, duration) {
 
 export function 战斗开始(npcs,npcname) {
     加载_显示(3,5,1, 悬疑bgm, 战斗BGM)
+    boss生成倒计时_消失()
     setTimeout(() => {
         战斗区域_显示()
         战斗区域_遮挡_显示() 
@@ -1614,7 +1632,7 @@ function 死亡结局播放() {
 
         playTexts();
     }
-    else if (medate.me等级 >= 2 && medate.me等级 <= 5) {
+    else if (medate.me等级 >= 2 && medate.me等级 <= 10) {
         let text1 = '世界发生改变已经过去了好几年';
         let text2 = '包括你在内所有人都适应了这些新常识';
         let text3 = '因为副本的原因人们获得了新科技';
@@ -1641,7 +1659,7 @@ function 死亡结局播放() {
 
         playTexts();
     }
-    else if (medate.me等级 >= 6 && medate.me等级 <= 10) {
+    else if (medate.me等级 >= 11 && medate.me等级 <= 30) {
         let text1 = '随着你越来越多次的冒险';
         let text2 = '你的名气也越来越大';
         let text3 = '你的实力也变得不错';
@@ -1768,3 +1786,17 @@ export function 技能_顺风斩() {
 }
 
 
+
+function boss生成倒计时_变化(number) {
+    if (number.toString().length == 1) {   
+        boss生成倒计时_变量 = Number(boss生成倒计时_变量) + 1;
+        const boss生成倒计时 = document.querySelector('.boss生成倒计时');
+        boss生成倒计时.innerHTML = boss生成倒计时_变量;
+    } 
+
+}
+
+function boss生成倒计时_变化_初始化() {
+    const boss生成倒计时 = document.querySelector('.boss生成倒计时');
+    boss生成倒计时.innerHTML = boss生成倒计时_变量;
+}
