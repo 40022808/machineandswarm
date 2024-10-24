@@ -7,7 +7,6 @@ import {
 } from "./函数库.js";
 
 
-
 const 版本 = "版本:0.24.531"
 const 目前版本 = document.querySelector('.目前版本')
 目前版本.innerHTML = 版本
