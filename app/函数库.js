@@ -9,10 +9,8 @@ import {
 
 
 export function 敌人名字信息_获取(number) {
-    if (number == "0") {
-        var name = 敌人名字信息("0")
-        return name
-    }
+    var name = 敌人名字信息(number)
+    return name
 }
 
 
@@ -106,16 +104,25 @@ function 文本标题(number) {
 
 
 const 文本回答_函数_战斗开始Map = {
-    "2_1": '30',
-    "2_2": '30',
-    "3": '30'
+    "2_1": '201',
+    "2_2": '201',
+    "3": '201'
 }
 
 
 function 文本回答_函数_战斗开始(number) {
+    let npcnumber = 0
+    if (boss生成倒计时_变量 == 1) {
+        npcnumber = 1
+    }
+    else if (boss生成倒计时_变量 <= 5) {
+        npcnumber = getRandomInt(1,2)
+    }
+    else {
+        npcnumber = getRandomInt(1,3)
+    }
     const textFunction = 文本回答_函数_战斗开始Map[number];
-    const [param1, param2] = textFunction.split('').map(char => parseInt(char, 10));
-    return 战斗开始(param1,param2)
+    return 战斗开始(npcnumber,textFunction)
 }
 
 
@@ -248,7 +255,7 @@ export function getRandomInt(min, max) {
 export var name_code = document.querySelector('#name_code')
 
 export var medate = {
-    me攻击力 : 10,
+    me攻击力 : 110,
     me防御力 : 1,
     me体质 : 10,
     me精神 : 5,
@@ -1185,6 +1192,47 @@ function fadeElementIn2(element, duration) {
 }
   
 
+function getRandomNumber(str) {
+    if (str.length !== 3) {
+        throw new Error("输入字符串必须由三个数字组成");
+    }
+
+    const firstChar = str.charAt(0);
+    const secondChar = parseInt(str.charAt(1));
+    const thirdChar = parseInt(str.charAt(2));
+    let range = [];
+
+    switch (firstChar) {
+        case '0':
+            for (let i = 0; i <= 13; i += 2) {
+                range.push(i);
+            }
+            break;
+        case '1':
+            for (let i = 1; i <= 13; i += 2) {
+                range.push(i);
+            }
+            break;
+        case '2':
+            for (let i = 0; i <= 13; i++) {
+                range.push(i);
+            }
+            break;
+        default:
+            throw new Error("第一个字符必须是0、1或2");
+    }
+
+    // 确保范围内的第一个和第四个数字是有效的
+    if (secondChar < 0 || thirdChar >= range.length || secondChar > thirdChar) {
+        throw new Error("第二个和第三个字符必须在有效范围内，并且第二个字符不能大于第三个字符");
+    }
+
+    // 在指定范围内生成随机数
+    const subRange = range.slice(secondChar, thirdChar + 1);
+    const randomIndex = Math.floor(Math.random() * subRange.length);
+    return subRange[randomIndex];
+}
+
 
 
 export function 战斗开始(npcs,npcname) {
@@ -1203,13 +1251,16 @@ export function 战斗开始(npcs,npcname) {
 
 var npc数量 = 0
 
-function 敌人生成(npcs, npcname) {
+function 敌人生成(npcs, npcname0) {
     const 战斗区域 = document.querySelector('.战斗区域');
     let npcnuber = npcs + 1;
     npc数量 = npcs
     for (let i = 1; i < npcnuber; i++) {
         var newNpc = document.createElement('button');
         newNpc.className = 'npc' + i;
+
+        let npcname = getRandomNumber(npcname0)
+
 
         var 敌人属性 = 敌人属性信息(npcname);
         if (敌人属性) {
