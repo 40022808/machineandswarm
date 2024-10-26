@@ -260,13 +260,15 @@ export var medate = {
     me体质 : 10,
     me精神 : 5,
     me等级 : 1,
+    之前等级: 1,
     me经验 : 0,
     me经验上限 : 10,
     me生命上限 : 0,
     me生命 : 0,
     me魔力上限 : 0,
     me魔力 : 0,
-    me财富:0
+    me财富:0,
+    me技能点:0
 };
 
 属性初始化()
@@ -311,6 +313,7 @@ export function 属性刷新() {
     var 魔力上限信息 = '魔力上限:' + medate.me魔力上限
     var 财富信息 = '星空币: ' + 星空币数量 + 星空币单位
     var 经验值信息 = '经验值:' + medate.me经验 + '/' + medate.me经验上限
+    var 技能点信息 = "技能点:" + medate.me技能点
     攻击力.innerHTML = 攻击力信息
     防御力.innerHTML = 防御力信息
     体质.innerHTML = 体质信息
@@ -326,6 +329,7 @@ export function 属性刷新() {
     const 人物详细信息_属性信息_等级 = document.querySelector('.人物详细信息_属性信息_等级')
     const 人物详细信息_属性信息_财富 = document.querySelector('.人物详细信息_属性信息_财富')
     const 人物详细信息_属性信息_经验值 = document.querySelector('.人物详细信息_属性信息_经验值')
+    const 人物详细信息_属性信息_技能点 = document.querySelector('.人物详细信息_属性信息_技能点')
     人物详细信息_属性信息_生命上限.innerHTML = 生命上限信息
     人物详细信息_属性信息_魔力上限.innerHTML = 魔力上限信息
     人物详细信息_属性信息_攻击力.innerHTML = 攻击力信息
@@ -335,6 +339,7 @@ export function 属性刷新() {
     人物详细信息_属性信息_等级.innerHTML = 等级信息
     人物详细信息_属性信息_财富.innerHTML = 财富信息
     人物详细信息_属性信息_经验值.innerHTML = 经验值信息
+    人物详细信息_属性信息_技能点.innerHTML = 技能点信息
     /////////////////////////////////////////////////////
     状态刷新()
 }
@@ -371,6 +376,7 @@ function 升级检测() {
             medate.me经验上限 = medate.me经验上限 * 2
             medate.me等级 = medate.me等级 + 1
             升级次数 = 升级次数 + 1 
+            技能点奖励()
             属性刷新()
         }   
         else {
@@ -385,8 +391,10 @@ function 升级检测() {
 function 升级奖励() {
     清除奖励信息()
     升级次数 = 升级次数 - 1
+    medate.之前等级 = medate.之前等级 + 1
+    let 之前等级 = medate.之前等级 - 1
     var newh1 = document.createElement('h1')
-    newh1.innerHTML = '恭喜你等级提升!'
+    newh1.innerHTML = '恭喜你等级提升!' + '( ' + 之前等级 + ' → ' + medate.之前等级 + ' )' + '(' + '拥有的技能点:' + medate.me技能点 + ')'
     var newdiv = document.createElement('div')
     newdiv.className = '升级奖励_box'
     var newh2 = document.createElement('h2')
@@ -402,6 +410,15 @@ function 升级奖励() {
     newdiv.appendChild(rewar2)
     newdiv.appendChild(rewar3)
 
+}
+
+
+function 技能点奖励() {
+    for (let i = 0 ; i <= 100 ; i += 2) {
+        if (medate.me等级 == i) {
+            medate.me技能点 = medate.me技能点 + 1
+        }
+    }
 }
 
 function 升级奖励_随机一个奖励(rewar1, rewar2, rewar3) {

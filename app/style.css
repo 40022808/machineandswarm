@@ -1389,7 +1389,7 @@ body {
 .人物详细信息 {
     display: flex;
     position: relative;
-    top: -10vh;
+    top: -6vh;
 }
 
 .人物详细信息_属性信息 { 
@@ -1398,7 +1398,7 @@ body {
     padding: 3px;
     display: grid;
     grid-template-columns: auto auto auto;
-    gap: 10px;
+    row-gap: 2vh;
     column-gap: 2vw;
 }
 
