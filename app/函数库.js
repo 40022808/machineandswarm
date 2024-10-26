@@ -210,9 +210,8 @@ export function docbgm() {
     const 热血战斗 = document.querySelector('#热血战斗')
     const 战斗BGM = document.querySelector('#战斗BGM')
     const 按钮2 = document.querySelector('#按钮2')
+    const 按钮1 = document.querySelector('#按钮1')
     const 受伤1 = document.querySelector('#受伤1')
-    const 受伤1_2 = document.querySelector('#受伤1_2')
-    const 受伤1_3 = document.querySelector('#受伤1_3')
     const end1 = document.querySelector('#end1')
     const 敌人死亡 = document.querySelector('#敌人死亡')
     const 攻击1 = document.querySelector('#攻击1')
@@ -221,6 +220,10 @@ export function docbgm() {
 }
 docbgm()
 
+function play音效(audioElement) {
+    const newAudio = audioElement.cloneNode();
+    newAudio.play();
+}
 
 export function cat() {
     console.log(`
@@ -254,8 +257,14 @@ export function getRandomInt(min, max) {
 
 export var name_code = document.querySelector('#name_code')
 
+export var meskill = {
+    "顺风斩" : 0,
+    "自愈术" : 0
+
+}
+
 export var medate = {
-    me攻击力 : 110,
+    me攻击力 : 10,
     me防御力 : 1,
     me体质 : 10,
     me精神 : 5,
@@ -268,7 +277,7 @@ export var medate = {
     me魔力上限 : 0,
     me魔力 : 0,
     me财富:0,
-    me技能点:0
+    me技能点:111
 };
 
 属性初始化()
@@ -342,6 +351,7 @@ export function 属性刷新() {
     人物详细信息_属性信息_技能点.innerHTML = 技能点信息
     /////////////////////////////////////////////////////
     状态刷新()
+    技能刷新()
 }
 
 export function 状态刷新() {
@@ -366,6 +376,73 @@ export function 状态刷新() {
     经验值.style.width = (memaxex * meex) + 'vw'
 }
 
+function 技能刷新() {
+
+
+    function 获取掌握技能(obj) {
+        let zeroProperties = [];
+        for (let key in obj) {
+            if (obj[key] !== 0) {
+                zeroProperties.push(key);
+            }
+        }
+        return zeroProperties;
+    }
+    
+
+    let 掌握的技能 = 获取掌握技能(meskill);
+
+
+    function 创造新技能(arr) {
+        arr.forEach(id => {
+            if (!document.getElementById(id)) {
+                let newElement = document.createElement('button');
+                newElement.id = id;
+                newElement.textContent = id;
+                if (是否有技能 == 'no') {
+                    newElement.className = '技能按钮 显示'
+                    是否有技能 = 'yes'
+                }
+                else {
+                    newElement.className = '技能按钮'
+                }
+                document.querySelector('.战斗_技能_库').appendChild(newElement);
+                newElement.addEventListener('click',()=>{
+                    战斗_技能_库_消失()
+                    战斗_技能_库_上下选择_消失()
+                    技能使用判断(id)
+                })
+            }
+        });
+    }
+
+
+    if (掌握的技能.length === 0) {
+        是否有技能 = 'no'
+    }
+    else {
+        创造新技能(掌握的技能)
+    }
+    
+}
+
+var 是否有技能 = 'no'
+
+export function 检查是否有技能() {
+    if (是否有技能 == 'no') {
+        play音效(error1)
+        弹窗('你还没有掌握技能!')
+    }
+    else {
+        战斗_技能_消失()
+        战斗_攻击_消失()
+        战斗_技能_库_显示()
+        战斗_技能_库_上下选择_显示()
+        按钮2.play()
+    }
+}
+
+
 var 升级次数 = 0
 
 function 升级检测() {
@@ -389,6 +466,7 @@ function 升级检测() {
 
 
 function 升级奖励() {
+    奖励弹窗_关闭_消失()
     清除奖励信息()
     升级次数 = 升级次数 - 1
     medate.之前等级 = medate.之前等级 + 1
@@ -463,6 +541,7 @@ function 升级奖励_奖励执行(type) {
     属性初始化()
     属性刷新()
     清除奖励信息()
+    奖励弹窗_关闭_显示()
     var newdiv = document.createElement('div')
     newdiv.className = '升级奖励_box'
     var newh1 = document.createElement('h1')
@@ -988,6 +1067,191 @@ export function 部分_技能_消失() {
     部分_技能.style.display = 'none';
 }
 
+function 内容_上半部分_技能详情_学习按钮_顺风斩_函数() {
+    if (medate.me技能点 == 0) {
+        play音效(error1)
+        弹窗('技能点不足!')
+    }
+    else if(medate.me技能点 >= 0) {
+        const 内容_上半部分_技能详情_学习按钮_顺风斩 = document.querySelector('#内容_上半部分_技能详情_学习按钮_顺风斩')
+        内容_上半部分_技能详情_学习按钮_顺风斩.style.display = 'none';
+        const 内容_上半部分_技能详情_升级按钮_顺风斩 = document.querySelector('#内容_上半部分_技能详情_升级按钮_顺风斩')
+        内容_上半部分_技能详情_升级按钮_顺风斩.style.display = 'block';
+        按钮1.play()
+        medate.me技能点 = medate.me技能点 - 1
+        meskill.顺风斩 = 1
+        属性刷新()
+        内容_上半部分_技能详情_消失()
+        内容_上半部分_技能详情_显示('顺风斩')
+    }
+
+}
+
+function 内容_上半部分_技能详情_升级按钮_自愈术_函数() {
+    if (medate.me技能点 == 0) {
+        play音效(error1);
+        弹窗('技能点不足!')
+    } 
+    else if(medate.me技能点 >= 0) {
+        play音效(按钮1);
+        medate.me技能点 = medate.me技能点 - 1;
+        meskill.自愈术 = meskill.自愈术 + 1;
+        属性刷新();
+        内容_上半部分_技能详情_消失();
+        内容_上半部分_技能详情_显示('自愈术');
+    }
+};
+
+function 内容_上半部分_技能详情_学习按钮_自愈术_函数() {
+    if (medate.me技能点 == 0) {
+        play音效(error1)
+        弹窗('技能点不足!')
+    }
+    else if(medate.me技能点 >= 0) {
+        const 内容_上半部分_技能详情_学习按钮_自愈术 = document.querySelector('#内容_上半部分_技能详情_学习按钮_自愈术')
+        内容_上半部分_技能详情_学习按钮_自愈术.style.display = 'none';
+        const 内容_上半部分_技能详情_升级按钮_自愈术 = document.querySelector('#内容_上半部分_技能详情_升级按钮_自愈术')
+        内容_上半部分_技能详情_升级按钮_自愈术.style.display = 'block';
+        按钮1.play()
+        medate.me技能点 = medate.me技能点 - 1
+        meskill.自愈术 = 1
+        属性刷新()
+        内容_上半部分_技能详情_消失()
+        内容_上半部分_技能详情_显示('自愈术')
+    }
+
+}
+
+function 内容_上半部分_技能详情_升级按钮_顺风斩_函数() {
+    if (medate.me技能点 == 0) {
+        play音效(error1);
+        弹窗('技能点不足!')
+    } 
+    else if(medate.me技能点 >= 0) {
+        play音效(按钮1);
+        medate.me技能点 = medate.me技能点 - 1;
+        meskill.顺风斩 = meskill.顺风斩 + 1;
+        属性刷新();
+        内容_上半部分_技能详情_消失();
+        内容_上半部分_技能详情_显示('顺风斩');
+    }
+};
+
+
+
+
+export function 内容_上半部分_技能_消失() {
+    const 内容_上半部分_技能 = document.querySelector('.内容_上半部分_技能')
+    内容_上半部分_技能.style.display = 'none';
+}
+export function 内容_上半部分_技能_显示() {
+    const 内容_上半部分_技能 = document.querySelector('.内容_上半部分_技能')
+    内容_上半部分_技能.style.display = 'flex';
+}
+
+export function 内容_上半部分_技能详情_显示(name) {
+    const 内容_上半部分_技能详情_名称 = document.querySelector('.内容_上半部分_技能详情_名称')
+    内容_上半部分_技能详情_名称.innerHTML = 技能名称生成(name)
+    const 内容_上半部分_技能详情_描述 = document.querySelector('.内容_上半部分_技能详情_描述')
+    内容_上半部分_技能详情_描述.innerHTML = 技能描述生成(name)
+    
+}
+
+function 技能名称生成(name) {
+    if (name == "顺风斩") {
+        let text
+        if (meskill.顺风斩 == 0) {
+            text = '[' + name + ']   ' + '[未掌握]'
+        }
+        else {  
+            text = '[' + name + ']   ' + '[' + '等级' + meskill.顺风斩 + ']'
+        }
+        
+        return text
+    }
+    else if (name == "自愈术") {
+        let text
+        if (meskill.自愈术 == 0) {
+            text = '[' + name + ']   ' + '[未掌握]'
+        }
+        else {  
+            text = '[' + name + ']   ' + '[' + '等级' + meskill.自愈术 + ']'
+        }
+        
+        return text
+    }
+}
+
+function 技能描述生成(name) {
+    if (name == "顺风斩") {
+        let 变量
+        if (meskill.顺风斩 == 0) {
+            变量 = 80 + (meskill.顺风斩 * 10)
+        }
+        else {
+            变量 = 70 + (meskill.顺风斩 * 10)
+        }
+        let text = '对全部敌人造成一次80%伤害,技能等级提升加10%伤害  ' + '(目前伤害:' + 变量 + '%)'
+        return text
+    }
+    else if (name == "自愈术") {
+        let 变量
+        if (meskill.自愈术 == 0) {
+            变量 = 30 + (meskill.自愈术 * 10)
+        }
+        else {
+            变量 = 20 + (meskill.自愈术 * 10)
+        }
+        let text = '回复自己30点生命值,技能等级提升加10点生命值  ' + '(目前回复量:' + 变量 + '点)'
+        return text
+    }
+}
+
+
+export function 内容_上半部分_技能详情_消失() {
+    const 内容_上半部分_技能详情_名称 = document.querySelector('.内容_上半部分_技能详情_名称')
+    内容_上半部分_技能详情_名称.innerHTML = ''
+    const 内容_上半部分_技能详情_描述 = document.querySelector('.内容_上半部分_技能详情_描述')
+    内容_上半部分_技能详情_描述.innerHTML = ''
+}
+
+// 创建一个对象来存储函数引用
+const functionsMap = {
+    '顺风斩': {
+        学习: 内容_上半部分_技能详情_学习按钮_顺风斩_函数,
+        升级: 内容_上半部分_技能详情_升级按钮_顺风斩_函数
+    },
+    '自愈术': {
+        学习: 内容_上半部分_技能详情_学习按钮_自愈术_函数,
+        升级: 内容_上半部分_技能详情_升级按钮_自愈术_函数
+    }
+    // 你可以在这里添加更多的技能和对应的函数
+};
+
+export function 内容_上半部分_技能详情_按钮组_id更改(name) {
+    const 内容_上半部分_技能详情_学习按钮 = document.querySelector('.内容_上半部分_技能详情_学习按钮')
+    const 内容_上半部分_技能详情_升级按钮 = document.querySelector('.内容_上半部分_技能详情_升级按钮')
+    内容_上半部分_技能详情_学习按钮.id = '内容_上半部分_技能详情_学习按钮_' + name
+    内容_上半部分_技能详情_升级按钮.id = '内容_上半部分_技能详情_升级按钮_' + name
+    const 学习按钮事件监听添加 = document.querySelector('#内容_上半部分_技能详情_学习按钮_' + name)
+    const 升级按钮事件监听添加 = document.querySelector('#内容_上半部分_技能详情_升级按钮_' + name)
+    if (学习按钮事件监听添加) {
+        学习按钮事件监听添加.addEventListener('click', () => {
+
+            functionsMap[name].学习();
+            
+        });
+    }
+    
+    if (升级按钮事件监听添加) {
+        升级按钮事件监听添加.addEventListener('click', () => {
+
+            functionsMap[name].升级();
+
+        });
+    }
+}
+
 
 
 export function 冒险中选择_消失() {
@@ -1157,7 +1421,15 @@ export function 检查升级次数() {
     }
 
 }
+function 奖励弹窗_关闭_显示() {
+    const 奖励弹窗_关闭 = document.querySelector('.奖励弹窗_关闭')
+    奖励弹窗_关闭.style.display = 'block'
+}
 
+function 奖励弹窗_关闭_消失() {
+    const 奖励弹窗_关闭 = document.querySelector('.奖励弹窗_关闭')
+    奖励弹窗_关闭.style.display = 'none'
+}
 
 
 
@@ -1376,7 +1648,7 @@ function 敌人死亡判定() {
         npc行动 = 'no'
         npc.classList.add('npcdie');
         setTimeout(() => {
-            敌人死亡.play()
+            play音效(敌人死亡)
             npc.style.opacity = '0';
         }, 1000); 
         setTimeout(() => {
@@ -1392,7 +1664,7 @@ function 敌人死亡判定() {
         npc行动 = 'no'
         npc.classList.add('npcdie');
         setTimeout(() => {
-            敌人死亡.play()
+            play音效(敌人死亡)
             npc.style.opacity = '0';
         }, 1000); 
         setTimeout(() => {
@@ -1408,7 +1680,7 @@ function 敌人死亡判定() {
         npc行动 = 'no'
         npc.classList.add('npcdie');
         setTimeout(() => {
-            敌人死亡.play()
+            play音效(敌人死亡)
             npc.style.opacity = '0';
         }, 1000); 
         setTimeout(() => {
@@ -1768,7 +2040,7 @@ export function 技能使用判断(skill) {
             战斗_技能_库_消失()
             战斗_技能_库_上下选择_消失()
             bottom_信息_显示('魔力不足')
-            error1.play()
+            play音效(error1)
             setTimeout(() => {
                 bottom_初始选项_显示()
                 bottom_信息_消失()
@@ -1785,7 +2057,7 @@ export function 技能_顺风斩() {
     const 生命2 = document.querySelector('.生命2');
     const 生命3 = document.querySelector('.生命3');
     攻击1.play()
-    var abc = 1
+
     function 处理NPC(npcSelector, 防御力Selector, 生命Selector) {
         const npc = document.querySelector(npcSelector);
         const 防御力 = parseInt(document.querySelector(防御力Selector).textContent);
@@ -1793,7 +2065,8 @@ export function 技能_顺风斩() {
         
         if (生命.textContent !== '') {
             let currentNumber = parseInt(npc.dataset.number);
-            let 伤害 = medate.me攻击力 >= 防御力 ? medate.me攻击力 - 防御力 : 0;
+            let 攻击力 = Math.round(medate.me攻击力 * (0.8 + ((meskill.顺风斩  - 1) / 10)))
+            let 伤害 = 攻击力 >= 防御力 ? 攻击力 - 防御力 : 0;
 
             if (伤害 >= currentNumber) {
                 npc.dataset.number = 0;
@@ -1802,19 +2075,8 @@ export function 技能_顺风斩() {
                 npc.dataset.number = currentNumber - 伤害;
             }
 
-
-            if (abc == 1) {
-                受伤1.play();
-                abc = 2
-            }
-            else if (abc == 2) {
-                受伤1_2.play();
-                abc = 3
-            }
-            else if (abc == 3) {
-                受伤1_3.play();
-                abc = 1
-            }
+            play音效(受伤1)
+            
                                   
             生命.textContent = npc.dataset.number;
             npc.classList.add('shrunk');

@@ -1,4 +1,5 @@
 import{
+    boss生成倒计时_变量,
     medate,rewardData,状态刷新
 }from "./函数库.js";
 
@@ -111,8 +112,8 @@ export function 文本2_后续1_回答() {
 
 export function 文本2_后续1_奖励(rewar) {
     奖励重置()
-    rewardData.exp = 10
-    rewardData.coin = 6
+    rewardData.exp = Math.round(10 * (1 + (boss生成倒计时_变量 / 10)))
+    rewardData.coin = Math.round(6 * (1 + (boss生成倒计时_变量 / 10)))
 }
 
 
@@ -142,8 +143,8 @@ export function 文本2_后续2_效果() {
 
 export function 文本2_后续2_奖励(rewar) {
     奖励重置()
-    rewardData.exp = 10
-    rewardData.coin = 6
+    rewardData.exp = Math.round(10 * (1 + (boss生成倒计时_变量 / 10)))
+    rewardData.coin = Math.round(6 * (1 + (boss生成倒计时_变量 / 10)))
 }
 
 
@@ -185,10 +186,10 @@ export function 文本3_回答() {
 export function 文本3_奖励(rewar) {
     奖励重置()
     if (rewar == 1) {
-        rewardData.exp = 30
+        rewardData.exp = Math.round(30 * (1 + (boss生成倒计时_变量 / 10)))
 
     }
     else if (rewar == 2) {
-        rewardData.coin = 18
+        rewardData.coin = Math.round(18 * (1 + (boss生成倒计时_变量 / 10)))
     }
 }
