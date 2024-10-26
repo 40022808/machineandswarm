@@ -310,6 +310,7 @@ export function 属性刷新() {
     var 生命上限信息 = '生命上限:' + medate.me生命上限
     var 魔力上限信息 = '魔力上限:' + medate.me魔力上限
     var 财富信息 = '星空币: ' + 星空币数量 + 星空币单位
+    var 经验值信息 = '经验值:' + medate.me经验 + '/' + medate.me经验上限
     攻击力.innerHTML = 攻击力信息
     防御力.innerHTML = 防御力信息
     体质.innerHTML = 体质信息
@@ -323,7 +324,8 @@ export function 属性刷新() {
     const 人物详细信息_属性信息_体质 = document.querySelector('.人物详细信息_属性信息_体质')
     const 人物详细信息_属性信息_精神 = document.querySelector('.人物详细信息_属性信息_精神')
     const 人物详细信息_属性信息_等级 = document.querySelector('.人物详细信息_属性信息_等级')
-    const 人物详细信息_其他信息_财富 = document.querySelector('.人物详细信息_其他信息_财富')
+    const 人物详细信息_属性信息_财富 = document.querySelector('.人物详细信息_属性信息_财富')
+    const 人物详细信息_属性信息_经验值 = document.querySelector('.人物详细信息_属性信息_经验值')
     人物详细信息_属性信息_生命上限.innerHTML = 生命上限信息
     人物详细信息_属性信息_魔力上限.innerHTML = 魔力上限信息
     人物详细信息_属性信息_攻击力.innerHTML = 攻击力信息
@@ -331,7 +333,8 @@ export function 属性刷新() {
     人物详细信息_属性信息_体质.innerHTML = 体质信息
     人物详细信息_属性信息_精神.innerHTML = 精神信息
     人物详细信息_属性信息_等级.innerHTML = 等级信息
-    人物详细信息_其他信息_财富.innerHTML = 财富信息
+    人物详细信息_属性信息_财富.innerHTML = 财富信息
+    人物详细信息_属性信息_经验值.innerHTML = 经验值信息
     /////////////////////////////////////////////////////
     状态刷新()
 }
@@ -340,7 +343,6 @@ export function 状态刷新() {
     const css生命 = document.querySelector('.css生命')
     const css魔力 = document.querySelector('.css魔力')
     const 经验值 = document.querySelector('.经验值')
-    const 人物详细信息_属性信息_经验值 = document.querySelector('.人物详细信息_属性信息_经验值')
     const 生命信息 = document.querySelector('.生命信息')
     const 魔力信息 = document.querySelector('.魔力信息')
     生命信息.textContent = medate.me生命
@@ -357,7 +359,6 @@ export function 状态刷新() {
     let meex = medate.me经验 / medate.me经验上限
     let memaxex = 10
     经验值.style.width = (memaxex * meex) + 'vw'
-    人物详细信息_属性信息_经验值.style.width = (memaxex * meex) + 'vw'
 }
 
 var 升级次数 = 0
@@ -1192,7 +1193,7 @@ function fadeElementIn2(element, duration) {
 }
   
 
-function getRandomNumber(str) {
+function 随机敌人生成(str) {
     if (str.length !== 3) {
         throw new Error("输入字符串必须由三个数字组成");
     }
@@ -1259,7 +1260,7 @@ function 敌人生成(npcs, npcname0) {
         var newNpc = document.createElement('button');
         newNpc.className = 'npc' + i;
 
-        let npcname = getRandomNumber(npcname0)
+        let npcname = 随机敌人生成(npcname0)
 
 
         var 敌人属性 = 敌人属性信息(npcname);
