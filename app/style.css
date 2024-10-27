@@ -1434,19 +1434,8 @@ body {
     width: 50%;
     height: 70%;
     font-size: 100%;
+    display: none;
 
-}
-#内容_上半部分_技能详情_学习按钮_顺风斩 {
-    display: none;
-}
-#内容_上半部分_技能详情_学习按钮_自愈术 {
-    display: none;
-}
-#内容_上半部分_技能详情_升级按钮_顺风斩 {
-    display: none;
-}
-#内容_上半部分_技能详情_升级按钮_顺风斩 {
-    display: none;
 }
 
 .内容_上半部分_技能详情_学习按钮:hover {
@@ -1477,6 +1466,19 @@ body {
 
 .内容_上半部分_技能详情_升级按钮:hover {
     border: solid white 3px;
+}
+
+#内容_上半部分_技能详情_学习按钮_顺风斩{
+    display: none;
+}
+#内容_上半部分_技能详情_升级按钮_顺风斩{
+    display: none;
+}
+#内容_上半部分_技能详情_学习按钮_自愈术{
+    display: none;
+}
+#内容_上半部分_技能详情_升级按钮_自愈术{
+    display: none;
 }
 
 .奖励弹窗 {

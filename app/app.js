@@ -8,7 +8,7 @@ import {
 } from "./函数库.js";
 
 
-const 版本 = "版本:0.25.36"
+const 版本 = "版本:0.25.67"
 const 目前版本 = document.querySelector('.目前版本')
 目前版本.innerHTML = 版本
 console.log(版本)
@@ -161,20 +161,31 @@ const 战斗_技能_选项按钮 = document.querySelector('#战斗_技能_选项
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-const 技能按钮 = document.querySelectorAll('.技能按钮');
+
 let currentIndex = 0;
+
 document.getElementById('战斗_技能_库_上一个_选项按钮').addEventListener('click', () => {
-    技能按钮[currentIndex].classList.remove('显示');
+    const 技能按钮 = document.querySelectorAll('.技能按钮');
+    if (技能按钮[currentIndex]) {
+        技能按钮[currentIndex].classList.remove('显示');
+    }
     currentIndex = (currentIndex - 1 + 技能按钮.length) % 技能按钮.length;
-    技能按钮[currentIndex].classList.add('显示');
-    按钮2.play()
+    if (技能按钮[currentIndex]) {
+        技能按钮[currentIndex].classList.add('显示');
+    }
+    按钮2.play();
 });
 
 document.getElementById('战斗_技能_库_下一个_选项按钮').addEventListener('click', () => {
-    技能按钮[currentIndex].classList.remove('显示');
+    const 技能按钮 = document.querySelectorAll('.技能按钮');
+    if (技能按钮[currentIndex]) {
+        技能按钮[currentIndex].classList.remove('显示');
+    }
     currentIndex = (currentIndex + 1) % 技能按钮.length;
-    技能按钮[currentIndex].classList.add('显示');
-    按钮2.play()
+    if (技能按钮[currentIndex]) {
+        技能按钮[currentIndex].classList.add('显示');
+    }
+    按钮2.play();
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -236,15 +247,15 @@ const 技能 = document.querySelector('#技能')
 
 
 document.querySelector('#个人面板_技能库_技能_查看详情_顺风斩').addEventListener('click',()=>{
-    内容_上半部分_技能_显示()
     内容_上半部分_技能详情_按钮组_id更改('顺风斩')
+    内容_上半部分_技能_显示('顺风斩')
     内容_上半部分_技能详情_显示('顺风斩')
     
 })
 
 document.querySelector('#个人面板_技能库_技能_查看详情_自愈术').addEventListener('click',()=>{
-    内容_上半部分_技能_显示()
     内容_上半部分_技能详情_按钮组_id更改('自愈术')
+    内容_上半部分_技能_显示('自愈术')
     内容_上半部分_技能详情_显示('自愈术')
 
 })
