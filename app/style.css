@@ -1320,6 +1320,10 @@ body {
     background-color: rgba(0, 0, 0, 0);
 }
 
+.内容_上半部分_人物h1 {
+    margin-bottom: 5px;
+}
+
 .内容_上半部分 {
     width: 97vw;
     background-color: rgb(27, 27, 27);

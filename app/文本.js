@@ -151,9 +151,14 @@ export function 文本2_后续2_奖励(rewar) {
 export function 文本2_后续3() {
     let text = 
     `
-    你强忍着心中的恐惧向前走，你发现那些身影只是雕像
+    你强忍着心中的恐惧向前走，你发现那些身影只是雕像,并且你把镶嵌在雕像上的宝石带走了。(+50星空币)
     `;
     return text
+}
+
+export function 文本2_后续3_效果() {
+    medate.me财富 = medate.me财富 + 50
+    状态刷新()
 }
 
 export function 文本2_后续3_回答() {
